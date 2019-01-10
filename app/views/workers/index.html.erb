@@ -1,0 +1,14 @@
+<h1>Workers</h1>
+<table border="1">
+	<tr>
+		<th>Email</th>
+		<th>Nickname</th>
+	</tr>
+	<% @workers.each do |worker| %>
+		<tr>
+			<td><%= worker.email %></td>
+			<td><%= worker.nickname %></td>
+		</tr>
+	<% end %>
+</table>
+ <%= link_to 'Create new worker',  new_worker_path %>
