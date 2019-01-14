@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 	devise_for :workers
-	root 'workers#index'
+	root 'products#index'
 	resources :workers
+	resources :products
 end
