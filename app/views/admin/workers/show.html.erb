@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @worker.nickname %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @worker.email %>
+</p>
+
+<%= link_to 'Edit', edit_admin_worker_path(@worker) %> |
+<%= link_to 'Back', admin_workers_path %>
