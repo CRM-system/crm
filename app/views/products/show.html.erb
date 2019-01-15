@@ -1,3 +1,5 @@
-<%= @product.name %><br>
-<%= @product.description %><br>
-<%= @product.price %><br><hr>
+<% if @product %>
+    <%= @product.name %><br>
+    <%= @product.description %><br>
+    <%= @product.price %><br><hr>
+<% end %>

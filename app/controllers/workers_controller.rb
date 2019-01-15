@@ -11,6 +11,8 @@ class WorkersController < ApplicationController
     @worker.save
 
     redirect_to root_path
+  end
+  
   def show
   	@worker = Worker.find(params[:id])
   end
