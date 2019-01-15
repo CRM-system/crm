@@ -1,0 +1,29 @@
+
+<%= form_with model:  @product, local: true do |f| %>
+<% if @product.errors.any? %>
+<div class="errors">
+  Total errors: <%= @product.errors.count %>
+  <ul>
+    <% @product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<p>Название
+  <%= f.text_field :name %>
+</p>
+
+<p>Цена
+  <%= f.number_field :price %>
+</p>
+
+<p>Описание
+  <%= f.text_area :description %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
