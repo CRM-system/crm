@@ -1,0 +1,35 @@
+<nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-md">
+    <div class="container">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          &#x2630;
+      </button>
+      <%= link_to 'Сотрудники', admin_root_path, :class => "text-light" %>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            
+        </ul>
+        <div class="navbar-nav ml-auto">
+          <div class="navbar-nav ml-auto">
+              <% if worker_signed_in? %>
+
+                  <div class="dropdown show">
+                    <%= link_to current_worker.nickname, edit_worker_registration_path(current_worker), class: 'btn btn-secondary dropdown-toggle', 'role' => "button", 'id' => "dropdownMenuLink", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" %>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <%= link_to 'Log out', destroy_worker_session_path, method: :delete, class: 'dropdown-item' %>
+                  </div>
+                  <div>
+
+                    <% else %>
+
+                   <div class="nav-item">
+                       <%= link_to 'Log in', new_worker_session_path, class: 'nav-link' %>
+                   </div>
+
+                   <% end %>
+               </div>
+           </div>
+       </div>
+   </div>
+</nav>
