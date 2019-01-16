@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 		resources :workers
 		resources :roles
 		resources :products
+		resources :functions
 	end
 end

@@ -1,0 +1,23 @@
+<h1>Функции</h1>
+<%#= link_to 'Create new function',   new_admin__path %>
+<table border="1">
+  <tr>
+    <th>Название</th>
+    <th>Модель</th>
+    <th>Доступ</th>
+    <th>Роль</th>
+    <th colspan="3">Actions</th>
+  </tr>
+
+  <% @functions.each do |function| %>
+    <tr>
+      <td><%= function.name %></td>
+      <td><%= function.functionable_type %></td>
+      <td><%= function.access %></td>
+      <td><%= function.role.name %></td>
+      <td><%#= link_to 'Show', admin__path(function) %></td>
+      <td><%#= link_to 'Edit', edit__role_path(function) %></td>
+      <td><%#= link_to 'Destroy', admin__path(function), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
