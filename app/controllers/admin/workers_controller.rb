@@ -46,6 +46,5 @@ class Admin::WorkersController < AdminController
 
 	def worker_params
 		params.require(:worker).permit(:nickname, :email, :password)
-
 	end
 end
