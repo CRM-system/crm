@@ -22,8 +22,8 @@ class Admin::FunctionsController < AdminController
     def function_params
       params.require(:function).permit(
         :name,
-        :functionable_id,
-        :functionable_type,
+        :model_name,
+        :description
         :access,
         :role_id
       )
