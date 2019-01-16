@@ -6,7 +6,7 @@ class Admin::RolesController < AdminController
 	end
 
 	def show
-		@functions = Function.all
+		@functions = Function.all.where(role_id: @role.id)
 	end
 
 	def new
