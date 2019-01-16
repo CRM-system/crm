@@ -23,7 +23,7 @@ class Admin::FunctionsController < AdminController
       params.require(:function).permit(
         :name,
         :model_name,
-        :description
+        :description,
         :access,
         :role_id
       )
