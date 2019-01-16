@@ -11,7 +11,7 @@ class Admin::FunctionsController < AdminController
   def create
     @function = Function.new(function_params)
     if @function.save
-      redirect_to admin_functions_path
+      redirect_to [:admin, @function.role]
     else
       render :new
     end
@@ -22,7 +22,7 @@ class Admin::FunctionsController < AdminController
     def function_params
       params.require(:function).permit(
         :name,
-        :model_name,
+        :model,
         :description,
         :access,
         :role_id

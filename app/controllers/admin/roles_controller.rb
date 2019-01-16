@@ -6,6 +6,7 @@ class Admin::RolesController < AdminController
 	end
 
 	def show
+		@functions = Function.all
 	end
 
 	def new
