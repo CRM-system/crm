@@ -1,0 +1,26 @@
+<%= form_with model: [:admin, @function], local: true do |f| %>
+  <% if @function.errors.any? %>
+    <div class="errors">
+      Total errors: <%= @function.errors.count %>
+      <ul>
+        <% @function.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :role %><br/>
+    <%= f.collection_select :role_id, Role.all, :id, :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
