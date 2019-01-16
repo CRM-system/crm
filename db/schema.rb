@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_091336) do
     t.string "name"
     t.string "functionable_type"
     t.bigint "functionable_id"
-    t.boolean "access"
+    t.boolean "access", default: false
     t.bigint "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
