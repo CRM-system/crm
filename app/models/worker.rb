@@ -5,4 +5,5 @@ class Worker < ApplicationRecord
          :recoverable, :rememberable, :validatable
 	validates :nickname, presence: true, length: { maximum: 50 }
 	belongs_to :role
+  has_many :functions, as: :functionable
 end
