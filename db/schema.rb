@@ -10,22 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_15_121826) do
+ActiveRecord::Schema.define(version: 2019_01_16_091336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-
-  create_table "roles", force: :cascade do |t|
+  create_table "functions", force: :cascade do |t|
     t.string "name"
+    t.string "functionable_type"
+    t.bigint "functionable_id"
+    t.boolean "access"
+    t.bigint "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["functionable_type", "functionable_id"], name: "index_functions_on_functionable_type_and_functionable_id"
+    t.index ["role_id"], name: "index_functions_on_role_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,5 +57,6 @@ ActiveRecord::Schema.define(version: 2019_01_15_121826) do
     t.index ["role_id"], name: "index_workers_on_role_id"
   end
 
+  add_foreign_key "functions", "roles"
   add_foreign_key "workers", "roles"
 end
