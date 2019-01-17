@@ -1,0 +1,21 @@
+<%= form_with model: [:admin, @role], local: true do |f| %>
+<% if @role.errors.any? %>
+<div class="errors">
+	Total errors: <%= @role.errors.count %>
+	<ul>
+		<% @role.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<p>
+	<%= f.label :name %><br/>
+	<%= f.text_field :name %>
+</p>
+
+<p>
+	<%= f.submit %>
+</p>
+<% end %>

@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_103847) do
+
+
+ActiveRecord::Schema.define(version: 2019_01_16_124400) do
 
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+
+  create_table "functions", force: :cascade do |t|
+    t.string "name"
+    t.boolean "access", default: false
+    t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "model"
+    t.text "description"
+    t.index ["role_id"], name: "index_functions_on_role_id"
+  end
+
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -23,6 +38,15 @@ ActiveRecord::Schema.define(version: 2019_01_14_103847) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 
   create_table "workers", force: :cascade do |t|
     t.string "nickname"
@@ -34,8 +58,12 @@ ActiveRecord::Schema.define(version: 2019_01_14_103847) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.boolean "admin", default: false
+    t.bigint "role_id"
     t.index ["email"], name: "index_workers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_workers_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_workers_on_role_id"
   end
 
+  add_foreign_key "functions", "roles"
+  add_foreign_key "workers", "roles"
 end

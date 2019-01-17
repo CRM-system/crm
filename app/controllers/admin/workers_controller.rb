@@ -1,4 +1,6 @@
 class Admin::WorkersController < AdminController
+	before_action :create_worker_access_is_given?, :only => [:new]
+
 	before_action :set_worker, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -45,7 +47,14 @@ class Admin::WorkersController < AdminController
 	end
 
 	def worker_params
-		params.require(:worker).permit(:nickname, :email, :password)
-
+		params.require(:worker).permit(:nickname, :email, :password, :role_id)
 	end
+
+	def create_worker_access_is_given?
+    redirect_to request.referrer unless Function.find(
+    	current_worker.role.functions.where(
+    		model: 'worker', name: 'create'
+    	).ids.first
+    ).access
+  end
 end
