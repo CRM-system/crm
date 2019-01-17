@@ -47,7 +47,11 @@ class Admin::WorkersController < AdminController
 	end
 
 	def worker_params
+<<<<<<< HEAD
 		params.require(:worker).permit(:nickname, :email, :password, :role_id)
+=======
+		params.require(:worker).permit(:nickname, :email, :password)
+>>>>>>> 47f2adeef79d081e70f7b8980ff88abd96aa3097
 	end
 
 	def create_worker_access_is_given?
