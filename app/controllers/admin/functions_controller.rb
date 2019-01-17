@@ -1,4 +1,5 @@
 class Admin::FunctionsController < AdminController
+  before_action :set_function, only: [:edit, :update]
 
   def index
     @functions = Function.all
@@ -17,6 +18,17 @@ class Admin::FunctionsController < AdminController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @function.update(function_params)
+      redirect_to [:admin, @function.role]
+    else
+      render :edit
+    end
+  end
+
 
   private
     def function_params
@@ -27,5 +39,9 @@ class Admin::FunctionsController < AdminController
         :access,
         :role_id
       )
+    end
+
+    def set_function
+      @function = Function.find(params[:id])
     end
 end
