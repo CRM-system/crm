@@ -19,9 +19,15 @@
       <td><%= function.description %></td>
       <td><%= function.access %></td>
       <td><%= function.role.name %></td>
-      <td><%#= link_to 'Show', admin__path(function) %></td>
+      <td>
+        <% if function.access %>
+          <%= link_to 'Ограничить в правах', admin_access_path(function), method: :put %>
+        <% else %>
+          <%= link_to 'Предоставить право', admin_access_path(function), method: :put %>
+        <% end %>
+      </td>
       <td><%= link_to 'Редактирование', edit_admin_function_path(function) %></td>
-      <td><%#= link_to 'Destroy', admin__path(function), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Удалить', admin_function_path(function), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
     </tr>
   <% end %>
 </table>

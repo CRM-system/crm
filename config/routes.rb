@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 		resources :roles
 		resources :products
 		resources :functions
+		put '/access/functions/:id' => 'functions#access', as: 'access'
 	end
 end

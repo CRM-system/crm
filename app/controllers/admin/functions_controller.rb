@@ -1,5 +1,5 @@
 class Admin::FunctionsController < AdminController
-  before_action :set_function, only: [:edit, :update]
+  before_action :set_function, only: [:edit, :update, :destroy, :access]
 
   def index
     @functions = Function.all
@@ -29,6 +29,20 @@ class Admin::FunctionsController < AdminController
     end
   end
 
+  def destroy
+    @function.destroy
+    redirect_to [:admin, @function.role]
+  end
+
+  def access
+    if @function.access
+      @function.update(access: false)
+    else
+      @function.update(access: true)
+    end
+
+    redirect_to [:admin, @function.role]
+  end
 
   private
     def function_params
