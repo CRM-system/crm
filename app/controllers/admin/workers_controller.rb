@@ -1,5 +1,5 @@
 class Admin::WorkersController < AdminController
-	before_action :create_worker_access_is_given?, :only => [:new]
+	before_action :create_worker_access_is_given?, :only => [:new], if: :functions_exist?
 
 	before_action :set_worker, only: [:show, :edit, :update, :destroy]
 
@@ -51,10 +51,14 @@ class Admin::WorkersController < AdminController
 	end
 
 	def create_worker_access_is_given?
-    redirect_to request.referrer unless Function.find(
-    	current_worker.role.functions.where(
-    		model: 'worker', name: 'create'
-    	).ids.first
-    ).access
+	    redirect_to request.referrer unless Function.find(
+	    	current_worker.role.functions.where(
+	    		model: 'worker', name: 'create'
+	    	).ids.first
+	    ).access
+	end
+
+	def functions_exist?
+		current_worker.role.functions.exists?
 	end
 end
