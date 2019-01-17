@@ -1,6 +1,13 @@
 class Admin::ProductsController < ApplicationController
     before_action :find_product, only:[:show, :edit, :update, :destroy]
 
+    def index
+      @products = Product.all
+    end
+
+    def show
+    end
+
     def new
       @product = Product.new
     end
@@ -8,17 +15,10 @@ class Admin::ProductsController < ApplicationController
     def create
       @product = Product.new(product_params)
       if @product.save
-        redirect_to admin_product_path(product)
+        redirect_to admin_product_path(@product)
       else
         render 'new'
       end
-    end
-
-    def show
-    end
-
-    def index
-      @products = Product.all
     end
 
     def edit
@@ -27,7 +27,7 @@ class Admin::ProductsController < ApplicationController
     def update
       @product.update(product_params)
 
-      redirect_to admin_product_path(product)
+      redirect_to admin_product_path(@product)
     end
 
     def destroy
