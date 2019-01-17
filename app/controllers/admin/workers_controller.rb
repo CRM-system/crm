@@ -51,11 +51,11 @@ class Admin::WorkersController < AdminController
 	end
 
 	def create_worker_access_is_given?
-	    redirect_to request.referrer unless Function.find(
-	    	current_worker.role.functions.where(
-	    		model: 'worker', name: 'create'
-	    	).ids.first
-	    ).access
+    redirect_to request.referrer unless Function.find(
+    	current_worker.role.functions.where(
+    		model: 'worker', name: 'create'
+    	).ids.first
+    ).access
 	end
 
 	def functions_exist?
