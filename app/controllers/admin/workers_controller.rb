@@ -56,5 +56,5 @@ class Admin::WorkersController < AdminController
     		model: 'worker', name: 'create'
     	).ids.first
     ).access
-  end
+	end
 end

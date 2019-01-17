@@ -6,11 +6,22 @@ class WorkersController < ApplicationController
   	@workers = Worker.all
   end
 
+  def create
+    @worker = Worker.new(worker_params)
+    @worker.save
+
+    redirect_to root_path
+  end
+
   def show
   	@worker = Worker.find(params[:id])
   end
 
   private
+
+  def worker_params
+    params.require(:worker).permit(:nickname, :email, :password)
+  end
 
   def correct_worker
     @worker = Worker.find(params[:id])
