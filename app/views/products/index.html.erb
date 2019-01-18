@@ -1,7 +1,25 @@
-
-<% if @products %>
+<h1>Товары</h1>
+<table border="1">
+	<tr>
+		<th>Название</th>
+		<th>Цена</th>
+		<th>Описание</th>
+		<th>Изображение</th>
+	</tr>
 	<% @products.each do |product| %>
-		<%= link_to product.name, product_path(product) %><br>
+	<tr>
+		<td><%= link_to product.name, product_path(product) %></td>
+		<td><%= product.price %></td>
+		<td><%= product.description %></td>
+		<td>
+			<% if product.picture.attached? %>
+		    <%= image_tag product.picture, size: 100 %>
+			<% end %>
+		</td>
+	</tr>
 	<% end %>
-<% end %>
+</table>
+
+
+
 

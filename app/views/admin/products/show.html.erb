@@ -1,7 +1,8 @@
-<% if @product %>
+<% if @product.picture.attached? %>
     <%= @product.name %><br>
     <%= @product.description %><br>
-    <%= @product.price %><br><hr>
+    <%= @product.price %><br>
+    <%= image_tag @product.picture, size: 100 %>
     <%= link_to 'Редактировать', edit_admin_product_path(@product) %> |
     <%= link_to 'Назад', admin_products_path %>
 <% end %>
