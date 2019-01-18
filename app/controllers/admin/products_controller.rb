@@ -2,6 +2,7 @@ class Admin::ProductsController < AdminController
   before_action :check_access_index_product, :only => [:index]
   before_action :check_access_show_product, :only => [:show]
   before_action :check_access_edit_product, :only => [:edit]
+  before_action :check_access_new_product, :only => [:new]
 
   before_action :find_product, only:[:show, :edit, :update, :destroy]
 
@@ -69,6 +70,10 @@ class Admin::ProductsController < AdminController
 
   def check_access_edit_product
     redirect_to request.referrer unless current_worker.edit_product_access_is_given?
+  end
+
+  def check_access_new_product
+    redirect_to request.referrer unless current_worker.new_product_access_is_given?
   end
 
 end

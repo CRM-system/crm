@@ -29,4 +29,10 @@ class Worker < ApplicationRecord
       self.role.functions.where(model: 'product', name: 'edit').first.access
     end
   end
+
+  def new_product_access_is_given?
+    if self.role.functions.exists?
+      self.role.functions.where(model: 'product', name: 'new').first.access
+    end
+  end
 end
