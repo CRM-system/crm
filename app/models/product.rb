@@ -3,4 +3,5 @@ class Product < ApplicationRecord
     validates :price, presence: true
     validates :description, presence: true, length: {maximum: 200}
     has_one_attached :picture
+
 end

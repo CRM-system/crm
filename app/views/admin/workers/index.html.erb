@@ -22,5 +22,6 @@
 	<% end %>
 </table>
 
-<%= link_to 'Создать нового сотрудника', new_admin_worker_path %>
-
+<% if current_worker.create_worker_access_is_given? %>
+	<%= link_to 'Создать нового сотрудника', new_admin_worker_path %>
+<% end %>
