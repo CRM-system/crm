@@ -7,6 +7,7 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.2'
 gem 'devise'
 gem 'jquery-rails'
+gem 'semantic-ui-sass'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
