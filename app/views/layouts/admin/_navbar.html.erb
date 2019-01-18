@@ -8,11 +8,13 @@
         &#x2630;
       <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>
        &#x2630;
-      <%= link_to 'Товары', admin_products_path, :class => "text-light" %>
+      <% if current_worker.index_product_access_is_given? %>
+        <%= link_to 'Товары', admin_products_path, :class => "text-light" %>
+      <% end %>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            
+
         </ul>
         <div class="navbar-nav ml-auto">
           <div class="navbar-nav ml-auto">

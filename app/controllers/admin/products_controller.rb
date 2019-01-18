@@ -1,4 +1,7 @@
 class Admin::ProductsController < AdminController
+  before_action :check_access_index_product, :only => [:index]
+  before_action :check_access_show_product, :only => [:show]
+
   before_action :find_product, only:[:show, :edit, :update, :destroy]
 
   def index
@@ -53,6 +56,14 @@ class Admin::ProductsController < AdminController
 
   def uploaded_file
   params[:product][:picture]
+  end
+
+  def check_access_index_product
+    redirect_to request.referrer unless current_worker.index_product_access_is_given?
+  end
+
+  def check_access_show_product
+    redirect_to request.referrer unless current_worker.show_product_access_is_given?
   end
 
 end

@@ -11,4 +11,16 @@ class Worker < ApplicationRecord
       self.role.functions.where(model: 'worker', name: 'create').first.access
     end
   end
+
+  def index_product_access_is_given?
+    if self.role.functions.exists?
+      self.role.functions.where(model: 'product', name: 'index').first.access
+    end
+  end
+
+  def show_product_access_is_given?
+    if self.role.functions.exists?
+      self.role.functions.where(model: 'product', name: 'show').first.access
+    end
+  end
 end
