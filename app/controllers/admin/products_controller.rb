@@ -1,48 +1,79 @@
-class Admin::ProductsController < ApplicationController
-    before_action :find_product, only:[:show, :edit, :update, :destroy]
+class Admin::ProductsController < AdminController
+  before_action :check_access_index_product, :only => [:index]
+  before_action :check_access_show_product, :only => [:show]
+  before_action :check_access_edit_product, :only => [:edit]
+  before_action :check_access_new_product, :only => [:new]
 
-    def new
-      @product = Product.new
-    end
+  before_action :find_product, only:[:show, :edit, :update, :destroy]
 
-    def create
-      @product = Product.new(product_params)
-      if @product.save
-        redirect_to admin_product_path(product)
-      else
-        render 'new'
-      end
-    end
+  def index
+    @products = Product.all
+  end
 
-    def show
-    end
+  def show
+  end
 
-    def index
-      @products = Product.all
-    end
+  def new
+    @product = Product.new
+  end
 
-    def edit
-    end
-
-    def update
-      @product.update(product_params)
-
-      redirect_to admin_product_path(product)
-    end
-
-    def destroy
-      @product.destroy
-
-      redirect_to admin_products_path
-    end
-
-    private
-
-    def product_params
-      params.require(:product).permit(:name, :price, :description)
-    end
-
-    def find_product
-      @product = Product.find(params[:id])
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      upload_picture
+      redirect_to admin_product_path(@product)
+    else
+      render 'new'
     end
   end
+
+  def edit
+  end
+
+  def update
+    @product.update(product_params)
+
+    redirect_to admin_product_path(@product)
+  end
+
+  def destroy
+    @product.destroy
+
+    redirect_to admin_products_path
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :price, :description)
+  end
+
+  def find_product
+    @product = Product.find(params[:id])
+  end
+
+  def upload_picture
+   @product.picture.attach(uploaded_file) if uploaded_file.present?
+  end
+
+  def uploaded_file
+  params[:product][:picture]
+  end
+
+  def check_access_index_product
+    redirect_to request.referrer unless current_worker.index_product_access_is_given?
+  end
+
+  def check_access_show_product
+    redirect_to request.referrer unless current_worker.show_product_access_is_given?
+  end
+
+  def check_access_edit_product
+    redirect_to request.referrer unless current_worker.edit_product_access_is_given?
+  end
+
+  def check_access_new_product
+    redirect_to request.referrer unless current_worker.new_product_access_is_given?
+  end
+
+end

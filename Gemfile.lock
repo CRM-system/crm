@@ -90,6 +90,9 @@ GEM
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.10.0)
+    file_validators (2.3.0)
+      activemodel (>= 3.2)
+      mime-types (>= 1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.5.1)
@@ -117,6 +120,7 @@ GEM
     method_source (0.9.2)
     mime-types (1.25.1)
     mimemagic (0.3.3)
+    mini_magick (4.9.2)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     mini_racer (0.2.4)
@@ -241,9 +245,11 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  file_validators
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick (~> 4.8)
   mini_racer
   pg
   puma (~> 3.11)
