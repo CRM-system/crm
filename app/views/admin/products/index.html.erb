@@ -22,7 +22,11 @@
 				<%= link_to 'Смотреть', admin_product_path(product) %>
 			<% end %>
 		</td>
-		<td><%= link_to 'Редактировать', edit_admin_product_path(product) %></td>
+		<td>
+			<% if current_worker.edit_product_access_is_given? %>
+				<%= link_to 'Редактировать', edit_admin_product_path(product) %>
+			<% end %>
+		</td>
 		<td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>
 	<% end %>
