@@ -5,7 +5,7 @@
 		<th>Цена</th>
 		<th>Описание</th>
 		<th>Изображение</th>
-		<th colspan="3">Действия</th>
+		<th colspan="4">Действия</th>
 	</tr>
 	<% @products.each do |product| %>
 	<tr>
@@ -26,6 +26,9 @@
 			<% if current_worker.edit_product_access_is_given? %>
 				<%= link_to 'Редактировать', edit_admin_product_path(product) %>
 			<% end %>
+		</td>
+		<td>
+			<%= link_to 'Создать копию', admin_duplicate_path(product), method: :post %>
 		</td>
 		<td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>

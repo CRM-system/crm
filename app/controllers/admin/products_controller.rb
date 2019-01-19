@@ -4,7 +4,7 @@ class Admin::ProductsController < AdminController
   before_action :check_access_edit_product, :only => [:edit]
   before_action :check_access_new_product, :only => [:new]
 
-  before_action :find_product, only:[:show, :edit, :update, :destroy]
+  before_action :find_product, only:[:show, :edit, :update, :destroy, :duplicate]
 
   def index
     @products = Product.all
@@ -38,6 +38,22 @@ class Admin::ProductsController < AdminController
 
   def destroy
     @product.destroy
+
+    redirect_to admin_products_path
+  end
+
+  def duplicate
+    new_product = @product.dup
+
+    Product.new(
+      name: "#{new_product.name}",
+      description: "#{new_product.description}",
+      price: new_product.price
+    )
+
+    new_product.picture.attach(@product.picture.blob)
+
+    new_product.save
 
     redirect_to admin_products_path
   end
