@@ -3,7 +3,6 @@ class Admin::ProductsController < AdminController
   before_action :check_access_show_product, :only => [:show]
   before_action :check_access_edit_product, :only => [:edit]
   before_action :check_access_new_product, :only => [:new]
-
   before_action :find_product, only:[:show, :edit, :update, :destroy]
 
   def index
@@ -53,27 +52,27 @@ class Admin::ProductsController < AdminController
   end
 
   def upload_picture
-   @product.picture.attach(uploaded_file) if uploaded_file.present?
+    @product.picture.attach(uploaded_file) if uploaded_file.present?
   end
 
   def uploaded_file
-  params[:product][:picture]
+    params[:product][:picture]
   end
 
   def check_access_index_product
-    redirect_to request.referrer unless current_worker.index_product_access_is_given?
+    redirect_to request.referrer unless current_worker.index_product_access_is_given? || current_worker.admin?
   end
 
   def check_access_show_product
-    redirect_to request.referrer unless current_worker.show_product_access_is_given?
+    redirect_to request.referrer unless current_worker.show_product_access_is_given? || current_worker.admin?
   end
 
   def check_access_edit_product
-    redirect_to request.referrer unless current_worker.edit_product_access_is_given?
+    redirect_to request.referrer unless current_worker.edit_product_access_is_given? || current_worker.admin?
   end
 
   def check_access_new_product
-    redirect_to request.referrer unless current_worker.new_product_access_is_given?
+    redirect_to request.referrer unless current_worker.new_product_access_is_given? || current_worker.admin?
   end
 
 end
