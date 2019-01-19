@@ -11,11 +11,11 @@
 // about supported directives.
 //
 // Loads all Semantic javascripts
-//= require semantic-ui
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require semantic-ui
 //= require_tree .

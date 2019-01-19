@@ -9,6 +9,7 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'semantic-ui-sass'
+gem 'semantic-ui-rails'
 
 gem 'file_validators'
 gem 'mini_magick', '~> 4.8'
