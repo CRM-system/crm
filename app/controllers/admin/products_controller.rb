@@ -6,7 +6,6 @@ class Admin::ProductsController < AdminController
   before_action :check_access_duplicate_product, :only => [:duplicate]
   before_action :find_product, only:[:show, :edit, :update, :destroy, :duplicate]
 
-
   def index
     @products = Product.all
   end

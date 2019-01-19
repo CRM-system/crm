@@ -21,17 +21,12 @@
 			<td><%= product.name %></td>
 		<% end %>
 		<td><%= product.price %></td>
-		<td><%= link_to admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } do %>
-			<i class="trash icon width_color_changed"></i>
-		<% end %>
-		</td>
-
 		<td>
 			<% if current_worker.duplicate_product_access_is_given? %>
 				<%= link_to 'Создать копию', admin_duplicate_path(product), method: :post %>
 			<% end %>
 		</td>
-		
+		<td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>
 	<% end %>
 </table><hr>
