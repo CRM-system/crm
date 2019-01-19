@@ -19,9 +19,6 @@ class Admin::RolesController < AdminController
 	def create
 		@role = Role.new(role_params)
 		if @role.save
-
-			# create_functions_for(@role)
-
 			redirect_to admin_roles_path
 		else
 			render :new
@@ -51,12 +48,5 @@ class Admin::RolesController < AdminController
 	def role_params
 		params.require(:role).permit(:name)
 
-	end
-
-	def create_functions_for(role)
-		Function.all.each do |function|
-			function.update(access: false)
-			role.functions << function.dup
-		end
 	end
 end
