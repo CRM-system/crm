@@ -10,27 +10,24 @@
 </div>
 <% end %>
 
-<div>
-  <%= f.label :name %><br/>
-  <%= f.text_field :name %>
-</div>
+<div class="field">
+  <%= f.text_field :name, placeholder: 'Название' %><br>
+</div><br>
+
+<div class="field">
+  <%= f.number_field :price, placeholder: 'Цена' %><br>
+</div><br>
+
+<div class="field">
+  <%= f.label :Изображение %><br />
+  <%= f.file_field :picture %><br>
+</div class="field"><br>
+
+<div class="field">
+  <%= f.text_area :description, placeholder: 'Описание' %><br>
+</div><br>
 
 <div>
-  <%= f.label :price %><br/>
-  <%= f.number_field :price %>
-</div>
-
-<div>
-  <%= f.label :picture %><br />
-  <%= f.file_field :picture %>
-</div>
-
-<div>
-  <%= f.label :description %><br/>
-  <%= f.text_area :description %>
-</div>
-
-<div>
-  <%= f.submit %>
+  <%= f.submit "Создать товар" %>
 </div>
 <% end %>

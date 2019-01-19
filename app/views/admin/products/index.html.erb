@@ -1,6 +1,7 @@
 <h1>Товары</h1>
-<table border="1">
+<table class="ui celled table">
 	<tr>
+		<th>Изображение</th>
 		<th>Название</th>
 		<th>Цена</th>
 		<th>Описание</th>
@@ -9,23 +10,20 @@
 	</tr>
 	<% @products.each do |product| %>
 	<tr>
-		<td><%= product.name %></td>
-		<td><%= product.price %></td>
-		<td><%= product.description %></td>
 		<td>
 			<% if product.picture.attached? %>
-		    <%= image_tag product.picture, size: 100 %>
+		    	<%= image_tag product.picture, size: 100 %>
 			<% end %>
 		</td>
-		<td>
-			<% if current_worker.show_product_access_is_given? %>
-				<%= link_to 'Смотреть', admin_product_path(product) %>
-			<% end %>
-		</td>
-		<td>
-			<% if current_worker.edit_product_access_is_given? %>
-				<%= link_to 'Редактировать', edit_admin_product_path(product) %>
-			<% end %>
+		<% if current_worker.show_product_access_is_given? || current_worker.admin? %>
+			<td><%= link_to product.name, admin_product_path(product) %></td>
+		<% else %>
+			<td><%= product.name %></td>
+		<% end %>
+		<td><%= product.price %></td>
+		<td><%= link_to admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } do %>
+			<i class="trash icon width_color_changed"></i>
+		<% end %>
 		</td>
 		<td>
 			<% if current_worker.duplicate_product_access_is_given? %>
@@ -35,10 +33,7 @@
 		<td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>
 	<% end %>
-</table>
-
-<% if current_worker.new_product_access_is_given? %>
+</table><hr>
+<% if current_worker.new_product_access_is_given? || current_worker.admin? %>
 	<%= link_to 'Создать новый товар',   new_admin_product_path %>
 <% end %>
-
-
