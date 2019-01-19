@@ -36,6 +36,12 @@ class Worker < ApplicationRecord
     end
   end
 
+  def duplicate_product_access_is_given?
+    if function_is_present?('product', 'duplicate')
+      return_access('product', 'duplicate')
+    end
+  end
+
   def find_function(model, name)
     self.role.functions.where(model: model, name: name).first
   end
