@@ -1,12 +1,12 @@
-<h1>Сотрудники</h1>
-<table border="1">
+<h3 class="ui left floated header">Сотрудники</h3>
+<table class="ui celled table">
 <tr>
-		<th>Email</th>
-		<th>Имя</th>
-		<th>Должность</th>
-		<th colspan="3">Действия</th>
-	</tr>
-	<% @workers.each do |worker| %>
+	<th>Email</th>
+	<th>Имя</th>
+    <th>Должность</th>
+    <th colspan="2">Действия</th>
+</tr>
+<% @workers.each do |worker| %>
 	<tr>
 		<td><%= worker.email %></td>
 		<td><%= worker.nickname %></td>
@@ -15,13 +15,11 @@
 				<%= worker.role.name %>
 			<% end %>
 		</td>
-		<td><%= link_to 'Смотреть', admin_worker_path(worker.id) %></td>
 		<td><%= link_to 'Редактировать', edit_admin_worker_path(worker) %></td>
 		<td><%= link_to 'Удалить', admin_worker_path(worker), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>
-	<% end %>
+<% end %>
 </table>
-
-<% if current_worker.create_worker_access_is_given? %>
+<% if current_worker.create_worker_access_is_given? || current_worker.admin? %>
 	<%= link_to 'Создать нового сотрудника', new_admin_worker_path %>
 <% end %>
