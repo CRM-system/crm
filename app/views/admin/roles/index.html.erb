@@ -1,4 +1,7 @@
 <h1>Должности</h1>
+<% if current_worker.admin? %>
+	<%= link_to 'Создать новую должность',new_admin_role_path, class:"ui positive basic button" %>
+<% end %>
 <table class="ui selectable celled black table", id="centred_table">
 	<tr class="table_title">
 		<th>Название</th>
@@ -9,20 +12,14 @@
 		<td><%= link_to role.name, admin_role_path(role.id)  %></td>
 		<td>
 			<%= link_to edit_admin_role_path(role) do %>
-				<i class="edit outline icon"> Редактировать</i>
+				Редактировать
 			<% end %>
 		</td>
 		<td>
 			<%= link_to admin_role_path(role), method: :delete, data: { confirm: 'Вы уверены?' } do %>
-				<i class="trash alternate outline icon"></i>
+				<i class="big trash alternate outline icon"></i>
 			<% end %>
 		</td>
 	</tr>
 	<% end %>
 </table>
-
-<% if current_worker.admin? %>
-	<%= link_to 'Создать новую должность',new_admin_role_path, class:"ui positive basic button" %>
-<% end %>
-
-

@@ -77,19 +77,19 @@ class Admin::ProductsController < AdminController
   end
 
   def check_access_index_product
-    redirect_to request.referrer unless current_worker.index_product_access_is_given? || current_worker.admin?
+    redirect_to request.referrer unless current_worker.index_product_access_is_given?
   end
 
   def check_access_show_product
-    redirect_to request.referrer unless current_worker.show_product_access_is_given? || current_worker.admin?
+    redirect_to request.referrer unless current_worker.show_product_access_is_given?
   end
 
   def check_access_edit_product
-    redirect_to request.referrer unless current_worker.edit_product_access_is_given? || current_worker.admin?
+    redirect_to request.referrer unless current_worker.edit_product_access_is_given?
   end
 
   def check_access_new_product
-    redirect_to request.referrer unless current_worker.new_product_access_is_given? || current_worker.admin?
+    redirect_to request.referrer unless current_worker.new_product_access_is_given?
   end
 
   def check_access_duplicate_product
