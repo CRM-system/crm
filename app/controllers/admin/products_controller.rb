@@ -3,7 +3,8 @@ class Admin::ProductsController < AdminController
   before_action :check_access_show_product, :only => [:show]
   before_action :check_access_edit_product, :only => [:edit]
   before_action :check_access_new_product, :only => [:new]
-  before_action :find_product, only:[:show, :edit, :update, :destroy]
+  before_action :check_access_duplicate_product, :only => [:duplicate]
+  before_action :find_product, only:[:show, :edit, :update, :destroy, :duplicate]
 
   def index
     @products = Product.all

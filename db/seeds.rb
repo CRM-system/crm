@@ -17,3 +17,43 @@
   admin: true,
   role_id: @role.id
 )
+
+@function = Function.create!(
+  model: (@model_product = 'product'),
+  name: 'index',
+  description: 'Просмотр всех товаров',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_product,
+  name: 'edit',
+  description: 'Изменение настроек товара',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_product,
+  name: 'duplicate',
+  description: 'Создание копии товара',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_product,
+  name: 'show',
+  description: 'Просмотр настроек товара',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_product,
+  name: 'new',
+  description: 'Создание нового товара',
+  access: true,
+  role_id: @role.id
+)
