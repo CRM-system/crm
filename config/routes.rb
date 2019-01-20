@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 		resources :workers
 		resources :roles
 		resources :products
+		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
 		resources :functions
 		put '/access/functions/:id' => 'functions#access', as: 'access'
 	end

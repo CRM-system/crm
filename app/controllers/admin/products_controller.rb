@@ -41,6 +41,22 @@ class Admin::ProductsController < AdminController
     redirect_to admin_products_path
   end
 
+  def duplicate
+    new_product = @product.dup
+
+    Product.new(
+      name: "#{new_product.name}",
+      description: "#{new_product.description}",
+      price: new_product.price
+    )
+
+    new_product.picture.attach(@product.picture.blob)
+
+    new_product.save
+
+    redirect_to admin_products_path
+  end
+
   private
 
   def product_params
@@ -73,6 +89,10 @@ class Admin::ProductsController < AdminController
 
   def check_access_new_product
     redirect_to request.referrer unless current_worker.new_product_access_is_given? || current_worker.admin?
+  end
+
+  def check_access_duplicate_product
+    redirect_to request.referrer unless current_worker.duplicate_product_access_is_given?
   end
 
 end
