@@ -12,5 +12,7 @@
     Назад
   <% end %>
 </div>
-<%= render partial: 'admin/functions/index' %>
 
+<% if current_worker.admin? %>
+  <%= render partial: 'admin/functions/index' %>
+<% end %>

@@ -1,31 +1,37 @@
 <nav class="navbar fixed-top navbar-light bg-primary navbar-expand-md">
-    <div class="container">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            &nbsp;&nbsp;
-        </button>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <% if current_worker.index_product_access_is_given? || current_worker.admin? %>
-                    <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
-                <% end %>
-                <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
-                <%= link_to 'Сотрудники', admin_root_path, :class => "text-light" %>&nbsp;&nbsp;
-            </ul>
-            <div class="navbar-nav ml-auto">
-                <% if worker_signed_in? %>
-                    <div class="dropdown show">
-                        <%= link_to current_worker.nickname, edit_worker_registration_path(current_worker), class: 'btn btn-primary dropdown-toggle', 'role' => "button", 'id' => "dropdownMenuLink", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" %>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <%= link_to 'Выйти', destroy_worker_session_path, method: :delete, class: 'dropdown-item' %>
-                        </div>
-                    </div>
-                <% else %>
-                    <div class="nav-item">
-                        <%= link_to 'Log in', new_worker_session_path, class: 'nav-link' %>
-                    </div>
-                <% end %>
+  <div class="container">
+    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+        &nbsp;&nbsp;
+    </button>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if current_worker.index_product_access_is_given? %>
+          <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
+        <% end %>
+
+        <% if current_worker.index_role_access_is_given? %>
+          <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
+        <% end %>
+
+        <% if current_worker.index_worker_access_is_given? %>
+          <%= link_to 'Сотрудники', admin_workers_path, :class => "text-light" %>&nbsp;&nbsp;
+        <% end %>
+      </ul>
+      <div class="navbar-nav ml-auto">
+        <% if worker_signed_in? %>
+          <div class="dropdown show">
+            <%= link_to current_worker.nickname, edit_worker_registration_path(current_worker), class: 'btn btn-primary dropdown-toggle', 'role' => "button", 'id' => "dropdownMenuLink", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" %>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to 'Выйти', destroy_worker_session_path, method: :delete, class: 'dropdown-item' %>
             </div>
-        </div>
+          </div>
+        <% else %>
+          <div class="nav-item">
+            <%= link_to 'Log in', new_worker_session_path, class: 'nav-link' %>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
 </nav>

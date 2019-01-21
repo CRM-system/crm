@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	resources :products
 
 	namespace :admin do
-		root 'workers#index'
+		root 'products#index'
 		resources :workers
 		resources :roles
 		resources :products
