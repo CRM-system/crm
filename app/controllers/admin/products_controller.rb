@@ -21,6 +21,7 @@ class Admin::ProductsController < AdminController
 
   def create
     @product = Product.new(product_params)
+
     if @product.save
       redirect_to admin_product_path(@product)
     else

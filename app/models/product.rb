@@ -5,6 +5,7 @@ class Product < ApplicationRecord
 
 	has_one_attached :picture
 
+
 	validates :picture,
 	file_content_type: { allow: ['image/jpeg', 'image/png'] },
 	if: -> { picture.attachment.present? }
