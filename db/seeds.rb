@@ -63,6 +63,14 @@ end
 )
 
 @function = Function.create!(
+  model: @model_product,
+  name: 'destroy',
+  description: 'Удаление товара',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
   model: (@model_worker = 'worker'),
   name: 'create',
   description: 'Создание нового сотрудника',

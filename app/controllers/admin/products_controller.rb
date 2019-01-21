@@ -4,6 +4,8 @@ class Admin::ProductsController < AdminController
   before_action :check_access_edit_product, :only => [:edit]
   before_action :check_access_new_product, :only => [:new]
   before_action :check_access_duplicate_product, :only => [:duplicate]
+  before_action :check_access_destroy_product, :only => [:destroy]
+
   before_action :find_product, only:[:show, :edit, :update, :destroy, :duplicate]
 
   def index
@@ -94,6 +96,10 @@ class Admin::ProductsController < AdminController
 
   def check_access_duplicate_product
     redirect_to request.referrer unless current_worker.duplicate_product_access_is_given?
+  end
+
+  def check_access_destroy_product
+    redirect_to request.referrer unless current_worker.destroy_product_access_is_given?
   end
 
 end
