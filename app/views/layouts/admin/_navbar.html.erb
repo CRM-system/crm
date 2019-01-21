@@ -9,8 +9,12 @@
         <% if current_worker.index_product_access_is_given? %>
           <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
         <% end %>
+
         <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
-        <%= link_to 'Сотрудники', admin_root_path, :class => "text-light" %>&nbsp;&nbsp;
+
+        <% if current_worker.index_worker_access_is_given? %>
+          <%= link_to 'Сотрудники', admin_root_path, :class => "text-light" %>&nbsp;&nbsp;
+        <% end %>
       </ul>
       <div class="navbar-nav ml-auto">
         <% if worker_signed_in? %>

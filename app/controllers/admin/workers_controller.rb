@@ -1,5 +1,6 @@
 class Admin::WorkersController < AdminController
 	before_action :check_access_create_worker, :only => [:new]
+	before_action :check_access_index_worker, :only => [:index]
 
 	before_action :set_worker, only: [:show, :edit, :update, :destroy]
 
@@ -51,5 +52,9 @@ class Admin::WorkersController < AdminController
 
 	def check_access_create_worker
     redirect_to request.referrer unless current_worker.create_worker_access_is_given?
+	end
+
+	def check_access_index_worker
+    redirect_to request.referrer unless current_worker.index_worker_access_is_given?
 	end
 end

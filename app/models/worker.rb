@@ -6,6 +6,12 @@ class Worker < ApplicationRecord
 	validates :nickname, presence: true, length: { maximum: 50 }
 	belongs_to :role
 
+  def index_worker_access_is_given?
+    if function_is_present?('worker', 'index')
+      return_access('worker', 'index')
+    end
+  end
+
   def create_worker_access_is_given?
     if function_is_present?('worker', 'create')
       return_access('worker', 'create')

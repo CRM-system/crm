@@ -11,8 +11,8 @@ def add_functions_for(role)
   end
 end
 
-def set_role_operator_functions
-  @role_operator.functions.where.not(model: 'model', name: 'index').each do |function|
+def set_functions_accesses_to_false(role)
+  role.functions.each do |function|
     function.update(access: false)
   end
 end
@@ -89,6 +89,14 @@ end
   role_id: @role.id
 )
 
+@function = Function.create!(
+  model: @model_worker,
+  name: 'index',
+  description: 'Просмотр всех сотрудников',
+  access: true,
+  role_id: @role.id
+)
+
 # Директор и оператор
 @role_director = Role.create!(
   name: 'Директор'
@@ -103,6 +111,7 @@ end
 add_functions_for(@role_director)
 @role_director.functions.where(model: 'product', name: 'destroy').first.update(access: false)
 
+
 @role_operator = Role.create!(
   name: 'Оператор'
 )
@@ -114,7 +123,8 @@ add_functions_for(@role_director)
   role_id: @role_operator.id
 )
 add_functions_for(@role_operator)
-set_role_operator_functions
+set_functions_accesses_to_false(@role_operator)
+@role_operator.functions.where(model: 'product', name: 'index').first.update(access: true)
 # --------------------------------------------------
 
 
