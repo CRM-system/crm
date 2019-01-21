@@ -20,7 +20,6 @@ class Admin::ProductsController < AdminController
   def create
     @product = Product.new(product_params)
     if @product.save
-      upload_picture
       redirect_to admin_product_path(@product)
     else
       render 'new'
