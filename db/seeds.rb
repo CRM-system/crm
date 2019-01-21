@@ -97,6 +97,54 @@ end
   role_id: @role.id
 )
 
+@function = Function.create!(
+  model: @model_worker,
+  name: 'destroy',
+  description: 'Удаление сотрудников',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_worker,
+  name: 'edit',
+  description: 'Редактирование сотрудников',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: (@model_role = 'role'),
+  name: 'index',
+  description: 'Просмотр всех должностей',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_role,
+  name: 'new',
+  description: 'Создание новых должностей',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_role,
+  name: 'destroy',
+  description: 'Удаление должностей',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_role,
+  name: 'edit',
+  description: 'Удаление должностей',
+  access: true,
+  role_id: @role.id
+)
+
 # Директор и оператор
 @role_director = Role.create!(
   name: 'Директор'
@@ -110,6 +158,12 @@ end
 )
 add_functions_for(@role_director)
 @role_director.functions.where(model: 'product', name: 'destroy').first.update(access: false)
+@role_director.functions.where(model: 'worker', name: 'destroy').first.update(access: false)
+@role_director.functions.where(model: 'worker', name: 'edit').first.update(access: false)
+@role_director.functions.where(model: 'worker', name: 'create').first.update(access: false)
+@role_director.functions.where(model: 'role', name: 'new').first.update(access: false)
+@role_director.functions.where(model: 'role', name: 'destroy').first.update(access: false)
+@role_director.functions.where(model: 'role', name: 'edit').first.update(access: false)
 
 
 @role_operator = Role.create!(
