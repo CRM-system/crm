@@ -1,12 +1,15 @@
 <h1>Товары</h1>
-<table class="ui celled table">
-	<tr>
+<% if current_worker.new_product_access_is_given? || current_worker.admin? %>
+	<%= link_to 'Создать новый товар',   new_admin_product_path, class:"ui positive basic button" %>
+<% end %>
+<table class="ui selectable celled black table", id="centred_table">
+	<tr class="table_title">
 		<th>Изображение</th>
 		<th>Название</th>
 		<th>Цена</th>
-		<th>Описание</th>
-		<th>Изображение</th>
-		<th colspan="4">Действия</th>
+		<% if current_worker.show_product_access_is_given? || current_worker.admin? %>
+			<th colspan="3">Действия</th>
+		<% end %>
 	</tr>
 	<% @products.each do |product| %>
 	<tr>
@@ -21,16 +24,12 @@
 			<td><%= product.name %></td>
 		<% end %>
 		<td><%= product.price %></td>
-		<td><%= link_to admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } do %>
-			<i class="trash icon width_color_changed"></i>
-		<% end %>
-		</td>
 		<td>
-			<% if current_worker.duplicate_product_access_is_given? %>
-				<%= link_to 'Создать копию', admin_duplicate_path(product), method: :post %>
+			<%= link_to admin_product_path(product), data: { confirm: 'Вы уверены?' },method: :delete do %>
+				<i class="huge trash alternate outline icon"></i></br></br>
 			<% end %>
+			<%= link_to "Создать копию", admin_duplicate_path(product), data: { confirm: 'Вы уверены?' },method: :post,class:"ui orange button" %>
 		</td>
-		<td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>
 	<% end %>
 </table><hr>
