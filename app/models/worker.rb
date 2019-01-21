@@ -7,11 +7,6 @@ class Worker < ApplicationRecord
 	belongs_to :role
 
   def create_worker_access_is_given?
-
-    if self.role.functions.exists?
-      self.role.functions.where(model: 'worker', name: 'create').first.access
-    end
-
     if function_is_present?('worker', 'create')
       return_access('worker', 'create')
     end
