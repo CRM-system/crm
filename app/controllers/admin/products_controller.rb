@@ -45,17 +45,11 @@ class Admin::ProductsController < AdminController
   end
 
   def duplicate
-    new_product = @product.dup
+    duplicated_product = @product.dup
 
-    Product.new(
-      name: "#{new_product.name}",
-      description: "#{new_product.description}",
-      price: new_product.price
-    )
+    duplicated_product.picture.attach(@product.picture.blob)
 
-    new_product.picture.attach(@product.picture.blob)
-
-    new_product.save
+    duplicated_product.save
 
     redirect_to admin_products_path
   end
