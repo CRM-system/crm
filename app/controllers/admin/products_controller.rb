@@ -4,10 +4,12 @@ class Admin::ProductsController < AdminController
   before_action :check_access_edit_product, :only => [:edit]
   before_action :check_access_new_product, :only => [:new]
   before_action :check_access_duplicate_product, :only => [:duplicate]
+  before_action :check_access_destroy_product, :only => [:destroy]
+
   before_action :find_product, only:[:show, :edit, :update, :destroy, :duplicate]
 
   def index
-    @products = Product.all
+    @products = Product.all.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show
@@ -20,7 +22,6 @@ class Admin::ProductsController < AdminController
   def create
     @product = Product.new(product_params)
     if @product.save
-      upload_picture
       redirect_to admin_product_path(@product)
     else
       render 'new'
@@ -43,17 +44,11 @@ class Admin::ProductsController < AdminController
   end
 
   def duplicate
-    new_product = @product.dup
+    duplicated_product = @product.dup
 
-    Product.new(
-      name: "#{new_product.name}",
-      description: "#{new_product.description}",
-      price: new_product.price
-    )
+    duplicated_product.picture.attach(@product.picture.blob)
 
-    new_product.picture.attach(@product.picture.blob)
-
-    new_product.save
+    duplicated_product.save
 
     redirect_to admin_products_path
   end
@@ -61,19 +56,11 @@ class Admin::ProductsController < AdminController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description)
+    params.require(:product).permit(:name, :price, :description, :picture)
   end
 
   def find_product
     @product = Product.find(params[:id])
-  end
-
-  def upload_picture
-    @product.picture.attach(uploaded_file) if uploaded_file.present?
-  end
-
-  def uploaded_file
-    params[:product][:picture]
   end
 
   def check_access_index_product
@@ -94,6 +81,10 @@ class Admin::ProductsController < AdminController
 
   def check_access_duplicate_product
     redirect_to request.referrer unless current_worker.duplicate_product_access_is_given?
+  end
+
+  def check_access_destroy_product
+    redirect_to request.referrer unless current_worker.destroy_product_access_is_given?
   end
 
 end

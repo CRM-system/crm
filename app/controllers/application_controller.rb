@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  def admin_worker
-    redirect_to(root_url) unless current_worker.admin?
-  end
+  # def admin_worker
+  #   redirect_to(root_url) unless current_worker.admin?
+  # end
 
 end

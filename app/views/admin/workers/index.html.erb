@@ -27,6 +27,6 @@
 	</tr>
 <% end %>
 </table>
-<% if current_worker.create_worker_access_is_given? || current_worker.admin? %>
+<% if current_worker.create_worker_access_is_given? %>
 	<%= link_to 'Создать нового сотрудника', new_admin_worker_path, class:"ui positive basic button" %>
 <% end %>
