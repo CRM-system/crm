@@ -20,8 +20,8 @@ class Admin::ProductsController < AdminController
 
   def create
     @product = Product.new(product_params)
+
     if @product.save
-      upload_picture
       redirect_to admin_product_path(@product)
     else
       render 'new'
@@ -62,20 +62,13 @@ class Admin::ProductsController < AdminController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description)
+    params.require(:product).permit(:name, :price, :description, :picture)
   end
 
   def find_product
     @product = Product.find(params[:id])
   end
 
-  def upload_picture
-   @product.picture.attach(uploaded_file) if uploaded_file.present?
-  end
-
-  def uploaded_file
-  params[:product][:picture]
-  end
 
   def check_access_index_product
     redirect_to request.referrer unless current_worker.index_product_access_is_given?
