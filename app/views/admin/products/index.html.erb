@@ -22,7 +22,7 @@
 		<% end %>
 		<td><%= product.price %></td>
 		<td>
-			<% if current_worker.duplicate_product_access_is_given? %>
+			<% if current_worker.duplicate_product_access_is_given? || current_worker.admin? %>
 				<%= link_to 'Создать копию', admin_duplicate_path(product), method: :post %>
 			<% end %>
 		</td>
