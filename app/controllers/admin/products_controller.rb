@@ -9,7 +9,7 @@ class Admin::ProductsController < AdminController
   before_action :find_product, only:[:show, :edit, :update, :destroy, :duplicate]
 
   def index
-    @products = Product.all
+    @products = Product.all.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show

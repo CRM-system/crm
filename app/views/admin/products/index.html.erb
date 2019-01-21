@@ -2,6 +2,14 @@
 <% if current_worker.new_product_access_is_given? %>
 	<%= link_to 'Создать новый товар', new_admin_product_path, class:"ui positive basic button" %>
 <% end %>
+
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @products %>
+  </div>
+  <%= will_paginate @products, :container => false %>
+</div>
+
 <table class="ui selectable celled black table", id="centred_table">
 	<tr class="table_title">
 		<th>Изображение</th>
