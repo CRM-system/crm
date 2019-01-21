@@ -50,6 +50,6 @@ class Admin::WorkersController < AdminController
 	end
 
 	def check_access_create_worker
-    	redirect_to request.referrer unless current_worker.create_worker_access_is_given? || current_worker.admin?
+    redirect_to request.referrer unless current_worker.create_worker_access_is_given?
 	end
 end
