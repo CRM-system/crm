@@ -62,6 +62,14 @@ end
   role_id: @role.id
 )
 
+@function = Function.create!(
+  model: (@model_worker = 'worker'),
+  name: 'create',
+  description: 'Создание нового сотрудника',
+  access: true,
+  role_id: @role.id
+)
+
 wallet1 = Product.create(
   name: 'Бумажник',
   price: 5000,
