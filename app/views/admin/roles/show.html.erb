@@ -4,9 +4,13 @@
   <strong>Назввание:</strong>
   <h3><%= @role.name %></h3>
 </p>
-
-<%= link_to 'Редактировать', edit_admin_role_path(@role) %> |
-<%= link_to 'Назад', admin_roles_path %>
-
+<div class="ui buttons">
+  <%= link_to edit_admin_role_path(@role),class:"ui teal button" do %>
+    Редактировать
+  <% end %>
+  <%= link_to admin_roles_path,class:"ui olive button" do %>
+    Назад
+  <% end %>
+</div>
 <%= render partial: 'admin/functions/index' %>
 

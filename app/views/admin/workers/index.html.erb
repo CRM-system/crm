@@ -1,6 +1,6 @@
 <h3 class="ui left floated header">Сотрудники</h3>
-<table class="ui celled table">
-<tr>
+<table class="ui selectable celled black table", id="centred_table">
+<tr class="table_title">
 	<th>Email</th>
 	<th>Имя</th>
     <th>Должность</th>
@@ -15,11 +15,18 @@
 				<%= worker.role.name %>
 			<% end %>
 		</td>
-		<td><%= link_to 'Редактировать', edit_admin_worker_path(worker) %></td>
-		<td><%= link_to 'Удалить', admin_worker_path(worker), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+		<td><%= link_to  edit_admin_worker_path(worker) do %>
+			<i class="edit outline icon"></i>
+		<% end %>
+		</td>
+		<td>
+			<%= link_to admin_worker_path(worker), data: { confirm: 'Вы уверены?' },method: :delete do %>
+				<i class="trash alternate outline icon"></i>
+			<% end %>
+		</td>
 	</tr>
 <% end %>
 </table>
 <% if current_worker.create_worker_access_is_given? || current_worker.admin? %>
-	<%= link_to 'Создать нового сотрудника', new_admin_worker_path %>
+	<%= link_to 'Создать нового сотрудника', new_admin_worker_path, class:"ui positive basic button" %>
 <% end %>

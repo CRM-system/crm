@@ -1,33 +1,36 @@
-<%= form_with model: [:admin, @product], local: true do |f| %>
-<% if @product.errors.any? %>
-<div class="errors">
-  Total errors: <%= @product.errors.count %>
-  <ul>
-    <% @product.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+<div class="ui form">
+  <div class="fields">
+    <%= form_with model: [:admin, @product], local: true do |f| %>
+      <% if @product.errors.any? %>
+        <div class="errors">
+          Total errors: <%= @product.errors.count %>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
     <% end %>
-  </ul>
+    <div class="field">
+      <%= f.text_field :name, placeholder: 'Название' %><br>
+    </div><br>
+
+    <div class="field">
+      <%= f.number_field :price, placeholder: 'Цена' %><br>
+    </div><br>
+
+    <div class="field">
+      <%= f.label :Изображение %>
+      <%= f.file_field :picture %><br>
+    </div class="field"><br>
+
+    <div class="field">
+      <%= f.text_area :description, placeholder: 'Описание' %><br>
+    </div><br>
+
+    <div>
+      <%= f.submit "Подтвердить",class:"ui teal button" %>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
-
-<div class="field">
-  <%= f.text_field :name, placeholder: 'Название' %><br>
-</div><br>
-
-<div class="field">
-  <%= f.number_field :price, placeholder: 'Цена' %><br>
-</div><br>
-
-<div class="field">
-  <%= f.label :Изображение %><br />
-  <%= f.file_field :picture %><br>
-</div class="field"><br>
-
-<div class="field">
-  <%= f.text_area :description, placeholder: 'Описание' %><br>
-</div><br>
-
-<div>
-  <%= f.submit "Создать товар" %>
-</div>
-<% end %>
