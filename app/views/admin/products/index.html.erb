@@ -19,11 +19,23 @@
 			<% end %>
 		</td>
 		<% if current_worker.show_product_access_is_given? %>
-			<td><%= link_to product.name, admin_product_path(product) %></td>
+			<td>
+				<h3>
+					<%= link_to product.name, admin_product_path(product) %>
+				</h3>
+			</td>
 		<% else %>
-			<td><%= product.name %></td>
+			<td>
+				<h3>
+					<%= product.name %>
+				</h3>
+			</td>
 		<% end %>
-		<td><%= product.price %></td>
+		<td>
+			<strong>
+				<%= product.price %>
+			</strong>
+		</td>
 		<td>
 			<%= link_to admin_product_path(product), data: { confirm: 'Вы уверены?' },method: :delete do %>
 				<i class="huge trash alternate outline icon"></i></br></br>

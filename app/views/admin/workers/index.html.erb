@@ -15,13 +15,13 @@
 				<%= worker.role.name %>
 			<% end %>
 		</td>
-		<td><%= link_to  edit_admin_worker_path(worker) do %>
-			<i class="edit outline icon"></i>
+		<td><%= link_to edit_admin_worker_path(worker) do %>
+			<i class="big edit outline icon"></i>
 		<% end %>
 		</td>
 		<td>
 			<%= link_to admin_worker_path(worker), data: { confirm: 'Вы уверены?' },method: :delete do %>
-				<i class="trash alternate outline icon"></i>
+				<i class="big trash alternate outline icon"></i>
 			<% end %>
 		</td>
 	</tr>
