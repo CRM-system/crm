@@ -1,44 +1,46 @@
 <h1>Товары</h1>
-<table border="1">
-	<tr>
+<% if current_worker.new_product_access_is_given? %>
+	<%= link_to 'Создать новый товар', new_admin_product_path, class:"ui positive basic button" %>
+<% end %>
+
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @products %>
+  </div>
+  <%= will_paginate @products, :container => false %>
+</div>
+
+<table class="ui selectable celled black table", id="centred_table">
+	<tr class="table_title">
+		<th>Изображение</th>
 		<th>Название</th>
 		<th>Цена</th>
-		<th>Описание</th>
-		<th>Изображение</th>
-		<th colspan="4">Действия</th>
+		<% if current_worker.show_product_access_is_given? %>
+			<th colspan="3">Действия</th>
+		<% end %>
 	</tr>
 	<% @products.each do |product| %>
 	<tr>
-		<td><%= product.name %></td>
-		<td><%= product.price %></td>
-		<td><%= product.description %></td>
 		<td>
 			<% if product.picture.attached? %>
-		    <%= image_tag product.picture, size: 100 %>
+		    	<%= image_tag product.picture, size: 100 %>
 			<% end %>
 		</td>
+		<% if current_worker.show_product_access_is_given? %>
+			<td><%= link_to product.name, admin_product_path(product) %></td>
+		<% else %>
+			<td><%= product.name %></td>
+		<% end %>
+		<td><%= product.price %></td>
 		<td>
-			<% if current_worker.show_product_access_is_given? %>
-				<%= link_to 'Смотреть', admin_product_path(product) %>
+			<% if current_worker.destroy_product_access_is_given? %>
+				<%= link_to admin_product_path(product), data: { confirm: 'Вы уверены?' },method: :delete do %>
+					<i class="huge trash alternate outline icon"></i></br></br>
+				<% end %>
 			<% end %>
+
+			<%= link_to "Создать копию", admin_duplicate_path(product), data: { confirm: 'Вы уверены?' },method: :post,class:"ui orange button" %>
 		</td>
-		<td>
-			<% if current_worker.edit_product_access_is_given? %>
-				<%= link_to 'Редактировать', edit_admin_product_path(product) %>
-			<% end %>
-		</td>
-		<td>
-			<% if current_worker.duplicate_product_access_is_given? %>
-				<%= link_to 'Создать копию', admin_duplicate_path(product), method: :post %>
-			<% end %>
-		</td>
-		<td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 	</tr>
 	<% end %>
 </table>
-
-<% if current_worker.new_product_access_is_given? %>
-	<%= link_to 'Создать новый товар',   new_admin_product_path %>
-<% end %>
-
-

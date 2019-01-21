@@ -24,7 +24,6 @@ class Admin::WorkersController < AdminController
 		else
 			render :new
 		end
-
 	end
 
 	def update

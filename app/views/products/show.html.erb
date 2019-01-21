@@ -1,7 +1,6 @@
+<h3 class="ui left floated header"><%= @product.name %> - <%= @product.price %><br></h3>
 <% if @product.picture.attached? %>
-    <%= @product.name %><br>
-    <%= @product.description %><br>
-    <%= @product.price %><br>
-    <%= image_tag @product.picture, size: 100 %>
+    <%= image_tag @product.picture, size: 300 %><br><br>
 <% end %>
-<%= link_to 'Назад', products_path %>
+<%= @product.description %><br><br><hr>
+    <%= link_to "Назад", admin_products_path, class:"ui blue basic button" %>

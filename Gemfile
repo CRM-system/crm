@@ -7,8 +7,12 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.2'
 gem 'devise'
 gem 'jquery-rails'
+
+gem 'semantic-ui-sass'
+
 gem 'file_validators'
 gem 'mini_magick', '~> 4.8'
+
 
 
 # Use sqlite3 as the database for Active Record
@@ -20,6 +24,8 @@ gem 'taps'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
+gem 'will_paginate', '~> 3.1.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

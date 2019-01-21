@@ -42,6 +42,12 @@ class Worker < ApplicationRecord
     end
   end
 
+  def destroy_product_access_is_given?
+    if function_is_present?('product', 'destroy')
+      return_access('product', 'destroy')
+    end
+  end
+
   def find_function(model, name)
     self.role.functions.where(model: model, name: name).first
   end

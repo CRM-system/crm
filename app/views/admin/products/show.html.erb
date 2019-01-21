@@ -1,8 +1,9 @@
+<h3 class="ui left floated header"><%= @product.name %> - <%= @product.price %><br></h3>
 <% if @product.picture.attached? %>
-    <%= @product.name %><br>
-    <%= @product.description %><br>
-    <%= @product.price %><br>
-    <%= image_tag @product.picture, size: 100 %>
-    <%= link_to 'Редактировать', edit_admin_product_path(@product) %> |
-    <%= link_to 'Назад', admin_products_path %>
+    <%= image_tag @product.picture, size: 300 %><br><br>
 <% end %>
+<%= @product.description %><br><br><hr>
+<% if current_worker.edit_product_access_is_given? %>
+    <%= link_to "Редактировать", edit_admin_product_path(@product), class:"ui teal basic button" %>
+<% end %>
+    <%= link_to "Назад", admin_products_path, class:"ui blue basic button" %>
