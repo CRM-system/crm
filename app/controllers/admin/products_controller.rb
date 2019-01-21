@@ -61,19 +61,11 @@ class Admin::ProductsController < AdminController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description)
+    params.require(:product).permit(:name, :price, :description, :picture)
   end
 
   def find_product
     @product = Product.find(params[:id])
-  end
-
-  def upload_picture
-    @product.picture.attach(uploaded_file) if uploaded_file.present?
-  end
-
-  def uploaded_file
-    params[:product][:picture]
   end
 
   def check_access_index_product
