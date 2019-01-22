@@ -4,10 +4,10 @@
 <% end %>
 
 <div class="digg_pagination">
-  <div class="page_info">
-    <%= page_entries_info @products %>
-  </div>
-  <%= will_paginate @products, :container => false %>
+	<div class="page_info">
+    	<%= page_entries_info @products %>
+	</div>
+	<%= will_paginate @products, :container => false %>
 </div>
 
 <table class="ui selectable celled black table", id="centred_table">
@@ -49,9 +49,8 @@
 				<%= link_to admin_product_path(product), data: { confirm: 'Вы уверены?' },method: :delete do %>
 					<i class="huge trash alternate outline icon"></i></br></br>
 				<% end %>
+				<%= link_to "Создать копию", admin_duplicate_path(product), data: { confirm: 'Вы уверены?' },method: :post,class:"ui orange button" %>
 			<% end %>
-
-			<%= link_to "Создать копию", admin_duplicate_path(product), data: { confirm: 'Вы уверены?' },method: :post,class:"ui orange button" %>
 		</td>
 	</tr>
 	<% end %>

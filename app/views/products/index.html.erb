@@ -8,9 +8,15 @@
 	</tr>
 	<% @products.each do |product| %>
 	<tr>
-		<td><%= link_to product.name, product_path(product) %></td>
-		<td><%= product.description %></td>
-		<td><%= product.price %></td>
+		<td>
+			<h3><%= link_to product.name, product_path(product) %></h3>
+		</td>
+		<td>
+			<h3><%= product.description %></h3>
+		</td>
+		<td>
+			<h3><%= product.price %></h3>
+		</td>
 		<td>
 			<% if product.picture.attached? %>
 		    <%= image_tag product.picture, size: 100 %>

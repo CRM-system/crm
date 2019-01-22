@@ -1,4 +1,7 @@
-<h3 class="ui left floated header">Сотрудники</h3>
+<h3 class="ui left floated header">Сотрудники</h3><br><br>
+<% if current_worker.create_worker_access_is_given? %>
+	<%= link_to 'Создать нового сотрудника', new_admin_worker_path, class:"ui positive basic button" %>
+<% end %>
 <table class="ui selectable celled black table", id="centred_table">
 <tr class="table_title">
 	<th>Email</th>
@@ -8,11 +11,15 @@
 </tr>
 <% @workers.each do |worker| %>
 	<tr>
-		<td><%= worker.email %></td>
-		<td><%= worker.nickname %></td>
+		<td>
+			<h3><%= worker.email %></h3>
+		</td>
+		<td>
+			<h3><%= worker.nickname %></h3>
+		</td>
 		<td>
 			<% if worker.role %>
-				<%= worker.role.name %>
+				<h3><%= worker.role.name %></h3>
 			<% end %>
 		</td>
 		<td>
@@ -32,6 +39,4 @@
 	</tr>
 <% end %>
 </table>
-<% if current_worker.create_worker_access_is_given? %>
-	<%= link_to 'Создать нового сотрудника', new_admin_worker_path, class:"ui positive basic button" %>
-<% end %>
+
