@@ -2,7 +2,7 @@ class Admin::RolesController < AdminController
 	before_action :check_access_new_role, :only => [:new]
 	before_action :check_access_index_role, :only => [:index]
 	before_action :check_access_destroy_role, :only => [:destroy]
-	before_action :check_edit_destroy_role, :only => [:edit]
+	before_action :check_access_edit_role, :only => [:edit]
 
 	before_action :set_role, only: [:show, :edit, :update, :destroy]
 
