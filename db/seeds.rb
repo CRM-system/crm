@@ -140,7 +140,7 @@ end
 @function = Function.create!(
   model: @model_role,
   name: 'edit',
-  description: 'Удаление должностей',
+  description: 'Редактирование должностей',
   access: true,
   role_id: @role.id
 )
