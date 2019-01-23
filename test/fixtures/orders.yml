@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_name: MyString
+  client_phone: 
+  client_email: MyString
+  client_addres: MyText
+  delivery_type: MyString
+  product_name: MyString
+  product_price: 9.99
+  order_price: 9.99
+  quantity: 1
+  total_price: 9.99
+  status: 1
+  product: one
+
+two:
+  client_name: MyString
+  client_phone: 
+  client_email: MyString
+  client_addres: MyText
+  delivery_type: MyString
+  product_name: MyString
+  product_price: 9.99
+  order_price: 9.99
+  quantity: 1
+  total_price: 9.99
+  status: 1
+  product: two
