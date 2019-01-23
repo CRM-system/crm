@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
 		resources :functions
 		put '/access/functions/:id' => 'functions#access', as: 'access'
-		get '/admin/products' => 'admin#products', as: 'director_path'
+		# get '/admin/products' => 'admin#products', as: 'director_path'
 	end
 end

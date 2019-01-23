@@ -23,7 +23,9 @@
 	<tr>
 		<td>
 			<% if product.picture.attached? %>
-		    	<%= image_tag product.picture, size: 100 %>
+				<%= link_to admin_product_path(product) do %>
+		    		<%= image_tag product.picture, size: 100 %>
+				<% end %>
 			<% end %>
 		</td>
 		<% if current_worker.show_product_access_is_given? %>
