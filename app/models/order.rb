@@ -3,8 +3,8 @@ class Order < ApplicationRecord
 
   belongs_to :product
 
-  before_validation { name.capitalize! }
-  before_validation { email.downcase! }
+  # before_validation { client_name.capitalize! }
+  # before_validation { email.downcase! }
 
   validates :client_name, presence: true, length: { maximum: 50 }
   validates :client_phone, presence: true, length: { maximum: 12 }
