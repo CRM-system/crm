@@ -7,7 +7,7 @@
 
 <div class="ui form">
   <div class="fields">
-    <%= form_with scope: @order, local: true do |f| %>
+    <%= form_with model: [:admin, @order], local: true do |f| %>
       <% if @order %>
         <% if @order.errors.any? %>
           <div class="errors">
@@ -31,6 +31,3 @@
     <% end %>
   </div>
 </div>
-
-
-
