@@ -1,0 +1,40 @@
+<br>
+<br>
+<table class="ui selectable celled table">
+  <thead>
+    <tr> 
+      <th>№</th>
+      <th>Имя</th>
+      <th>Телефон</th>
+      <th>Email</th>
+      <th>Адрес</th>
+      <th>Способ доставки</th>
+      <th>Цена заказа</th>
+      <th>Количество</th>
+      <th>Общая сумма</th>
+      <th>Статус</th>
+      <th colspan="2">Действия</th>
+    </tr>
+  </thead>
+
+	<% @orders.each do |order| %>
+
+		<tr>
+			<th><b><% client_name %></b></th>
+			<th><b><% client_phone %></b></th>
+			<th><b><% client_email %></b></th>
+			<th><b><% client_addres %></b></th>
+			<th><b><% delivery_type %></b></th>
+			<th><b><% order_price %></b></th>
+			<th><b><% quantity %></b></th>
+			<th><b><% total_price %></b></th>
+			<th><b><% status %></b></th>
+			<th><b><%= link_to "Edit", edit_admin_order_path(order) %> 
+						 <%= link_to "Delete", admin_orders_path(order), method: :delete,
+						 data: {confirm: 'Do you want to remove this guest?'} %>
+						 %></b></th>
+		</tr>
+	<% end %>  
+</table>
+
+<%= link_to "Редактировать", admin_orders_path, class: "ui green button" %>
