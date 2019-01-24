@@ -4,3 +4,33 @@
 <% end %>
 <%= @product.description %><br><br><hr>
     <%= link_to "Назад", admin_products_path, class:"ui blue basic button" %>
+
+<div class="ui form">
+  <div class="fields">
+    <%= form_with scope: @order, local: true do |f| %>
+      <% if @order %>
+        <% if @order.errors.any? %>
+          <div class="errors">
+            Total errors: <%= @order.errors.count %>
+            <ul>
+              <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="field">
+        <%= f.text_field :phone, placeholder: 'Телефон' %><br>
+      </div><br>
+
+      <div>
+        <%= f.submit "Отправить",class:"ui teal button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
