@@ -16,3 +16,5 @@ class Order < ApplicationRecord
   validates :quantity, presence:true, numericality: { only_integer: true }
   validates :total_price, presence:true, numericality: { only_integer: true } 
 end
+
+  

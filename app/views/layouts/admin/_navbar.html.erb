@@ -17,6 +17,10 @@
         <% if current_worker.index_worker_access_is_given? %>
           <%= link_to 'Сотрудники', admin_workers_path, :class => "text-light" %>&nbsp;&nbsp;
         <% end %>
+
+        <% if current_worker.index_order_access_is_given? %>
+          <%= link_to 'Заказы', admin_orders_path, :class => "text-light" %>&nbsp;&nbsp;
+        <% end %>
       </ul>
       <div class="navbar-nav ml-auto">
         <% if worker_signed_in? %>
