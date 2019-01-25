@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_080629) do
+ActiveRecord::Schema.define(version: 2019_01_23_101923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 2019_01_18_080629) do
     t.index ["role_id"], name: "index_functions_on_role_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "client_name"
+    t.string "client_phone"
+    t.string "client_email"
+    t.string "client_addres"
+    t.string "delivery_type"
+    t.decimal "order_price"
+    t.integer "quantity"
+    t.decimal "total_price"
+    t.integer "status", default: 0
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -79,5 +95,6 @@ ActiveRecord::Schema.define(version: 2019_01_18_080629) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "functions", "roles"
+  add_foreign_key "orders", "products"
   add_foreign_key "workers", "roles"
 end
