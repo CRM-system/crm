@@ -12,7 +12,7 @@ class Order < ApplicationRecord
   					length: { maximum: 100 }
   validates :client_addres, presence: true, length: { maximum: 250 }
   validates :delivery_type, presence: true, length: { maximum: 250 }
-  validates :order_price, presence: true, numericality: { greater_than: 0 }
-  validates :quantity, presence:true, numericality: { greater_than: 0 }
-  validates :total_price, presence:true, numericality: { greater_than: 0 }
+  validates :order_price, presence: true, numericality: { greater_or_equal_to: 0 }
+  validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
+  validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
 end
