@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'orders/new'
 	root 'products#index'
 	devise_for :workers
 	resources :workers
-	resources :products
-	post 'send_to_order/products/:id' => 'products#send_to_order', as: 'send_to_order'
+	resources :products do
+		resources :orders, only: [:new, :create]
+	end
 
 	namespace :admin do
 		root 'products#index'
