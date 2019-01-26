@@ -37,8 +37,8 @@ class Admin::OrdersController < AdminController
       redirect_to admin_orders_path
   end
 
-  def get_orders_by_status_new_order
-      @orders = Order.where(status: params[:new_order])
+  def get_orders_by_status_params
+      @orders = Order.where(status: params[:status])
       redirect_to admin_orders_path
   end
 

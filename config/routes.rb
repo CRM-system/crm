@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 	end
 
 	namespace :admin do
-		root 'products#index'
+		root 'orders#status'
 		resources :workers
 		resources :roles
 		resources :functions
@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
 		resources :orders
 		get '/status' => 'orders#status', as:'status'
-		get "/status_new_order", to: "orders#get_orders_by_status_new_order", as: 'new_order_status'
+		get "/order_by_status", to: "orders#get_orders_by_status_params", as: 'order_by_status'
 	end
 end
