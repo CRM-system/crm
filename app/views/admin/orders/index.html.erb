@@ -18,9 +18,8 @@
   </thead>
 
 	<% @orders.each do |order| %>
-
 		<tr>
-				<th><b><%=  %></b></th>
+			<th><b><%=  %></b></th>
 			<th><b><%= order.client_name %></b></th>
 			<th><b><%= order.client_phone %></b></th>
 			<th><b><%= order.client_email %></b></th>
@@ -37,4 +36,3 @@
 	<% end %>
 </table>
 
-<%= link_to "Редактировать", admin_orders_path, class: "ui green button" %>

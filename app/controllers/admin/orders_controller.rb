@@ -1,4 +1,8 @@
 class Admin::OrdersController < AdminController
+  before_action :check_access_create_order, :only => [:new]
+  before_action :check_access_index_order, :only => [:index]
+  before_action :check_access_edit_order, :only => [:edit]
+  before_action :check_access_destroy_order, :only => [:destroy]
   before_action :set_order, only: [:edit, :show, :update, :destroy]
 
   def index
