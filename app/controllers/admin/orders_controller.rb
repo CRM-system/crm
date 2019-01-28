@@ -6,7 +6,11 @@ class Admin::OrdersController < AdminController
   before_action :set_order, only: [:edit, :show, :update, :destroy]
 
   def index
+    if params[:status]
+      @orders = Order.where(status: params[:status])
+    else
       @orders = Order.all
+    end
   end
 
   def new
@@ -41,10 +45,10 @@ class Admin::OrdersController < AdminController
       redirect_to admin_orders_path
   end
 
-  def get_orders_by_status_params
-      @orders = Order.where(status: params[:status])
-      redirect_to admin_orders_path
-  end
+  # def get_orders_by_status_params
+  #     @orders = Order.where(status: params[:status])
+  #     redirect_to admin_orders_path
+  # end
 
   private
 
