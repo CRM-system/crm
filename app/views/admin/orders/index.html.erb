@@ -31,8 +31,7 @@
 			<th><b><%= order.total_price %></b></th>
 			<th><b><%= order.status %></b></th>
 			<th><b><%= link_to "Edit", edit_admin_order_path(order) %>
-						 <%= link_to "Delete", admin_orders_path(order), method: :delete,
-						 data: {confirm: 'Do you want to remove this guest?'} %>
+						<%= link_to "Delete", admin_order_path(order), method: :delete,data: {confirm: 'Are you sure?'} %>
 						 </b></th>
 		</tr>
 	<% end %>
