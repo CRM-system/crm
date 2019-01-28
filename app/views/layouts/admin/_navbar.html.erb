@@ -7,15 +7,21 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if current_worker.index_product_access_is_given? %>
-          <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
+          <strong>
+            <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
+          </strong>
         <% end %>
 
         <% if current_worker.index_role_access_is_given? %>
-          <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
+          <strong>
+            <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
+          </strong>
         <% end %>
 
         <% if current_worker.index_worker_access_is_given? %>
+        <strong>
           <%= link_to 'Сотрудники', admin_workers_path, :class => "text-light" %>&nbsp;&nbsp;
+        </strong>
         <% end %>
 
         <% if current_worker.index_order_access_is_given? %>

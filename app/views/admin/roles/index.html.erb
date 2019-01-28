@@ -9,11 +9,15 @@
 	</tr>
 	<% @roles.each do |role| %>
 	<tr>
-		<td><%= link_to role.name, admin_role_path(role.id)  %></td>
+		<td>
+			<h2>
+				<%= link_to role.name, admin_role_path(role.id)%>
+			</h2>
+		</td>
 		<td>
 			<% if current_worker.edit_role_access_is_given? %>
 				<%= link_to edit_admin_role_path(role) do %>
-					Редактировать
+				<i class="big edit outline icon"></i>
 				<% end %>
 			<% end %>
 		</td>

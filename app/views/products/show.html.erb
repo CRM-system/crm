@@ -4,3 +4,8 @@
 <% end %>
 <%= @product.description %><br><br><hr>
     <%= link_to "Назад", admin_products_path, class:"ui blue basic button" %>
+
+<br><br>
+<div>
+    <%= link_to "Оформить заказ", new_product_order_path(product_id: @product.id), class:"ui blue basic button" %>
+</div>

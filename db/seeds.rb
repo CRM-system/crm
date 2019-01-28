@@ -180,7 +180,7 @@ end
 @function = Function.create!(
   model: @model_role,
   name: 'edit',
-  description: 'Удаление должностей',
+  description: 'Редактирование должностей',
   access: true,
   role_id: @role.id
 )
@@ -220,7 +220,6 @@ add_functions_for(@role_operator)
 set_functions_accesses_to_false(@role_operator)
 @role_operator.functions.where(model: 'product', name: 'index').first.update(access: true)
 # --------------------------------------------------
-
 
 wallet1 = Product.create(
   name: 'Бумажник',
