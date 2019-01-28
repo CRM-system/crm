@@ -29,9 +29,16 @@
 			<th><b><%= order.quantity %></b></th>
 			<th><b><%= order.total_price %></b></th>
 			<th><b><%= order.status %></b></th>
-			<th><b><%= link_to "Edit", edit_admin_order_path(order) %>
+			<% if worker_signed_in? %>
+				<% if current_worker.edit_order_access_is_given? == true %>
+					<th><b><%= link_to "Edit", edit_admin_order_path(order) %>
+				<% end%>
+
+				<% if current_worker.destroy_order_access_is_given? == true %>
 						<%= link_to "Delete", admin_order_path(order), method: :delete,data: {confirm: 'Are you sure?'} %>
 						 </b></th>
+				<% end%>
+		  <% end %>
 		</tr>
 	<% end %>
 </table>
