@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
 		resources :orders
 		get '/status' => 'orders#status', as:'status'
-		get "/order_by_status", to: "orders#get_orders_by_status_params", as: 'order_by_status'
+		# get "/order_by_status", to: "orders#get_orders_by_status_params", as: 'order_by_status'
 	end
 end
