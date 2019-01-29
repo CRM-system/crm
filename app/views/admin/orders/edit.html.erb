@@ -1,6 +1,6 @@
 <h1>Обработка заказа</h1>
 
-<form class="ui form">
+<div class="ui form">
   <div class="field">
     <%= form_with model: [:admin,@order], local: true do |f| %>
       <% if @order.errors.any? %>
@@ -50,7 +50,7 @@
     <br>
 
     <div class="ui buttons">
-      <%= f.submit "Подтвердить", class:"ui green button"%>
+      <%= f.submit "Подтвердить заказ", class:"ui green button"%>
 
       <div class="or"></div>
       <%= link_to admin_from_new_to_refused_path(@order), data: { confirm: 'Вы уверены?' },class:"ui red button",method: :post do %>
@@ -58,4 +58,5 @@
       <% end %>
     </div>
     <% end %>
-</form><br><br>
+  </div>
+<br><br>

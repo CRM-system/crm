@@ -10,12 +10,26 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  def new
+    @order = Order.new
+  end
+
+  def create
+    @order = Order.new(order_params)
+    if @order.save
+      redirect_to admin_orders_path
+    else
+      render :new
+    end
+  end
+
   def edit
   end
 
   def count_total_price
     @order = Order.find(params[:id])
-    @order.update(:total_price => (@order.quantity * @order.order_price))
+    @order.total_price = @order.quantity * @order.order_price
+    @order.save
   end
 
   def make_processed
@@ -59,6 +73,6 @@ class Admin::OrdersController < AdminController
   def order_params
     params.require(:order).permit(:client_name, :client_phone, :client_email,
                                   :client_addres, :delivery_type, :order_price,
-                                  :quantity, :product_id)
+                                  :quantity, :total_price, :status, :product_id)
   end
 end
