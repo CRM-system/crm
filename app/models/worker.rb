@@ -6,6 +6,30 @@ class Worker < ApplicationRecord
 	validates :nickname, presence: true, length: { maximum: 50 }
 	belongs_to :role
 
+  def index_order_access_is_given?
+    if function_is_present?('order', 'index')
+      return_access('order', 'index')
+    end
+  end
+
+  def edit_order_access_is_given?
+    if function_is_present?('order', 'edit')
+      return_access('order', 'edit')
+    end
+  end
+
+  def new_order_access_is_given?
+    if function_is_present?('order', 'edit')
+      return_access('order', 'new')
+    end
+  end
+
+  def destroy_order_access_is_given?
+    if function_is_present?('order', 'edit')
+      return_access('order', 'destroy')
+    end
+  end
+
   def index_role_access_is_given?
     if function_is_present?('role', 'index')
       return_access('role', 'index')

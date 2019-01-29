@@ -1,11 +1,18 @@
-<h1>Статусы</h1>
+<h1>ОБЩАЯ СТАТИСТИКА</h1>
 
-<%= link_to "Все", admin_orders_path %>
+<table class="ui selectable celled table">
+    <tr>
+      <th>Период</th>
+      <th>Заказы</th>
+      <th>Оплачено заказов на сумму</th>      
+    </tr>
 
-<%= link_to "Новые", admin_orders_path(status:'new_order') %>
+    <tr>
+	  	<td>Сегодня</td>
+	  	<td></td>
+	  	<td></td>	  	
+ 		</tr>
+</table>
 
-<%= link_to "Обработанные", admin_orders_path(status:'processed') %>
-
-<%= link_to "Отказались", admin_orders_path(status:'refused') %>
 
 

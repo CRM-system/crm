@@ -34,6 +34,46 @@ end
 )
 
 @function = Function.create!(
+  model: (@model_order = 'order'),
+  name: 'index',
+  description: 'Просмотр всех заказов',
+  access: true,
+  role_id: @role.id
+  )
+
+@function = Function.create!(
+  model: @model_order,
+  name: 'edit',
+  description: 'Редактирование заказа',
+  access: true,
+  role_id: @role.id
+  )
+
+@function = Function.create!(
+  model: @model_order,
+  name: 'show',
+  description: 'Просмотр заказа',
+  access: true,
+  role_id: @role.id
+  )
+
+@function = Function.create!(
+  model: @model_order,
+  name: 'new',
+  description: 'Создание заказа',
+  access: true,
+  role_id: @role.id
+  )
+
+@function = Function.create!(
+  model: @model_order,
+  name: 'destroy',
+  description: 'Удаление заказа',
+  access: true,
+  role_id: @role.id
+  )
+
+@function = Function.create!(
   model: (@model_product = 'product'),
   name: 'index',
   description: 'Просмотр всех товаров',
