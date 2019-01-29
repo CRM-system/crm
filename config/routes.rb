@@ -17,5 +17,6 @@ Rails.application.routes.draw do
 		resources :orders
 		get '/status' => 'orders#status', as:'status'
 		get "/order_by_status", to: "orders#get_orders_by_status_params", as: 'order_by_status'
+		post "/change_status_from_new_to_refused/:id" => "orders#change_status_from_new_to_refused", as: 'from_new_to_refused'
 	end
 end

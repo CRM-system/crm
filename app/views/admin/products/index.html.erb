@@ -47,12 +47,11 @@
 			</strong>
 		</td>
 		<td>
-			<% if current_worker.duplicate_product_access_is_given? || current_worker.admin? %>
-				<%= link_to 'Создать копию', admin_duplicate_path(product), method: :post %>
 			<% if current_worker.destroy_product_access_is_given? %>
 				<%= link_to admin_product_path(product), data: { confirm: 'Вы уверены?' },method: :delete do %>
-					<i class="huge trash alternate outline icon"></i></br></br>
+					<i class="big trash alternate outline icon"></i></br></br>
 				<% end %>
+			<% if current_worker.duplicate_product_access_is_given? || current_worker.admin? %>
 				<%= link_to "Создать копию", admin_duplicate_path(product), data: { confirm: 'Вы уверены?' },method: :post,class:"ui orange button" %>
 			<% end %>
 		</td>
