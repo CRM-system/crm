@@ -1,0 +1,11 @@
+<h1>Статусы</h1>
+
+<%= link_to "Все", admin_orders_path %>
+
+<%= link_to "Новые", admin_orders_path(status:'new_order') %>
+
+<%= link_to "Обработанные", admin_orders_path(status:'processed') %>
+
+<%= link_to "Отказались", admin_orders_path(status:'refused') %>
+
+

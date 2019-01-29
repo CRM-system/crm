@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-
     @order = Order.new(order_params)
 
     @order.update(

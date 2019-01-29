@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-	enum status: [ :news, :processed, :problematic, :completed ]
+	enum status: [ :new_order, :processed, :refused, :problematic, :completed ]
 
   belongs_to :product
 

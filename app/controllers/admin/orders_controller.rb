@@ -1,8 +1,12 @@
 class Admin::OrdersController < AdminController
   before_action :set_order, only: [:edit, :show, :update, :destroy]
-  
+
   def index
-    @orders = Order.all
+    if params[:status]
+      @orders = Order.where(status: params[:status])
+    else
+      @orders = Order.all
+    end
   end
 
   def new
@@ -13,7 +17,7 @@ class Admin::OrdersController < AdminController
     @order = Order.new(order_params)
     if @order.save
       redirect_to admin_orders_path
-    else 
+    else
       render :new
     end
   end
@@ -37,15 +41,20 @@ class Admin::OrdersController < AdminController
       redirect_to admin_orders_path
   end
 
+  # def get_orders_by_status_params
+  #     @orders = Order.where(status: params[:status])
+  #     redirect_to admin_orders_path
+  # end
+
   private
 
   def set_order
     @order = Order.find(params[:id])
-  end 
+  end
 
   def order_params
     params.require(:order).permit(:client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type, :order_price, 
+                                  :client_addres, :delivery_type, :order_price,
                                   :quantity, :total_price, :status, :product_id)
   end
 end

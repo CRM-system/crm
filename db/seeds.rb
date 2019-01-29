@@ -181,7 +181,6 @@ set_functions_accesses_to_false(@role_operator)
 @role_operator.functions.where(model: 'product', name: 'index').first.update(access: true)
 # --------------------------------------------------
 
-
 wallet1 = Product.create(
   name: 'Бумажник',
   price: 5000,
