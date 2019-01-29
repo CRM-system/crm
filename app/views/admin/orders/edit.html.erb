@@ -1,8 +1,9 @@
-<h1>Редактировать заказ</h1>
+<h1>Обработка заказа</h1>
+
 <form class="ui form">
   <div class="field">
-    <%= form_with model: [:admin, @order], local: true do |f| %>
-      <% if @product.errors.any? %>
+    <%= form_with model: [:admin,@order], local: true do |f| %>
+      <% if @order.errors.any? %>
         <div class="errors">
           Total errors: <%= @order.errors.count %>
           <ul>
@@ -12,39 +13,49 @@
           </ul>
         </div>
     <% end %>
+    <div class="field">
+      <%= f.label 'Имя' %>
+      <%= f.text_field :client_name %>
+    </div>
 
-    <label>Имя</label>
-    <input type="text" name="first-name" placeholder="Имя">
-  </div>
-  <div class="field">
-    <label>Телефон</label>
-    <input type="text" name="last-name" placeholder="Телефон">
-  </div>
-  <div class="field">
-    <label>Email</label>
-    <input type="text" name="last-name" placeholder="Email">
-  </div>
-  <div class="field">
-    <label>Адрес</label>
-    <input type="text" name="last-name" placeholder="Адрес">
-  </div>
-  <div class="field">
-    <label>Способ доставки</label>
-    <input type="text" name="last-name" placeholder="Способ доставки">
-  </div>
-  <div class="field">
-    <label>Цена заказа</label>
-    <input type="text" name="last-name" placeholder="Цена заказа">
-  </div>
-  <div class="field">
-    <label>Количество</label>
-    <input type="text" name="last-name" placeholder="Количество">
-  </div>
-  <div class="field">
-    <label>Общая сумма</label>
-    <input type="text" name="last-name" placeholder="Общая сумма">
-  </div>
-  <br>
-  <button class="ui button" type="submit">Редактировать</button>
-</form>
-<% end %>
+    <div class="field">
+      <%= f.label 'Номер телефона' %>
+      <%= f.phone_field :client_phone %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Email' %>
+      <%= f.email_field :client_email, placeholder: 'Выяснить' %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Адрес' %>
+      <%= f.text_field :client_addres, placeholder: 'Выяснить' %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Тип доставки' %>
+      <%= f.text_field :delivery_type, placeholder: 'Выяснить' %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Цена продукта' %>
+      <%= f.number_field :order_price %><br>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Количество' %>
+      <%= f.number_field :quantity, placeholder: 'Выяснить' %><br>
+    </div>
+    <br>
+
+    <div class="ui buttons">
+      <%= f.submit "Подтвердить", class:"ui green button"%>
+
+      <div class="or"></div>
+      <%= link_to admin_from_new_to_refused_path(@order), data: { confirm: 'Вы уверены?' },class:"ui red button",method: :post do %>
+        Отменить заказ
+      <% end %>
+    </div>
+    <% end %>
+</form><br><br>

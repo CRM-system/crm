@@ -1,6 +1,7 @@
 class Admin::OrdersController < AdminController
   before_action :set_order, only: [:edit, :show, :update, :destroy]
-
+  before_action :count_total_price, only: [ :update]
+  before_action :make_processed, only: [ :update]
   def index
     if params[:status]
       @orders = Order.where(status: params[:status])
@@ -9,20 +10,17 @@ class Admin::OrdersController < AdminController
     end
   end
 
-  def new
-    @order = Order.new
-  end
-
-  def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to admin_orders_path
-    else
-      render :new
-    end
-  end
-
   def edit
+  end
+
+  def count_total_price
+    @order = Order.find(params[:id])
+    @order.update(:total_price => (@order.quantity * @order.order_price))
+  end
+
+  def make_processed
+    @order.status = :processed
+    @order.save
   end
 
   def update
@@ -31,6 +29,12 @@ class Admin::OrdersController < AdminController
     else
       render :edit
     end
+  end
+
+  def change_status_from_new_to_refused
+    @order = Order.find(params[:id])
+    @order.update(status: :refused)
+    redirect_to admin_orders_path
   end
 
   def show
@@ -55,6 +59,6 @@ class Admin::OrdersController < AdminController
   def order_params
     params.require(:order).permit(:client_name, :client_phone, :client_email,
                                   :client_addres, :delivery_type, :order_price,
-                                  :quantity, :total_price, :status, :product_id)
+                                  :quantity, :product_id)
   end
 end
