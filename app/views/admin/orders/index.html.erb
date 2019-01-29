@@ -79,7 +79,7 @@
 				<% end%>
 
 				<% if current_worker.destroy_order_access_is_given? == true %>
-						<%= link_to admin_orders_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
 							<i class="big trash alternate outline icon"></i>
 						<% end %>
 
