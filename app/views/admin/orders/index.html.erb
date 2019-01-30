@@ -2,11 +2,11 @@
 <br>
 <div class="ui grid">
   <div class="four wide column">
-  <H3>Оператор</H3>  
+  <H3>Оператор</H3>
 	  <%= link_to "Все", admin_orders_path %><br>
-	  <%= link_to "Новые", admin_orders_path(status:'new_order') %><br>
-	  <%= link_to "Обработанные", admin_orders_path(status:'processed') %><br>
-		<%= link_to "Отказались", admin_orders_path(status:'refused') %><br>
+	  <%= link_to "Новые", admin_orders_path(status:'новый') %><br>
+	  <%= link_to "Подтверждённые", admin_orders_path(status:'подтверждённый') %><br>
+		<%= link_to "Отказались", admin_orders_path(status:'отказ') %><br>
   </div>
 
   <div class="four wide column">
@@ -39,7 +39,7 @@
 
   <div class="four wide column">
   <h3>Прочие</h3>
-	  <%= link_to "Архив", admin_orders_path %><br>	  
+	  <%= link_to "Архив", admin_orders_path %><br>
   </div>
 </div>
 
@@ -82,7 +82,6 @@
 						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
 							<i class="big trash alternate outline icon"></i>
 						<% end %>
-
 						 </b></th>
 				<% end%>
 		  <% end %>
