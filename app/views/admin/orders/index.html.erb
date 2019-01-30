@@ -1,84 +1,99 @@
 <br>
 <br>
 <div class="ui grid">
-  <div class="four wide column">
-  <H3>Оператор</H3>  
-	  <%= link_to "Все", admin_orders_path %><br>
-	  <%= link_to "Новые", admin_orders_path(status:'new_order') %><br>
-	  <%= link_to "Обработанные", admin_orders_path(status:'processed') %><br>
-		<%= link_to "Отказались", admin_orders_path(status:'refused') %><br>
-  </div>
+	<div class="four wide column">
+		<H3>Оператор</H3> 
+		<div> 			
+			<%= link_to "Все", admin_orders_path %>
+			(<%= Order.all.count %>)<br>
+		</div>
 
-  <div class="four wide column">
-  <h3>Склад</h3>
-	  <%= link_to "Подтверждённые", admin_orders_path %><br>
-	  <%= link_to "Комплектация", admin_orders_path %><br>
-	  <%= link_to "Подготовленные", admin_orders_path %><br>
-	  <%= link_to "Отправленные", admin_orders_path %><br>
-	  <%= link_to "Врученные", admin_orders_path %><br>
-	  <%= link_to "Вручены и оплачены", admin_orders_path %><br>
-	  <%= link_to "Возвраты", admin_orders_path %><br>
-	  <%= link_to "Получен возврат", admin_orders_path %><br>
-  </div>
+		<div>			
+			<%= link_to "Новые", admin_orders_path(status:'new_order') %>
+			(<%= Order.where(status: :new_order).count %>)<br>
+		</div>
 
-  <div class="four wide column">
-  <h3>Напоминание</h3>
-	  <%= link_to "Доставленные", admin_orders_path %><br>
-	  <%= link_to "Напоминание1", admin_orders_path %><br>
-	  <%= link_to "Напоминание2", admin_orders_path %><br>
-  </div>
+		<div>			
+			<%= link_to "Обработанные", admin_orders_path(status:'processed') %>
+			(<%= Order.where(status: :processed).count %>)<br>
+		</div>
 
-  <div class="four wide column">
-  <h3>Проблемные</h3>
-	  <%= link_to "Неподтверждённые", admin_orders_path %><br>
-	  <%= link_to "Отказы", admin_orders_path %><br>	  
-	  <%= link_to "В розыске", admin_orders_path %><br>
-  </div>  
+		<div>			
+			<%= link_to "Отказались", admin_orders_path(status:'refused') %>
+			(<%= Order.where(status: :refused).count %>)<br>
+		</div>
+	</div>
+
+	<div class="four wide column">
+		<h3>Склад</h3>
+		<%= link_to "Подтверждённые", admin_orders_path %><br>
+		<%= link_to "Комплектация", admin_orders_path %><br>
+		<%= link_to "Подготовленные", admin_orders_path %><br>
+		<%= link_to "Отправленные", admin_orders_path %><br>
+		<%= link_to "Врученные", admin_orders_path %><br>
+		<%= link_to "Вручены и оплачены", admin_orders_path %><br>
+		<%= link_to "Возвраты", admin_orders_path %><br>
+		<%= link_to "Получен возврат", admin_orders_path %><br>
+	</div>
+
+	<div class="four wide column">
+		<h3>Напоминание</h3>
+		<%= link_to "Доставленные", admin_orders_path %><br>
+		<%= link_to "Напоминание1", admin_orders_path %><br>
+		<%= link_to "Напоминание2", admin_orders_path %><br>
+	</div>
+
+	<div class="four wide column">
+		<h3>Проблемные</h3>
+		<%= link_to "Неподтверждённые", admin_orders_path %><br>
+		<%= link_to "Отказы", admin_orders_path %><br>	  
+		<%= link_to "В розыске", admin_orders_path %><br>
+	</div>  
 </div>
 
 <table class="ui selectable celled table">
-  <thead>
-    <tr>
-      <th>№</th>
-      <th>Имя</th>
-      <th>Телефон</th>
-      <th>Email</th>
-      <th>Адрес</th>
-      <th>Способ доставки</th>
-      <th>Цена заказа</th>
-      <th>Количество</th>
-      <th>Общая сумма</th>
-      <th>Статус</th>
-      <th colspan="2">Действия</th>
-    </tr>
-  </thead>
+	<thead>
+		<tr>
+			<th>№</th>
+			<th>Имя</th>
+			<th>Телефон</th>
+			<th>Email</th>
+			<th>Адрес</th>
+			<th>Способ доставки</th>
+			<th>Цена заказа</th>
+			<th>Количество</th>
+			<th>Общая сумма</th>
+			<th>Статус</th>
+			<th colspan="2">Действия</th>
+		</tr>
+	</thead>
 
 	<% @orders.each do |order| %>
-		<tr>
-			<th><b><%=  %></b></th>
-			<th><b><%= order.client_name %></b></th>
-			<th><b><%= order.client_phone %></b></th>
-			<th><b><%= order.client_email %></b></th>
-			<th><b><%= order.client_addres %></b></th>
-			<th><b><%= order.delivery_type %></b></th>
-			<th><b><%= order.order_price %></b></th>
-			<th><b><%= order.quantity %></b></th>
-			<th><b><%= order.total_price %></b></th>
-			<th><b><%= order.status %></b></th>
+	<tr>
+		<th><b><%=  %></b></th>
+		<th><b><%= order.client_name %></b></th>
+		<th><b><%= order.client_phone %></b></th>
+		<th><b><%= order.client_email %></b></th>
+		<th><b><%= order.client_addres %></b></th>
+		<th><b><%= order.delivery_type %></b></th>
+		<th><b><%= order.order_price %></b></th>
+		<th><b><%= order.quantity %></b></th>
+		<th><b><%= order.total_price %></b></th>
+		<th><b><%= order.status %></b></th>
 
-			<% if worker_signed_in? %>
-				<% if current_worker.edit_order_access_is_given? == true %>
-					<th><b><%= link_to "Обработать", edit_admin_order_path(order) %>
-				<% end%>
+		<% if worker_signed_in? %>
+		<% if current_worker.edit_order_access_is_given? == true %>
+		<th><b><%= link_to "Обработать", edit_admin_order_path(order) %>
+			<% end%>
 
-				<% if current_worker.destroy_order_access_is_given? == true %>
-						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
-							<i class="big trash alternate outline icon"></i>
-						<% end %>
+			<% if current_worker.destroy_order_access_is_given? == true %>
+			<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+			<i class="big trash alternate outline icon"></i>
+			<% end %>
 
-						 </b></th>
-				<% end%>
-		  <% end %>
-		</tr>
+		</b></th>
+		<% end%>
+		<% end %>
+	</tr>
 	<% end %>
 </table>
