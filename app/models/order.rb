@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
-  enum status: [:новый, :уточнение, :подтверждённый, :отказ, :отсроченный, :комплектация, :подготовленный, :отправленный,
-                :врученный, :вручен_и_оплачен, :возврат, :получен_возврат, :доставлен, :напоминание_1,
-                :напоминание_2, :неподтверждённый, :в_розыске]
+  enum status: [:new_order, :clarification, :confirmed, :rejection, :deferred, :equipment, :prepared, :sent,
+                :handed_in, :handed_over_and_paid_for, :return, :refund_received, :delivered, :reminder_1,
+                :reminder_2, :unconfirmed, :wanted]
 
 
 

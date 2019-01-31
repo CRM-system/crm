@@ -4,9 +4,9 @@
   <div class="four wide column">
   <H3>Оператор</H3>
 	  <%= link_to "Все", admin_orders_path %><br>
-	  <%= link_to "Новые", admin_orders_path(status:'новый') %><br>
-	  <%= link_to "Подтверждённые", admin_orders_path(status:'подтверждённый') %><br>
-		<%= link_to "Отказались", admin_orders_path(status:'отказ') %><br>
+	  <%= link_to "Новые", admin_orders_path(status:'new_order') %><br>
+	  <%= link_to "Подтверждённые", admin_orders_path(status:'confirmed') %><br>
+		<%= link_to "Отказались", admin_orders_path(status:'rejection') %><br>
   </div>
 
   <div class="four wide column">
