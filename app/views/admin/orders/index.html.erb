@@ -4,8 +4,11 @@
 	<div class="four wide column">
 <H3>Оператор</H3>
 		<%= link_to "Все", admin_orders_path %><br>
+		(<%= Order.where(status: :new_order).count %>)<br>
 		<%= link_to "Новые", admin_orders_path(status:'new_order') %><br>
+		(<%= Order.where(status: :confirmed).count %>)<br>
 		<%= link_to "Подтверждённые", admin_orders_path(status:'confirmed') %><br>
+		(<%= Order.where(status: :rejection).count %>)<br>
 		<%= link_to "Отказались", admin_orders_path(status:'rejection') %><br>
 	</div>
 		<div>
@@ -13,12 +16,12 @@
 			(<%= Order.where(status: :new_order).count %>)<br>
 		</div>
 		<div>
-			<%= link_to "Обработанные", admin_orders_path(status:'processed') %>
-			(<%= Order.where(status: :processed).count %>)<br>
+			<%= link_to "Обработанные", admin_orders_path(status:'confirmed') %>
+			(<%= Order.where(status: :confirmed).count %>)<br>
 		</div>
 		<div>
-			<%= link_to "Отказались", admin_orders_path(status:'refused') %>
-			(<%= Order.where(status: :refused).count %>)<br>
+			<%= link_to "Отказались", admin_orders_path(status:'rejection') %>
+			(<%= Order.where(status: :rejection).count %>)<br>
 		</div>
 	</div>
 	<div class="four wide column">

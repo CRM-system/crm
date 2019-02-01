@@ -2,8 +2,10 @@
 
 one:
   title: MyString
-  description: MyString
+  description: MyText
+  references:
 
 two:
   title: MyString
-  description: MyString
+  description: MyText
+  references:

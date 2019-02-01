@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_083657) do
+ActiveRecord::Schema.define(version: 2019_02_01_105513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_083657) do
 
   create_table "order_statuses", force: :cascade do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 2019_02_01_083657) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "role_order_statuses", force: :cascade do |t|
+    t.bigint "role_id"
+    t.bigint "order_status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_status_id"], name: "index_role_order_statuses_on_order_status_id"
+    t.index ["role_id"], name: "index_role_order_statuses_on_role_id"
   end
 
   create_table "roles", force: :cascade do |t|
