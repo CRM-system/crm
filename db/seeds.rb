@@ -205,7 +205,6 @@ add_functions_for(@role_director)
 @role_director.functions.where(model: 'role', name: 'destroy').first.update(access: false)
 @role_director.functions.where(model: 'role', name: 'edit').first.update(access: false)
 
-
 @role_operator = Role.create!(
   name: 'Оператор'
 )
@@ -220,7 +219,6 @@ add_functions_for(@role_operator)
 set_functions_accesses_to_false(@role_operator)
 @role_operator.functions.where(model: 'product', name: 'index').first.update(access: true)
 # --------------------------------------------------
-
 wallet1 = Product.create(
   name: 'Бумажник',
   price: 5000,
@@ -246,9 +244,26 @@ wallet5 = Product.create(
   price: 2500,
   description: 'Бумажник коричневого цвета из кожзама'
 )
-
 add_image_to_product(wallet1,'бумажник1')
 add_image_to_product(wallet2,'бумажник2')
 add_image_to_product(wallet3,'бумажник3')
 add_image_to_product(wallet4,'бумажник4')
 add_image_to_product(wallet5,'бумажник5')
+
+order_status = OrderStatus.create(name: 'find_out',description:        'Нужно выяснить у клиента какие - то данные')
+order_status = OrderStatus.create(name: 'confirmed',description:       'Клиент подтвердил покупку товара.Все данные клиента записаны')
+order_status = OrderStatus.create(name: 'rejection',description:       'Клиент отказался от покупки товара')
+order_status = OrderStatus.create(name: 'deferred',description:        'Покупка заказа отсрочена.Нужно позднее связаться с клиентом
+                                                                        и выяснить будет ли он покупать товар')
+order_status = OrderStatus.create(name: 'assemblage',description:      'Заказ собирается на складе')
+order_status = OrderStatus.create(name: 'prepared',description:        'Заказ собран и подготовлен к отправке')
+order_status = OrderStatus.create(name: 'sent',description:            'Заказ отправлен клиенту')
+order_status = OrderStatus.create(name: 'handed_in',description:       'Заказ вручен клиенту')
+order_status = OrderStatus.create(name: 'handed_and_paid',description: 'Заказ вручен и оплачен')
+order_status = OrderStatus.create(name: 'return',description:          'Возврат')
+order_status = OrderStatus.create(name: 'refund_received',description: 'Возврат получен')
+order_status = OrderStatus.create(name: 'delivered',description:       'Заказ доставлен')
+order_status = OrderStatus.create(name: 'reminder_1',description:      'Напоминание о чём то')
+order_status = OrderStatus.create(name: 'reminder_2',description:      'Напоминание о чём то')
+order_status = OrderStatus.create(name: 'unconfirmed',description:     'Заказ не подтверждён')
+order_status = OrderStatus.create(name: 'wanted',description:          'Поиск товара')

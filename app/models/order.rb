@@ -1,14 +1,12 @@
 class Order < ApplicationRecord
-  enum status: [:new_order, :clarification, :confirmed, :rejection, :deferred, :equipment, :prepared, :sent,
-                :handed_in, :handed_over_and_paid_for, :return, :refund_received, :delivered, :reminder_1,
+  enum status: [:new_order, :find_out, :confirmed, :rejection, :deferred, :assemblage, :prepared, :sent,
+                :handed_in, :handed_and_paid, :return, :refund_received, :delivered, :reminder_1,
                 :reminder_2, :unconfirmed, :wanted]
-
-
 
   belongs_to :product
 
-  #before_validation { client_name.capitalize! }
-  # before_validation { client_email.downcase! }
+  before_validation { client_name.capitalize! }
+  before_validation { client_email.downcase! }
 
   validates :client_name, presence: true, length: { maximum: 50 }
   validates :client_phone, presence: true, length: { maximum: 12 }

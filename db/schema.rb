@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_101923) do
+ActiveRecord::Schema.define(version: 2019_02_01_083657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 2019_01_23_101923) do
     t.string "model"
     t.text "description"
     t.index ["role_id"], name: "index_functions_on_role_id"
+  end
+
+  create_table "order_statuses", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
