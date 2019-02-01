@@ -3,7 +3,7 @@ class Order < ApplicationRecord
                 :handed_in, :handed_and_paid, :return, :refund_received, :delivered, :reminder_1,
                 :reminder_2, :unconfirmed, :wanted]
 
-  belongs_to :product
+  belongs_to :product 
 
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }

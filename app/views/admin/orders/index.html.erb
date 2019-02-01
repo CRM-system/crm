@@ -2,28 +2,28 @@
 <br>
 <div class="ui grid">
 	<div class="four wide column">
-<H3>Оператор</H3>
-		<%= link_to "Все", admin_orders_path %><br>
-		<%= link_to "Новые", admin_orders_path(status:'new_order') %><br>
-		<%= link_to "Подтверждённые", admin_orders_path(status:'confirmed') %><br>
-		<%= link_to "Отказались", admin_orders_path(status:'rejection') %><br>
-	</div>
 		<div>
+			<H3>Оператор</H3>
 			<%= link_to "Новые", admin_orders_path(status:'new_order') %>
 			(<%= Order.where(status: :new_order).count %>)<br>
 		</div>
+
 		<div>
-			<%= link_to "Обработанные", admin_orders_path(status:'processed') %>
-			(<%= Order.where(status: :processed).count %>)<br>
+			<%= link_to "Обработанные", admin_orders_path(status:'confirmed') %>
+			(<%= Order.where(status: :confirmed).count %>)<br>
 		</div>
+
 		<div>
-			<%= link_to "Отказались", admin_orders_path(status:'refused') %>
-			(<%= Order.where(status: :refused).count %>)<br>
+			<%= link_to "Отказались", admin_orders_path(status:'rejection') %>
+			(<%= Order.where(status: :rejection).count %>)<br>
 		</div>
 	</div>
+
 	<div class="four wide column">
-		<h3>Прочие</h3>
-		<%= link_to "Архив", admin_orders_path %><br>
+		<div>
+			<h3>Прочие</h3>
+			<%= link_to "Архив", admin_orders_path %><br>
+		</div>
 	</div>
 </div>
 
@@ -55,20 +55,20 @@
 		<th><b><%= order.quantity %></b></th>
 		<th><b><%= order.total_price %></b></th>
 		<th><b><%= order.status %></b></th>
-			<% if worker_signed_in? %>
-				<% if current_worker.edit_order_access_is_given? == true %>
-					<th>
-						<%= link_to edit_admin_order_path(order) do %>
-						<i class="circular teal inverted pencil alternate icon"></i>
-						<% end%>
-				<% end%>
-				<% if current_worker.destroy_order_access_is_given? == true %>
-						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
-							<i class="circular inverted red trash alternate outline icon"></i>
-						<% end %>
-					</th>
-				<% end%>
+		<% if worker_signed_in? %>
+		<% if current_worker.edit_order_access_is_given? == true %>
+		<th>
+			<%= link_to edit_admin_order_path(order) do %>
+			<i class="circular teal inverted pencil alternate icon"></i>
+			<% end%>
+			<% end%>
+			<% if current_worker.destroy_order_access_is_given? == true %>
+			<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+			<i class="circular inverted red trash alternate outline icon"></i>
 			<% end %>
-		</tr>
+		</th>
+		<% end%>
+		<% end %>
+	</tr>
 	<% end %>
 </table>
