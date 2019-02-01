@@ -2,22 +2,14 @@
 <br>
 <div class="ui grid">
 	<div class="four wide column">
-<H3>Оператор</H3>
-		<%= link_to "Все", admin_orders_path %><br>
-		(<%= Order.where(status: :new_order).count %>)<br>
-		<%= link_to "Новые", admin_orders_path(status:'new_order') %><br>
-		(<%= Order.where(status: :confirmed).count %>)<br>
-		<%= link_to "Подтверждённые", admin_orders_path(status:'confirmed') %><br>
-		(<%= Order.where(status: :rejection).count %>)<br>
-		<%= link_to "Отказались", admin_orders_path(status:'rejection') %><br>
-	</div>
 		<div>
-			<%= link_to "Новые", admin_orders_path(status:'new_order') %>
+			<H3>Оператор</H3>
+				<%= link_to "Новые", admin_orders_path(status:'new_order') %>
 			(<%= Order.where(status: :new_order).count %>)<br>
 		</div>
 		<div>
 			<%= link_to "Обработанные", admin_orders_path(status:'confirmed') %>
-			(<%= Order.where(status: :confirmed).count %>)<br>
+				(<%= Order.where(status: :confirmed).count %>)<br>
 		</div>
 		<div>
 			<%= link_to "Отказались", admin_orders_path(status:'rejection') %>
@@ -25,8 +17,10 @@
 		</div>
 	</div>
 	<div class="four wide column">
-		<h3>Прочие</h3>
-		<%= link_to "Архив", admin_orders_path %><br>
+		<div>
+			<h3>Прочие</h3>
+			<%= link_to "Архив", admin_orders_path %><br>
+		</div>
 	</div>
 </div>
 
