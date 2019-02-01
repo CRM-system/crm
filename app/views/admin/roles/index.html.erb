@@ -2,7 +2,7 @@
 <% if current_worker.new_role_access_is_given? %>
 	<%= link_to 'Создать новую должность',new_admin_role_path, class:"ui positive basic button" %>
 <% end %>
-<table class="ui selectable celled black table", id="centred_table">
+<table class="ui selectable celled table">
 	<tr class="table_title">
 		<th>Название</th>
 		<th colspan="2">Действия</th>
@@ -17,14 +17,14 @@
 		<td>
 			<% if current_worker.edit_role_access_is_given? %>
 				<%= link_to edit_admin_role_path(role) do %>
-				<i class="big edit outline icon"></i>
+				<i class="circular teal inverted pencil alternate icon"></i>
 				<% end %>
 			<% end %>
 		</td>
 		<td>
 			<% if current_worker.destroy_role_access_is_given? %>
 				<%= link_to admin_role_path(role), method: :delete, data: { confirm: 'Вы уверены?' } do %>
-					<i class="big trash alternate outline icon"></i>
+					<i class="circular inverted red trash alternate outline icon"></i>
 				<% end %>
 			<% end %>
 		</td>

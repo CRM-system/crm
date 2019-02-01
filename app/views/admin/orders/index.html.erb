@@ -75,14 +75,17 @@
 
 			<% if worker_signed_in? %>
 				<% if current_worker.edit_order_access_is_given? == true %>
-					<th><b><%= link_to "Обработать", edit_admin_order_path(order) %>
+					<th>
+						<%= link_to edit_admin_order_path(order) do %>
+						<i class="circular teal inverted pencil alternate icon"></i>
+						<% end%>
 				<% end%>
 
 				<% if current_worker.destroy_order_access_is_given? == true %>
 						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
-							<i class="big trash alternate outline icon"></i>
+							<i class="circular inverted red trash alternate outline icon"></i>
 						<% end %>
-						 </b></th>
+					</th>
 				<% end%>
 		  <% end %>
 		</tr>
