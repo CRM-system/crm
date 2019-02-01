@@ -4,15 +4,29 @@ class Admin::OrdersController < AdminController
   before_action :check_access_edit_order, :only => [:edit]
   before_action :check_access_destroy_order, :only => [:destroy]
   before_action :set_order, only: [:edit, :show, :update, :destroy]
-  before_action :count_total_price, only: [ :update]
-  before_action :make_processed, only: [ :update]
-  def index
-    if params[:status]
-      @orders = Order.where(status: params[:status])
-    else
-      @orders = Order.all
-    end
-  end
+  # before_action :count_total_price, only: [ :update]
+  # before_action :make_processed, only: [ :update]
+  # def make_processed
+  #   @order.status = :processed
+  #   @order.save
+  # end
+
+  # def count_total_price
+  #   @order = Order.find(params[:id])
+  #   @order.total_price = @order.quantity * @order.order_price
+  #   @order.save
+  # end
+
+  # def change_status_from_new_to_refused
+  #   @order = Order.find(params[:id])
+  #   @order.update(status: :refused)
+  #   redirect_to admin_orders_path
+  # end
+
+  # def change_status
+  #     @order = Order.find(params[:id])
+  #     @order = Order.update(status: params[:status])
+  # end
 
   def new
     @order = Order.new
@@ -30,17 +44,6 @@ class Admin::OrdersController < AdminController
   def edit
   end
 
-  def count_total_price
-    @order = Order.find(params[:id])
-    @order.total_price = @order.quantity * @order.order_price
-    @order.save
-  end
-
-  def make_processed
-    @order.status = :processed
-    @order.save
-  end
-
   def update
     if @order.update(order_params)
       redirect_to admin_orders_path
@@ -49,10 +52,12 @@ class Admin::OrdersController < AdminController
     end
   end
 
-  def change_status_from_new_to_refused
-    @order = Order.find(params[:id])
-    @order.update(status: :refused)
-    redirect_to admin_orders_path
+  def index
+    if params[:status]
+      @orders = Order.where(status: params[:status])
+    else
+      @orders = Order.all
+    end
   end
 
   def show
@@ -62,11 +67,6 @@ class Admin::OrdersController < AdminController
       @order.destroy
       redirect_to admin_orders_path
   end
-
-  # def get_orders_by_status_params
-  #     @orders = Order.where(status: params[:status])
-  #     redirect_to admin_orders_path
-  # end
 
   private
 
