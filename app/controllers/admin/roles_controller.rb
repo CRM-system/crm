@@ -74,12 +74,12 @@ class Admin::RolesController < AdminController
 	end
 
 	def role_params
-		params.require(:role).permit(:name)
+		params.require(:role).permit(:name, order_status:[:id])
 	end
 
-	def status_params
-		params.require(:order_status).permit(:title, :description)
-	end
+	# def status_params
+	# 	params.require(:order_status).permit(:title, :description)
+	# end
 
 	def add_functions_for(role)
 		Function.all.each do |function|
