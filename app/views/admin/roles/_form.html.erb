@@ -1,23 +1,165 @@
 <div class="ui form">
 	<div class="fields">
 		<%= form_with model: [:admin, @role], local: true do |f| %>
-			<% if @role.errors.any? %>
-			<div class="errors">
-				Total errors: <%= @role.errors.count %>
-				<ul>
-					<% @role.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
-			<div class="field">
-				<%= f.text_field :name, placeholder: 'Название' %>
-			</div></br>
+		<% if @role.errors.any? %>
+		<div class="errors">
+			Total errors: <%= @role.errors.count %>
+			<ul>
+				<% @role.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="field">
+			<%= f.text_field :name, placeholder: 'Название' %>
+		</div></br>
 
-			<p>
-				<%= f.submit "Подтвердить",class:"ui teal button" %>
-			</p>
+		<p>
+			<%= f.submit "Подтвердить",class:"ui teal button" %>
+		</p>
 		<% end %>
 	</div>
 </div>
+<br>
+<br>
+
+<div class="ui celled relaxed list">
+	<div class="item">
+		<div class="ui master checkbox">
+			<input type="checkbox" name="fruits">
+			<label>All</label>
+		</div><br>
+
+		<div class="ui grid">
+			<div class="four wide column">
+				<div class="list">
+					<div class="item">
+						<div class="ui child checkbox">
+							<input id="example-id" type="checkbox" name="find_out">
+							<label for="example-id">find_out</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui child checkbox">
+							<input id="example-id" type="checkbox" name="confirmed">
+							<label for="example-id">confirmed</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui child checkbox">
+							<input id="example-id" type="checkbox" name="rejection">
+							<label for="example-id">rejection</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui child checkbox">
+							<input id="example-id" type="checkbox" name="deferred">
+							<label for="example-id">deferred</label>
+						</div>
+					</div><br>
+				</div>
+			</div>
+
+			<div class="four wide column">
+				<div class="list">
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="assemblage">
+							<label for="example-id">assemblage</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="prepared">
+							<label for="example-id">prepared</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="sent">
+							<label for="example-id">sent</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="handed_in">
+							<label for="example-id">handed_in</label>
+						</div>
+					</div><br>
+				</div>
+			</div>
+
+			<div class="four wide column">
+				<div class="list">
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="handed_and_paid">
+							<label for="example-id">handed_and_paid</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="return">
+							<label for="example-id">return</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="refund_received">
+							<label for="example-id">refund_received</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="delivered">
+							<label for="example-id">delivered</label>
+						</div>
+					</div><br>
+				</div>
+			</div>
+
+			<div class="four wide column">
+				<div class="list">
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="reminder_1">
+							<label for="example-id">reminder_1</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="reminder_2">
+							<label for="example-id">reminder_2</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="unconfirmed">
+							<label for="example-id">unconfirmed</label>
+						</div>
+					</div><br>
+
+					<div class="item">
+						<div class="ui checkbox">
+							<input id="example-id" type="checkbox" name="wanted">
+							<label for="example-id">wanted</label>
+						</div>
+					</div><br>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<br>
