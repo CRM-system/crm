@@ -250,20 +250,84 @@ add_image_to_product(wallet3,'бумажник3')
 add_image_to_product(wallet4,'бумажник4')
 add_image_to_product(wallet5,'бумажник5')
 
-order_status = OrderStatus.create(title: 'find_out',description:        'Нужно выяснить у клиента какие - то данные')
-order_status = OrderStatus.create(title: 'confirmed',description:       'Клиент подтвердил покупку товара.Все данные клиента записаны')
-order_status = OrderStatus.create(title: 'rejection',description:       'Клиент отказался от покупки товара')
-order_status = OrderStatus.create(title: 'deferred',description:        'Покупка заказа отсрочена.Нужно позднее связаться с клиентом
-                                                                        и выяснить будет ли он покупать товар')
-order_status = OrderStatus.create(title: 'assemblage',description:      'Заказ собирается на складе')
-order_status = OrderStatus.create(title: 'prepared',description:        'Заказ собран и подготовлен к отправке')
-order_status = OrderStatus.create(title: 'sent',description:            'Заказ отправлен клиенту')
-order_status = OrderStatus.create(title: 'handed_in',description:       'Заказ вручен клиенту')
-order_status = OrderStatus.create(title: 'handed_and_paid',description: 'Заказ вручен и оплачен')
-order_status = OrderStatus.create(title: 'return',description:          'Возврат')
-order_status = OrderStatus.create(title: 'refund_received',description: 'Возврат получен')
-order_status = OrderStatus.create(title: 'delivered',description:       'Заказ доставлен')
-order_status = OrderStatus.create(title: 'reminder_1',description:      'Напоминание о чём то')
-order_status = OrderStatus.create(title: 'reminder_2',description:      'Напоминание о чём то')
-order_status = OrderStatus.create(title: 'unconfirmed',description:     'Заказ не подтверждён')
-order_status = OrderStatus.create(title: 'wanted',description:          'Поиск товара')
+order_status = OrderStatus.create(
+  title: 'find_out',
+  description: 'Нужно выяснить у клиента какие - то данные',
+  translate_ru: 'Выяснить'
+)
+order_status = OrderStatus.create(
+  title: 'confirmed',
+  description:'Клиент подтвердил покупку товара.Все данные клиента записаны',
+  translate_ru: 'Подтверждённый'
+)
+order_status = OrderStatus.create(
+  title: 'rejection',
+  description: 'Клиент отказался от покупки товара',
+  translate_ru: 'Отказ'
+  )
+order_status = OrderStatus.create(
+  title: 'deferred',
+  description: 'Покупка заказа отсрочена.Нужно позднее связаться с клиентом
+                и выяснить будет ли он покупать товар',
+  translate_ru:'Отсроченный'
+  )
+order_status = OrderStatus.create(
+  title: 'assemblage',
+  description: 'Заказ собирается на складе',
+  translate_ru: 'Сборка заказа'
+  )
+order_status = OrderStatus.create(
+  title: 'prepared',
+  description: 'Заказ собран и подготовлен к отправке',
+  translate_ru: 'Подготовленный'
+  )
+order_status = OrderStatus.create(
+  title: 'sent',
+  description: 'Заказ отправлен клиенту',
+  translate_ru: 'Отправленный'
+  )
+order_status = OrderStatus.create(
+  title: 'handed_in',
+  description: 'Заказ вручен клиенту',
+  translate_ru: 'Врученный'
+  )
+order_status = OrderStatus.create(
+  title: 'handed_and_paid',
+  description: 'Заказ вручен и оплачен',
+  translate_ru: 'Вручен и оплачен',
+  )
+order_status = OrderStatus.create(
+  title: 'return',
+  description: 'Возврат',
+  translate_ru: 'Возврат'
+)
+order_status = OrderStatus.create(
+  title: 'refund_received',
+  description: 'Возврат получен',
+  translate_ru: 'Возврат получен'
+  )
+order_status = OrderStatus.create(
+  title: 'delivered',
+  description: 'Заказ доставлен',
+  translate_ru: 'Доставлен'
+  )
+order_status = OrderStatus.create(
+  title: 'reminder_1',
+  description: 'Напоминание о чём то',
+  translate_ru: 'Напоминание 1'
+  )
+order_status = OrderStatus.create(
+  title: 'reminder_2',
+  description: 'Напоминание о чём то',
+  translate_ru: 'Напоминание 2'
+  )
+order_status = OrderStatus.create(
+  title: 'unconfirmed',
+  description: 'Заказ не подтверждён',
+  translate_ru: 'Не подтверждён'
+  )
+order_status = OrderStatus.create(
+  title: 'wanted',
+  description: 'Поиск товара',
+  translate_ru: 'Розыскивается'
+  )

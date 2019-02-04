@@ -15,13 +15,7 @@
 				<%= f.text_field :name, placeholder: 'Название' %>
 			</div>
 			<div class="ui left floated compact segment">
-			<%= f.collection_check_boxes :order_status_ids, OrderStatus.all, :id, :title do |status| %>
-				<!-- <div class="ui left floated compact segment">
-					<%# OrderStatus.all.each do |status| %>
-						<%#= f.check_box_tag "#{:order_status_ids}", status.id %>
-						<%#= status.title %> <br>
-					<%# end %>
-				</div> -->
+			<%= f.collection_check_boxes :order_status_ids, OrderStatus.all, :id, :translate_ru do |status| %>
 					<%= status.check_box %>
 					<%= status.label %> <br>
 					<% end %>
