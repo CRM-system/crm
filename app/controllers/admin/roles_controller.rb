@@ -3,7 +3,6 @@ class Admin::RolesController < AdminController
 	before_action :check_access_index_role, :only => [:index]
 	before_action :check_access_destroy_role, :only => [:destroy]
 	before_action :check_access_edit_role, :only => [:edit]
-
 	before_action :set_role, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -24,6 +23,7 @@ class Admin::RolesController < AdminController
 
 	def create
 		@role = Role.new(role_params)
+		# @role.role_order_statuses << params[:role][:order_statuses]
 		if @role.save
 			add_functions_for(@role)
 			set_functions_accesses_to_false(@role)
@@ -38,7 +38,7 @@ class Admin::RolesController < AdminController
 	end
 
 	def update
-		@role.role_order_statuses << params[:role][:order_statuses]
+		@role.order_statuses << params[:role][:order_statuses_ids]
 		if @role.update(role_params)
 			redirect_to admin_roles_path
 		else
@@ -74,7 +74,7 @@ class Admin::RolesController < AdminController
 	end
 
 	def role_params
-		params.require(:role).permit(:name, order_status:[:id])
+		params.require(:role).permit(:name, order_status_ids:[])
 	end
 
 	# def status_params
