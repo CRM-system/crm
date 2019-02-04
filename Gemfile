@@ -13,7 +13,7 @@ gem 'semantic-ui-rails'
 
 gem 'file_validators'
 gem 'mini_magick', '~> 4.8'
-
+gem 'translate_enum'
 
 
 # Use sqlite3 as the database for Active Record

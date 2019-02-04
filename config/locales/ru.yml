@@ -1,0 +1,22 @@
+ru:
+  activerecord:
+    attributes:
+      order:
+        status_list:
+          new_order:       "Новый"
+          confirmed:       "Подтверждённый"
+          unconfirmed:     "Не подтверждён"
+          rejection:       "Отказ"
+          find_out:        "Выяснить"
+          deferred:        "Отсроченный"
+          assemblage:      "Сборка заказа"
+          prepared:        "Подготовленный"
+          sent:            "Отправленный"
+          handed_in:       "Врученный"
+          handed_and_paid: "Вручен и оплачен"
+          return:          "Возврат"
+          refund_received: "Возврат получен"
+          delivered:       "Доставлен"
+          reminder_1:      "Напоминание 1"
+          reminder_1:      "Напоминание 2"
+          wanted:          "Розыскивается"

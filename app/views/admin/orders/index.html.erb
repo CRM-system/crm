@@ -54,20 +54,20 @@
 		<th><b><%= order.order_price %></b></th>
 		<th><b><%= order.quantity %></b></th>
 		<th><b><%= order.total_price %></b></th>
-		<th><b><%= order.status %></b></th>
+		<th><b><%= order.translated_status %></b></th>
 		<% if worker_signed_in? %>
-		<% if current_worker.edit_order_access_is_given? == true %>
-		<th>
-			<%= link_to edit_admin_order_path(order) do %>
-			<i class="circular teal inverted pencil alternate icon"></i>
+			<% if current_worker.edit_order_access_is_given? == true %>
+			<th>
+				<%= link_to edit_admin_order_path(order) do %>
+					<i class="circular teal inverted pencil alternate icon"></i>
+				<% end%>
+				<% end%>
+				<% if current_worker.destroy_order_access_is_given? == true %>
+				<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+					<i class="circular inverted red trash alternate outline icon"></i>
+				<% end %>
+			</th>
 			<% end%>
-			<% end%>
-			<% if current_worker.destroy_order_access_is_given? == true %>
-			<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
-			<i class="circular inverted red trash alternate outline icon"></i>
-			<% end %>
-		</th>
-		<% end%>
 		<% end %>
 	</tr>
 	<% end %>
