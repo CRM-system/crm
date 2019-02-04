@@ -50,7 +50,7 @@
 
       <div>
         <%= f.label 'Статус' %>
-        <%= f.select( :status, options_for_select(Order.statuses.keys) ) %>
+        <%= f.select( :status, options_for_select(current_worker.role.order_statuses.map{ |s| s.title }) ) %>
       </div>
 
       <div><br><br>

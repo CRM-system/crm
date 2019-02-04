@@ -38,7 +38,12 @@ class Admin::RolesController < AdminController
 	end
 
 	def update
-		@role.order_statuses << params[:role][:order_statuses_ids]
+		params[:role][:order_status_ids].each do |id|
+			if id.present?
+				s = OrderStatus.find(id.to_i)
+				@role.order_statuses << s
+			end
+		end
 		if @role.update(role_params)
 			redirect_to admin_roles_path
 		else
