@@ -1,34 +1,44 @@
 <h1>Функции</h1>
 <table class="ui selectable celled black table", id="centred_table">
   <tr class="table_title">
-    <th>Модель</th>
-    <th>Название</th>
     <th>Описание</th>
-    <th>Доступ</th>
-    <th>Роль</th>
-    <th colspan="4">Действия</th>
+    <th>Доступ</th>    
+    <th colspan="3">Действия</th>
   </tr>
 
   <% @functions.each do |function| %>
-    <tr>
-      <td><%= function.model %></td>
-      <td><%= function.name %></td>
+    <tr>      
       <td><%= function.description %></td>
-      <td><%= function.access %></td>
-      <td><%= function.role.name %></td>
+      
+      <td>
+      <% if function.access == true %>
+        <i class="grey large thumbs up icon"></i>     
+      <% else %>
+        <i class="grey large thumbs down outline icon"></i>
+      <% end %>
+      </td>
+
       <td>
         <% if function.access %>
-          <%= link_to 'Ограничить в правах', admin_access_path(function), method: :put %>
+          <%= link_to admin_access_path(function), method: :put do %>
+            <i class="red large ban icon"></i>
+          <% end %>
+
         <% else %>
-          <%= link_to 'Предоставить право', admin_access_path(function), method: :put %>
+          <%= link_to admin_access_path(function), method: :put do %>
+            <i class="green large check circle icon"></i>
+          <% end %>
         <% end %>
       </td>
-      <td><%= link_to 'Редактирование', edit_admin_function_path(function) %></td>
-      <td><%= link_to 'Удалить', admin_function_path(function), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+
+      <td><%= link_to edit_admin_function_path(function) do %>
+       <i class="large edit icon"></i></td>
+      <% end %>
+
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'Создать новую функцию', new_admin_function_path, class:"ui teal button" %>
+<%#= link_to 'Создать новую функцию', new_admin_function_path, class:"ui teal button" %>
 <br>
 <br>
