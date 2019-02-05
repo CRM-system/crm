@@ -1,7 +1,7 @@
 <%= form_with model: [:admin, @worker], local: true do |f| %>
 <% if @worker.errors.any? %>
 <div class="errors">
-	Total errors: <%= @worker.errors.count %>
+	Ошибки: <%= @worker.errors.count %>
 	<ul>
 		<% @worker.errors.full_messages.each do |message| %>
 		<li><%= message %></li>
