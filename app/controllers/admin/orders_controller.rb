@@ -5,11 +5,10 @@ class Admin::OrdersController < AdminController
   before_action :check_access_destroy_order, :only => [:destroy]
   before_action :set_order, only: [:edit, :show, :update, :destroy]
 
-  #def count_total_price
-  #  @order = Order.find(params[:id])
-  #  @order.total_price = @order.quantity * @order.order_price
-  #  @order.save
-  #end
+  def count_total_price
+    @order.total_price = @order.quantity * @order.order_price
+    @order.save
+  end
 
   # def change_status_from_new_to_refused
   #   @order = Order.find(params[:id])
@@ -41,6 +40,7 @@ class Admin::OrdersController < AdminController
   def update
     @order.total_price = @order.quantity * @order.product.price
     if @order.update(order_params)
+      count_total_price
       redirect_to admin_orders_path
     else
       render :edit
