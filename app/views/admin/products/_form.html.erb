@@ -3,7 +3,7 @@
     <%= form_with model: [:admin, @product], local: true do |f| %>
       <% if @product.errors.any? %>
         <div class="errors">
-          Total errors: <%= @product.errors.count %>
+          Ошибки:  <%= @product.errors.count %>
           <ul>
             <% @product.errors.full_messages.each do |message| %>
               <li><%= message %></li>
