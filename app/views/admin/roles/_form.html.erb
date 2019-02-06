@@ -1,28 +1,28 @@
 <div class="ui form">
 	<div class="fields">
 		<%= form_with model: [:admin, @role], local: true do |f| %>
-			<% if @role.errors.any? %>
-				<div class="errors">
-					Total errors: <%= @role.errors.count %>
-					<ul>
-						<% @role.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-						<% end %>
-					</ul>
-				</div>
-			<% end %>
-			<div class="field">
-				<%= f.text_field :name, placeholder: 'Название' %>
-			</div>
-			<div class="ui left floated compact segment">
+		<% if @role.errors.any? %>
+		<div class="errors">
+			Ошибки:  <%= @role.errors.count %>
+			<ul>
+				<% @role.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="field">
+			<%= f.text_field :name, placeholder: 'Название' %>
+		</div>
+		<div class="ui left floated compact segment">
 			<%= f.collection_check_boxes :order_status_ids, OrderStatus.all, :id, :translate_ru do |status| %>
-					<%= status.check_box %>
-					<%= status.label %> <br>
-					<% end %>
-				</div>
-			<p>
-				<%= f.submit "Подтвердить",class:"ui teal button" %>
-			</p>
+			<%= status.check_box %>
+			<%= status.label %> <br>
+			<% end %>
+		</div>
+		<p>
+			<%= f.submit "Подтвердить",class:"ui teal button" %>
+		</p>
 		<% end %>
 	</div>
 </div>

@@ -5,7 +5,7 @@
     <%= form_with model: [:admin, @order], local: true do |f| %>
       <% if @order.errors.any? %>
         <div class="errors">
-          Total errors: <%= @order.errors.count %>
+          Ошибки: <%= @order.errors.count %>
           <ul>
             <% @order.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -55,6 +55,7 @@
 
       <div><br><br>
         <%= f.submit "Подтвердить", class:"ui teal button" %>
+        <%= f.submit "Назад",class:"ui teal button" %>
       </div>
     <% end %>
   </div>

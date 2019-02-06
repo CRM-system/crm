@@ -3,6 +3,8 @@
 	<%= link_to 'Создать новый товар', new_admin_product_path, class:"ui positive basic button" %>
 <% end %>
 
+<%= link_to 'Назад', admin_products_path, class:"ui teal button" %>
+
 <div class="digg_pagination">
 	<div class="page_info">
     	<%= page_entries_info @products %>

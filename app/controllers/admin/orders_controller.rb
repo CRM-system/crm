@@ -4,6 +4,7 @@ class Admin::OrdersController < AdminController
   before_action :check_access_edit_order, :only => [:edit]
   before_action :check_access_destroy_order, :only => [:destroy]
   before_action :set_order, only: [:edit, :show, :update, :destroy]
+
   
 
   def count_total_price
@@ -39,6 +40,7 @@ class Admin::OrdersController < AdminController
   end
 
   def update
+    @order.total_price = @order.quantity * @order.product.price
     if @order.update(order_params)
       count_total_price
       redirect_to admin_orders_path
