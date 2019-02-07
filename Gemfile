@@ -14,6 +14,7 @@ gem 'semantic-ui-rails'
 gem 'file_validators'
 gem 'mini_magick', '~> 4.8'
 gem 'translate_enum'
+gem 'pg_search'
 
 
 # Use sqlite3 as the database for Active Record
