@@ -115,6 +115,63 @@
 		</div>
 	</div>
 </div>
+<br>
+
+<div class="accordion" id="accordionExample">
+	<div class="card">
+		<div >
+			<h2 class="mb-0">
+				<div class="container">
+					<div class="row">
+						<button class="btn btn-primary col align-self-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Отображать заказы,удовлетворяющие следующим условиям
+						</button>
+					</div>
+				</div>
+			</h2>
+		</div>
+
+		<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+			<div class="container">
+				<form>
+					<div class="row justify-content-center">
+						<div class="col">
+							<label for="product">Товары:</label>
+							<input type="text" class="form-control" id="product" placeholder="Все товары">
+						</div>
+						<div class="col">
+							<label for="delivery_type">Тип доставки:</label>
+							<input type="text" class="form-control" id="delivery_type" placeholder="Тип доставки">
+						</div>
+
+						<div class="col">
+							<label for="search">Условие на поле:</label>
+							<input type="text" class="form-control" id="search" placeholder="ID">
+						</div>
+					</div>
+					<br>
+					<div class="row justify-content-center">
+
+						<button class="btn btn-info mr-2">За указанный период</button>
+						<button class="btn btn-info mr-2">За сегодня</button>
+						<button class="btn btn-info mr-2">За вчера</button>
+						<button class="btn btn-info mr-2">За текущий месяц</button>
+						<button class="btn btn-info mr-2">За текущий год</button>
+						<button class="btn btn-info mr-2">За все время</button>
+
+					</div>
+					<br>
+					<div class="row justify-content-center">
+						
+							<button  class="btn btn-success mr-2">Применить условия</button>
+							<button  class="btn btn-danger">Сбросить фильтр</button>
+						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 
 <table class="ui selectable celled table">
 	<thead>
@@ -147,14 +204,14 @@
 		<% if worker_signed_in? %>
 		<% if current_worker.edit_order_access_is_given? == true %>
 		<th>
-				<%= link_to edit_admin_order_path(order) do %>
-					<i class="large edit icon"></i>
-				<% end%>
+			<%= link_to edit_admin_order_path(order) do %>
+			<i class="large edit icon"></i>
+			<% end%>
 			<% end%>
 			<% if current_worker.destroy_order_access_is_given? == true %>
-				<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
-					<i class="circular inverted red trash alternate outline icon"></i>
-				<% end %>
+			<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+			<i class="circular inverted red trash alternate outline icon"></i>
+			<% end %>
 		</th>
 		<% end%>
 		<% end %>
