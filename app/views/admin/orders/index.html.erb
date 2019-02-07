@@ -142,7 +142,7 @@
 <table class="ui selectable celled table">
 	<thead>
 		<tr>
-			<th>№</th>
+			<th>ID</th>
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Email</th>
@@ -157,7 +157,7 @@
 	</thead>
 	<% @orders.each do |order| %>
 	<tr>
-		<th><b><%=  %></b></th>
+		<th><b><%= order.id %></b></th>
 		<th><b><%= order.client_name %></b></th>
 		<th><b><%= order.client_phone %></b></th>
 		<th><b><%= order.client_email %></b></th>
