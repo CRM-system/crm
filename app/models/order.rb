@@ -19,7 +19,5 @@ class Order < ApplicationRecord
   validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
 
-  #def self.statuses
-  #  return STATUSES
-  #end
+  include PgSearch
 end

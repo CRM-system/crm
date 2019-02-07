@@ -1,7 +1,17 @@
 <br>
 <br>
-<div class="ui grid">
-	<div class="four wide column">
+<div class="ui stackable five column grid">
+	<div class="column">
+		<div>
+			<h3>Все заказы</h3>
+			<div>
+				<%= link_to "Все заказы", admin_orders_path %>
+				(<%= Order.all.count %>)<br>
+			</div>
+		</div>
+	</div>
+
+	<div class="column">
 		<div>
 			<H3>Оператор</H3>
 			<%= link_to "Новые", admin_orders_path(status:'new_order') %>
@@ -10,20 +20,122 @@
 
 		<%#= link_to "qqqqqqq", admin_order_by_name_path, method: :post %>
 		<div>
-			<%= link_to "Обработанные", admin_orders_path(status:'confirmed') %>
-			(<%= Order.where(status: :confirmed).count %>)<br>
+			<%= link_to "Выяснить", admin_orders_path(status:'find_out') %>
+			(<%= Order.where(status: :find_out).count %>)<br>
 		</div>
 
 		<div>
-			<%= link_to "Отказались", admin_orders_path(status:'rejection') %>
-			(<%= Order.where(status: :rejection).count %>)<br>
+			<%= link_to "Отсроченный", admin_orders_path(status:'deferred') %>
+			(<%= Order.where(status: :deferred).count %>)<br>
+		</div>
+
+	</div>
+
+	<div class="column">
+		<div>
+			<h3>Склад</h3>
+			<div>
+				<%= link_to "Подтверждённый", admin_orders_path(status:'confirmed') %>
+				(<%= Order.where(status: :confirmed).count %>)<br>
+			</div>	
+
+			<div>
+				<%= link_to "Сборка заказа", admin_orders_path(status:'assemblage') %>
+				(<%= Order.where(status: :assemblage).count %>)<br>
+			</div>			
+
+			<div>
+				<%= link_to "Подготовленный", admin_orders_path(status:'prepared') %>
+				(<%= Order.where(status: :prepared).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Отправленный", admin_orders_path(status:'sent') %>
+				(<%= Order.where(status: :sent).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Врученный", admin_orders_path(status:'handed_in') %>
+				(<%= Order.where(status: :handed_in).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Вручен и оплачен", admin_orders_path(status:'handed_and_paid') %>
+				(<%= Order.where(status: :handed_and_paid).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Возврат", admin_orders_path(status:'return') %>
+				(<%= Order.where(status: :return).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Возврат получен", admin_orders_path(status:'refund_received') %>
+				(<%= Order.where(status: :refund_received).count %>)<br>
+			</div>
 		</div>
 	</div>
 
-	<div class="four wide column">
+	<div class="column">
 		<div>
-			<h3>Прочие</h3>
-			<%= link_to "Архив", admin_orders_path %><br>
+			<h3>Напоминания</h3>
+			<div>
+				<%= link_to "Доставлен", admin_orders_path(status:'delivered') %>
+				(<%= Order.where(status: :delivered).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Напоминание 1", admin_orders_path(status:'reminder_1') %>
+				(<%= Order.where(status: :reminder_1).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Напоминание 2", admin_orders_path(status:'reminder_2') %>
+				(<%= Order.where(status: :reminder_2).count %>)<br>
+			</div>
+		</div>
+	</div>
+
+	<div class="column">
+		<div>
+			<h3>Проблемные</h3>
+			<div>
+				<%= link_to "Не подтверждён", admin_orders_path(status:'unconfirmed') %>
+				(<%= Order.where(status: :unconfirmed).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Отказ", admin_orders_path(status:'rejection') %>
+				(<%= Order.where(status: :rejection).count %>)<br>
+			</div>
+
+			<div>
+				<%= link_to "Розыскивается", admin_orders_path(status:'wanted') %>
+				(<%= Order.where(status: :wanted).count %>)<br>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+
+<div class="accordion" id="accordionExample">
+	<div class="card">
+		<div >
+			<h2 class="mb-0">
+				<div class="container">
+					<div class="row">
+						<button class="btn btn-primary col align-self-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Отображать заказы,удовлетворяющие следующим условиям
+						</button>
+					</div>
+				</div>
+			</h2>
+		</div>
+
+		<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+			<div class="container">
+				<%= render 'form' %>
+			</div>
 		</div>
 	</div>
 </div>
@@ -31,7 +143,7 @@
 <table class="ui selectable celled table">
 	<thead>
 		<tr>
-			<th>№</th>
+			<th>ID</th>
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Email</th>
@@ -46,7 +158,7 @@
 	</thead>
 	<% @orders.each do |order| %>
 	<tr>
-		<th><b><%=  %></b></th>
+		<th><b><%= order.id %></b></th>
 		<th><b><%= order.client_name %></b></th>
 		<th><b><%= order.client_phone %></b></th>
 		<th><b><%= order.client_email %></b></th>
@@ -57,18 +169,18 @@
 		<th><b><%= order.total_price %></b></th>
 		<th><b><%= order.translated_status %></b></th>
 		<% if worker_signed_in? %>
-			<% if current_worker.edit_order_access_is_given? == true %>
-			<th>
-				<%= link_to edit_admin_order_path(order) do %>
-					<i class="circular teal inverted pencil alternate icon"></i>
-				<% end%>
-				<% end%>
-				<% if current_worker.destroy_order_access_is_given? == true %>
-				<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
-					<i class="circular inverted red trash alternate outline icon"></i>
-				<% end %>
-			</th>
+		<% if current_worker.edit_order_access_is_given? == true %>
+		<th>
+			<%= link_to edit_admin_order_path(order) do %>
+			<i class="large edit icon"></i>
 			<% end%>
+			<% end%>
+			<% if current_worker.destroy_order_access_is_given? == true %>
+			<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+			<i class="circular inverted red trash alternate outline icon"></i>
+			<% end %>
+		</th>
+		<% end%>
 		<% end %>
 	</tr>
 	<% end %>
