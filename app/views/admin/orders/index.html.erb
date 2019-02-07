@@ -8,6 +8,7 @@
 			(<%= Order.where(status: :new_order).count %>)<br>
 		</div>
 
+		<%#= link_to "qqqqqqq", admin_order_by_name_path, method: :post %>
 		<div>
 			<%= link_to "Обработанные", admin_orders_path(status:'confirmed') %>
 			(<%= Order.where(status: :confirmed).count %>)<br>
