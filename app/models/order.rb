@@ -20,4 +20,5 @@ class Order < ApplicationRecord
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
 
   include PgSearch
+  
 end
