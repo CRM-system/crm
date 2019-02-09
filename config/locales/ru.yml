@@ -20,6 +20,10 @@ ru:
           reminder_1:      "Напоминание 1"
           reminder_2:      "Напоминание 2"
           wanted:          "Розыскивается"
+        delivery_type_list:
+          courier: "Курьер"
+          mail: "Почта"
+          self_delivery: "Самовывоз"
 
     errors:
       messages:
