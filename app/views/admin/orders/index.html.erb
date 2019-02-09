@@ -36,12 +36,12 @@
 			<div>
 				<%= link_to "Подтверждённый", admin_orders_path(status:'confirmed') %>
 				(<%= Order.where(status: :confirmed).count %>)<br>
-			</div>	
+			</div>
 
 			<div>
 				<%= link_to "Сборка заказа", admin_orders_path(status:'assemblage') %>
 				(<%= Order.where(status: :assemblage).count %>)<br>
-			</div>			
+			</div>
 
 			<div>
 				<%= link_to "Подготовленный", admin_orders_path(status:'prepared') %>
@@ -162,7 +162,7 @@
 		<th><b><%= order.client_phone %></b></th>
 		<th><b><%= order.client_email %></b></th>
 		<th><b><%= order.client_addres %></b></th>
-		<th><b><%= order.delivery_type %></b></th>
+		<th><b><%= order.translated_delivery_type %></b></th>
 		<th><b><%= order.order_price %></b></th>
 		<th><b><%= order.quantity %></b></th>
 		<th><b><%= order.total_price %></b></th>
