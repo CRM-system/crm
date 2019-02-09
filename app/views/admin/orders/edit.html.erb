@@ -37,9 +37,7 @@
         <%= f.label 'Тип доставки' %>
         <%= f.select(
             :delivery_type, options_for_select(
-              Order.translated_delivery_types.map{ |delivery|
-                [ delivery[0], delivery[1] ]
-              }
+              Order.translated_delivery_types.map{ |delivery| [ delivery[0], delivery[1] ] }
             )
           )
         %><br>
