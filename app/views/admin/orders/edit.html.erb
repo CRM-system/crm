@@ -35,7 +35,14 @@
 
       <div class="field">
         <%= f.label 'Тип доставки' %>
-        <%= f.select( :delivery_type, options_for_select(Order.delivery_types.keys) ) %><br>
+        <%= f.select(
+            :delivery_type, options_for_select(
+              Order.translated_delivery_types.map{ |delivery|
+                [ delivery[0], delivery[1] ]
+              }
+            )
+          )
+        %><br>
       </div>
 
       <div class="field">

@@ -8,6 +8,8 @@ class Order < ApplicationRecord
   enum delivery_type: [:courier, :mail, :self_delivery]
 
   translate_enum :status
+  translate_enum :delivery_type
+
   belongs_to :product
 
   before_validation { client_name.capitalize! }
