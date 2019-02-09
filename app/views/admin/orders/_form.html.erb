@@ -1,0 +1,49 @@
+<%= form_with url: admin_orders_path, scope: :order, local: true do |f| %>
+	<br><div class="row justify-content-center">
+		 <div class="col">
+			<%= f.label :product, "Товары:" %>
+			<br>
+			<%= f.collection_select  :product_id, Product.all, :id, :name, class:"form-control"  %>
+		</div> 
+		<div class="col">
+			<%= f.label  :delivery_type, "Тип доставки:" %>
+			<%= f.text_field :delivery_type,  class:"form-control" %>
+		</div>
+
+		<div class="col">
+			<%= f.label "Условие на поле:" %>
+			<%= f.text_field :client_name, placeholder: 'ID', class:"form-control" %>
+		</div>
+
+		<div class="col">
+			<%= f.label "Значение:" %>
+			<%= f.text_field :client_email	, placeholder: 'Тип доставки', class:"form-control" %>
+			
+		</div>
+	</div>
+
+	<br>
+
+	<div class="row justify-content-center">
+		Условия на дату заказа:
+	</div>
+
+	<br>
+	<div class="row justify-content-center">
+
+		<%= link_to 'За указанный период', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За сегодня', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За вчера', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
+
+	</div>
+	<br>
+	<div class="row justify-content-center">
+
+		<%= f.submit 'Применить условия',  class:"btn btn-success mr-2" %>
+		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
+
+	</div>
+<% end %>
