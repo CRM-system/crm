@@ -143,6 +143,7 @@
 	<thead>
 		<tr>
 			<th>ID</th>
+			<th>Название продукта</th>
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Email</th>
@@ -158,6 +159,7 @@
 	<% @orders.each do |order| %>
 	<tr>
 		<th><b><%= order.id %></b></th>
+		<th><b><%= order.product.name %></b></th>
 		<th><b><%= order.client_name %></b></th>
 		<th><b><%= order.client_phone %></b></th>
 		<th><b><%= order.client_email %></b></th>
