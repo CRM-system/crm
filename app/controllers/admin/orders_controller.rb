@@ -38,7 +38,6 @@ class Admin::OrdersController < AdminController
   end
 
   def update
-    @order.total_price = @order.quantity * @order.product.price
     if @order.update(order_params)
       count_total_price
       redirect_to admin_orders_path
