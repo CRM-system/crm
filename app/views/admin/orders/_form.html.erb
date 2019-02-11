@@ -1,24 +1,29 @@
-<%= form_with url: admin_orders_path, scope: :order, local: true do |f| %>
+<%= form_with url: admin_check_params_path, method: :get, local: true do |f| %>
 	<br><div class="row justify-content-center">
 		 <div class="col">
-			<%= f.label :product, "Товары:" %>
+			<%= f.label :product, "Товары:" %> 
 			<br>
-			<%= f.collection_select  :product_id, Product.all, :id, :name, class:"form-control"  %>
+			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control"  %>
 		</div> 
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
-			<%= f.text_field :delivery_type,  class:"form-control" %>
+			<%= f.select(
+	            :delivery_type, 
+		            Order.translated_delivery_types.collect { 
+		            	|delivery| [ delivery[0], delivery[1] ] 
+		            }, include_blank: true 
+	          	)
+	        %><br>
 		</div>
 
 		<div class="col">
-			<%= f.label "Условие на поле:" %>
-			<%= f.text_field :client_name, placeholder: 'ID', class:"form-control" %>
+			<%= f.label "Поиск:" %>
+			<%= f.text_field :client_name, class:"form-control" %>
 		</div>
 
 		<div class="col">
 			<%= f.label "Значение:" %>
-			<%= f.text_field :client_email	, placeholder: 'Тип доставки', class:"form-control" %>
-			
+			<%= f.text_field :client_email, placeholder: 'Тип доставки', class:"form-control" %>			
 		</div>
 	</div>
 
@@ -42,7 +47,7 @@
 	<br>
 	<div class="row justify-content-center">
 
-		<%= f.submit 'Применить условия',  class:"btn btn-success mr-2" %>
+		<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
 		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
 
 	</div>

@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2019_02_09_102621) do
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "delivery_type", default: 0
+    t.integer "delivery_type"
     t.index ["product_id"], name: "index_orders_on_product_id"
   end
 

@@ -50,19 +50,22 @@ class Admin::OrdersController < AdminController
   end
 
   def index
-    if params
-      @orders = Order.where(
-        params[:id],
-        params[:status],
-        params[:client_name],
-        params[:client_phone],
-        params[:client_email],
-        params[:client_addres],
-        params[:delivery_type]
-        )
+    if params[:status]
+      @orders = Order.where(status: params[:status])
     else
-      @orders = Order.all
+      @orders = Order.all      
     end    
+  end
+
+  def check_params
+    # if params[:client_name]
+    #   @orders = Order.search_all(
+    #     params[:client_name]       
+    #   )
+    if params[:delivery_type]
+      @orders = Order.where(delivery_type: params[:delivery_type])
+    end
+    render :index
   end
 
   def show
