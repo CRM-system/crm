@@ -58,11 +58,11 @@ class Admin::OrdersController < AdminController
   end
 
   def check_params
-    # if params[:client_name]
-    #   @orders = Order.search_all(
-    #     params[:client_name]       
-    #   )
-    if params[:delivery_type]
+    if params[:client_name]
+      @orders = Order.search_all(
+        params[:client_name]       
+      )
+    elsif params[:delivery_type]
       @orders = Order.where(delivery_type: params[:delivery_type])
     end
     render :index
