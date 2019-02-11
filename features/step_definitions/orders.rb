@@ -1,4 +1,4 @@
 Допустим("пользователь вошёл в приложение") do
   # byebug
-  visit('products#index')
+  visit('products')
 end

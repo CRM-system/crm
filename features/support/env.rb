@@ -59,12 +59,10 @@ ActionController::Base.allow_rescue = false
 #   Capybara::Selenium::Driver.new(app, browser: :chrome)
 # end
 
-BROWSER = ENV['BROWSER']
-ENVIRONMENT_TYPE = ENV['ENVIRONMENT_TYPE']
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.app_host = 'http://localhost:3000/'
-# Capybara.default_driver = :chrome
+# Capybara.default_driver = :selenium_chrome
 Capybara.register_driver :selenium do |app|
   if BROWSER.eql?('chrome')
     Capybara::Selenium::Driver.new(app,
@@ -77,8 +75,6 @@ Capybara.register_driver :selenium do |app|
   )
   elsif BROWSER.eql?('firefox')
     Capybara::Selenium::Driver.new(app, :browser => :firefox)
-  elsif BROWSER.eql?('internet_explorer')
-    Capybara::Selenium::Driver.new(app, :browser => :internet_explorer)
   elsif BROWSER.eql?('safari')
     Capybara::Selenium::Driver.new(app, :browser => :safari)
   elsif BROWSER.eql?('poltergeist')
@@ -86,7 +82,7 @@ Capybara.register_driver :selenium do |app|
     Capybara::Poltergeist::Driver.new(app, options)
   end
 end
-Capybara.default_max_wait_time = 5
+Capybara.default_max_wait_time = 10
 # Capybara.page.driver.browser.manage.window.resize_to(1400, 1400)
 
 
