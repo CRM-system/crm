@@ -18,6 +18,7 @@
 			(<%= Order.where(status: :new_order).count %>)<br>
 		</div>
 
+		<%#= link_to "qqqqqqq", admin_order_by_name_path, method: :post %>
 		<div>
 			<%= link_to "Выяснить", admin_orders_path(status:'find_out') %>
 			(<%= Order.where(status: :find_out).count %>)<br>
