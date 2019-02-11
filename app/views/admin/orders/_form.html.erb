@@ -7,6 +7,7 @@
 		</div> 
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
+			<br>
 			<%= f.select(
 	            :delivery_type, 
 		            Order.translated_delivery_types.collect { 
