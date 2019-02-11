@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+# require 'chromedriver-helper'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -54,10 +55,38 @@ ActionController::Base.allow_rescue = false
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, browser: :chrome)
+# end
+
+BROWSER = ENV['BROWSER']
+ENVIRONMENT_TYPE = ENV['ENVIRONMENT_TYPE']
+
 Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.app_host = 'http://localhost:3000/'
-Capybara.default_driver = :selenium
-Capybara.default_max_wait_time = 15
-# Capybara.page.driver.browser.manage.window.resize_to(1920, 1080)
+# Capybara.default_driver = :chrome
+Capybara.register_driver :selenium do |app|
+  if BROWSER.eql?('chrome')
+    Capybara::Selenium::Driver.new(app,
+    :browser => :chrome,
+    :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
+      'chromeOptions' => {
+        'args' => [ "--start-maximized" ]
+      }
+    )
+  )
+  elsif BROWSER.eql?('firefox')
+    Capybara::Selenium::Driver.new(app, :browser => :firefox)
+  elsif BROWSER.eql?('internet_explorer')
+    Capybara::Selenium::Driver.new(app, :browser => :internet_explorer)
+  elsif BROWSER.eql?('safari')
+    Capybara::Selenium::Driver.new(app, :browser => :safari)
+  elsif BROWSER.eql?('poltergeist')
+    options = { js_errors: false }
+    Capybara::Poltergeist::Driver.new(app, options)
+  end
+end
+Capybara.default_max_wait_time = 5
+# Capybara.page.driver.browser.manage.window.resize_to(1400, 1400)
 
 

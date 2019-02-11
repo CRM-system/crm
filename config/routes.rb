@@ -11,7 +11,7 @@ end
 	end
 
 	namespace :admin do
-		root 'orders#status'
+		root 'orders#index'
 		resources :workers
 		resources :roles
 		resources :functions
