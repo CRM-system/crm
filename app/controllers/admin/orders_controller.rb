@@ -54,12 +54,23 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  def check_params
+    if params[:client_name]
+      @orders = Order.search_all(client_name: params[:client_name])
+    elsif params[:delivery_type]
+      @orders = Order.where(delivery_type: params[:delivery_type])
+    elsif params[:product_id]
+      @orders = Order.where(product_id: params[:product_id])
+    end
+    render :index
+  end
+
   def show
   end
 
   def destroy
-      @order.destroy
-      redirect_to admin_orders_path
+    @order.destroy
+    redirect_to admin_orders_path
   end
 
   private
@@ -70,8 +81,8 @@ class Admin::OrdersController < AdminController
 
   def order_params
     params.require(:order).permit(:client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type, :order_price,
-                                  :quantity, :total_price, :status, :product_id)
+      :client_addres, :delivery_type, :order_price,
+      :quantity, :total_price, :status, :product_id)
   end
 
   def check_access_create_order

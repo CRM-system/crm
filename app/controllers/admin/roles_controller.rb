@@ -37,7 +37,6 @@ class Admin::RolesController < AdminController
 	end
 
 	def update
-		binding.pry
 		if @role.update(role_params)
 			redirect_to admin_roles_path
 		else

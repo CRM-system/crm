@@ -1,36 +1,42 @@
-<form>
+<%= form_with url: admin_check_params_path, method: :get, local: true do |f| %>
+	<br>
 	<div class="row justify-content-center">
 		<div class="col">
-			<label for="product">Товары:</label>
-			<input type="text" class="form-control" id="product" placeholder="Все товары">
+			<%= f.label :product, "Товары:" %><br>
+			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control"  %>
 		</div>
 		<div class="col">
-			<label for="delivery_type">Тип доставки:</label>
-			<input type="text" class="form-control" id="delivery_type" placeholder="Тип доставки">
+			<%= f.label  :delivery_type, "Тип доставки:" %>
+			<%= f.select(:delivery_type,
+		            		Order.translated_delivery_types.collect {
+		            		|delivery| [ delivery[0], delivery[1] ]
+		            		}, include_blank: true ) %><br>
 		</div>
-
 		<div class="col">
-			<label for="search_for">Условие на поле:</label>
-			<input type="text" class="form-control" id="search_for" placeholder="ID">
+			<%= f.label "Поиск:" %>
+			<%= f.text_field :client_name, class:"form-control" %>
 		</div>
-
 		<div class="col">
-			<label for="search">Значение:</label>
-			<input type="text" class="form-control" id="search">
+			<%= f.label "Значение:" %>
+			<%= f.text_field :client_email, placeholder: 'Тип доставки', class:"form-control" %>
 		</div>
 	</div>
 	<br>
 	<div class="row justify-content-center">
-		<button class="btn btn-info mr-2">За указанный период</button>
-		<button class="btn btn-info mr-2">За сегодня</button>
-		<button class="btn btn-info mr-2">За вчера</button>
-		<button class="btn btn-info mr-2">За текущий месяц</button>
-		<button class="btn btn-info mr-2">За текущий год</button>
-		<button class="btn btn-info mr-2">За все время</button>
+		Условия на дату заказа:
 	</div>
 	<br>
 	<div class="row justify-content-center">
-		<button  class="btn btn-success mr-2">Применить условия</button>
-		<button  class="btn btn-danger">Сбросить фильтр</button>
+		<%= link_to 'За указанный период', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За сегодня', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За вчера', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
 	</div>
-</form>
+	<br>
+	<div class="row justify-content-center">
+		<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
+		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
+	</div>
+<% end %>

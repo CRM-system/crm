@@ -62,7 +62,7 @@ ActionController::Base.allow_rescue = false
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.app_host = 'http://localhost:3000/'
-# Capybara.default_driver = :selenium_chrome
+Capybara.default_driver = :selenium_chrome
 Capybara.register_driver :selenium do |app|
   if BROWSER.eql?('chrome')
     Capybara::Selenium::Driver.new(app,
