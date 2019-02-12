@@ -2,12 +2,12 @@
 	<br><div class="row justify-content-center">
 		 <div class="col">
 			<%= f.label :product, "Товары:" %> 
-			<br>
-			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control"  %>
+			
+			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control" %>
 		</div> 
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
-			<%= f.select(
+			 <%= f.select(
 	            :delivery_type, 
 		            Order.translated_delivery_types.collect { 
 		            	|delivery| [ delivery[0], delivery[1] ] 

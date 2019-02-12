@@ -156,7 +156,7 @@
 			<th colspan="2">Действия</th>
 		</tr>
 	</thead>
-	<!-- <% if @orders.present? %> -->
+	<!-- <%# if @orders.present? %> -->
 		<% @orders.each do |order| %>
 			<tr>
 				<th><b><%= order.id %></b></th>
@@ -186,5 +186,5 @@
 				<% end %>
 			</tr>
 		<% end %>
-	<% end %>
+	<%# end %>
 </table>
