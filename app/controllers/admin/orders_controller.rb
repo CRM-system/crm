@@ -54,13 +54,23 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  # def check_params
+  #   @orders = Order.where(nil)
+  #   filtering_params(params).each do |key, value|
+  #     @order = @order.public_send(key, value) if value.present?
+  #   end
+  #   render :index
+  # end
+
   def check_params
     if params[:client_name]
       @orders = Order.search_all(client_name: params[:client_name])
     elsif params[:delivery_type]
-      @orders = Order.where(delivery_type: params[:delivery_type])
+      @orders = Order.search_all(delivery_type: params[:delivery_type])
     elsif params[:product_id]
-      @orders = Order.where(product_id: params[:product_id])
+      @orders = Order.search_product(product_id: params[:product_id])
+    elsif params[:created_at]
+      @orders = Order.search_by_date(:order_id => order_ids, ordertable_type => ordertable)
     end
     render :index
   end
@@ -84,6 +94,10 @@ class Admin::OrdersController < AdminController
       :client_addres, :delivery_type, :order_price,
       :quantity, :total_price, :status, :product_id)
   end
+
+  # def filtering_params(params)
+  #   params.slice(:client_name, :client_phone, :client_addres)
+  # end
 
   def check_access_create_order
     redirect_to request.referrer unless current_worker.create_order_access_is_given?

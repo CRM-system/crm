@@ -15,14 +15,20 @@ class Order < ApplicationRecord
   belongs_to :product
 # binding.pry
   pg_search_scope :search_all, :against =>
-                                  [:id, :client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type
-                                  ],
-                                  :using => {
-                                    :tsearch => {:prefix => true}
-                                  }
+                              [:id, :client_name, :client_phone, :client_email,
+                              :client_addres, :delivery_type
+                              ],
+                              :using => {
+                                :tsearch => {:prefix => true}
+                              }
+
+  pg_search_scope :search_by_date, :against => :created_at
 
   pg_search_scope :search_product, :associated_against => {:product => :name}
+
+  # pg_search_scope :client_name, -> (client_name) { where client_name: client_name }
+  # pg_search_scope :client_phone, -> (client_phone) { where client_phone: client_phone }
+  # pg_search_scope :client_addres, -> (client_addres) { where client_addres: client_addres }
 
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
