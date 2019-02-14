@@ -22,6 +22,5 @@ Rails.application.routes.draw do
 
 		get '/check_params' => 'orders#check_params', as: 'check_params'
 		
-
 	end
 end

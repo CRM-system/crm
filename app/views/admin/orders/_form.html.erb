@@ -1,4 +1,4 @@
-<%= form_with scope: :query, url: admin_check_params_path, method: :get, local: true do |f| %>
+<%= form_with  url: admin_check_params_path, method: :get, local: true do |f| %>
 	<br><div class="row justify-content-center">
 		 <div class="col">
 			<%= f.label :product, "Товары:" %> 
@@ -16,41 +16,34 @@
 	          	)
 	        %><br>
 		</div>
-
+		
 		<div class="col">
 			<%= f.label "Условие на поле:" %>
 			<br>
 			<%= select_tag 'query[]search_type', options_for_select(filter_condition), include_blank: true %>
 	
 		</div>
-
 		<div class="col">
 			<%= f.label "Значение:" %>
 			<%= text_field_tag 'query[]search_value', nil, placeholder: 'Введите', class:"form-control" %>			
 		</div>
+
 	</div>
-
 	<br>
-
 	<div class="row justify-content-center">
-
 		Условия на дату заказа:
 	</div>
-
 	<br>
 	<div class="row justify-content-center">
-
-		<%= link_to 'За указанный период', admin_orders_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За сегодня', admin_orders_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За вчера', admin_orders_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За указанный период', admin_check_params_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За сегодня', admin_check_params_path, class:"btn btn-info mr-2" %>
+		<%= link_to 'За вчера', admin_check_params_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
-
 	</div>
 	<br>
 	<div class="row justify-content-center">
-
 		<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
 		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
 

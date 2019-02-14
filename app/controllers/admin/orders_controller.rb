@@ -50,13 +50,12 @@ class Admin::OrdersController < AdminController
     if params[:status]
       @orders = Order.where(status: params[:status])
     else
-      @orders = Order.all      
-    end    
+      @orders = Order.all
+    end
   end
 
   def check_params
-   
-    
+
     translates = {
       "ID" => "id",
       "Имя"   => "client_name",
@@ -67,11 +66,11 @@ class Admin::OrdersController < AdminController
     }
     params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
    
-    if params[:delivery_type]  
-        @orders = Order.where(delivery_type: params[:delivery_type])
-    render :index
-    elsif params[:product_id] 
-      @orders = Order.where(product_id: params[:product_id])
+    @orders = Order.all
+    params[:query].each do |key, value|
+        @orders = @orders.where(key => value) if value.present?
+    end
+
     render :index
     end
   end
@@ -91,11 +90,18 @@ class Admin::OrdersController < AdminController
   end
 
   def order_params
-    params.require(:order).permit(:client_name, :client_phone, :client_email,
-      :client_addres, :delivery_type, :order_price,
-      :quantity, :total_price, :status, :product_id)
+    params.require(:order).permit(:client_name,
+                                  :client_phone,
+                                  :client_email,
+                                  :client_addres,
+                                  :delivery_type,
+                                  :order_price,
+                                  :quantity,
+                                  :total_price,
+                                  :status,
+                                  :product_id)
   end
-  
+
   def check_access_create_order
     redirect_to request.referrer unless current_worker.create_order_access_is_given?
   end
