@@ -95,7 +95,7 @@ class Admin::OrdersController < AdminController
       :client_addres, :delivery_type, :order_price,
       :quantity, :total_price, :status, :product_id)
   end
-
+  
   def check_access_create_order
     redirect_to request.referrer unless current_worker.create_order_access_is_given?
   end
