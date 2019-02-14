@@ -14,21 +14,20 @@ class Order < ApplicationRecord
 
   belongs_to :product
 # binding.pry
-  pg_search_scope :search_all, :against =>
-                              [:id, :client_name, :client_phone, :client_email,
-                              :client_addres, :delivery_type
-                              ],
-                              :using => {
-                                :tsearch => {:prefix => true}
-                              }
+  # pg_search_scope :search_all, :against =>
+  #                             [:id, :client_name, :client_phone, :client_email,
+  #                             :client_addres
+  #                             ],
+  #                             :using => {
+  #                               :tsearch => {:prefix => true}
+  #                             }
 
-  pg_search_scope :search_by_date, :against => :created_at
+  # pg_search_scope :search_by_delivery_type, against: [:delivery_type]
+  # pg_search_scope :search_by_client_name, against: [:client_name]
+  # pg_search_scope :search_by_client_email, against: [:client_email]
 
-  pg_search_scope :search_product, :associated_against => {:product => :name}
 
-  # pg_search_scope :client_name, -> (client_name) { where client_name: client_name }
-  # pg_search_scope :client_phone, -> (client_phone) { where client_phone: client_phone }
-  # pg_search_scope :client_addres, -> (client_addres) { where client_addres: client_addres }
+  # pg_search_scope :search_by_date, :against => :created_at
 
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
@@ -40,5 +39,15 @@ class Order < ApplicationRecord
   validates :order_price, presence: true, numericality: { greater_or_equal_to: 0 }
   validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
+
+
+  # def self.search_by(*args)
+  #   args.each do |search|
+  #     return "serch_by_#{search}"
+  #   end
+    # проходимся по *args
+    # для каждого вызываем метод
+    # каждый элемент на итерации по *args будет передаваться в переменную field
+    # search_by + _ + field
 
 end
