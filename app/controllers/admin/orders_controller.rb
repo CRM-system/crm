@@ -55,14 +55,25 @@ class Admin::OrdersController < AdminController
   end
 
   def check_params
-    if params[:client_name]
-      @orders = Order.search_all(
-        params[:client_name]       
-      )
-    elsif params[:delivery_type]
-      @orders = Order.where(delivery_type: params[:delivery_type])
-    end
+   
+    
+    translates = {
+      "ID" => "id",
+      "Имя"   => "client_name",
+      "Электронный адрес" => "client_email",
+      "Телефон"  => "client_phone",
+      "Адрес"   => "client_addres"
+
+    }
+    params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
+   
+    if params[:delivery_type]  
+        @orders = Order.where(delivery_type: params[:delivery_type])
     render :index
+    elsif params[:product_id] 
+      @orders = Order.where(product_id: params[:product_id])
+    render :index
+    end
   end
 
   def show

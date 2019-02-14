@@ -18,7 +18,6 @@
 			(<%= Order.where(status: :new_order).count %>)<br>
 		</div>
 
-		<%#= link_to "qqqqqqq", admin_order_by_name_path, method: :post %>
 		<div>
 			<%= link_to "Выяснить", admin_orders_path(status:'find_out') %>
 			(<%= Order.where(status: :find_out).count %>)<br>
@@ -157,7 +156,7 @@
 			<th colspan="2">Действия</th>
 		</tr>
 	</thead>
-	<!-- <% if @orders.present? %> -->
+	<% if @orders.present? %> 
 		<% @orders.each do |order| %>
 			<tr>
 				<th><b><%= order.id %></b></th>
@@ -179,7 +178,7 @@
 					<% end%>
 					<% end%>
 					<% if current_worker.destroy_order_access_is_given? == true %>
-					<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+					<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
 					<i class="circular inverted red trash alternate outline icon"></i>
 					<% end %>
 				</th>

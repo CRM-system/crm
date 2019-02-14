@@ -3,13 +3,13 @@
 		 <div class="col">
 			<%= f.label :product, "Товары:" %> 
 			<br>
-			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control"  %>
+			<%= f.collection_select 'query[]product', Product.all, :id, :name, include_blank: true, class:"form-control"  %>
 		</div> 
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
 			<br>
 			<%= f.select(
-	            :delivery_type, 
+	            'query[]delivery_type',
 		            Order.translated_delivery_types.collect { 
 		            	|delivery| [ delivery[0], delivery[1] ] 
 		            }, include_blank: true 
@@ -18,13 +18,15 @@
 		</div>
 
 		<div class="col">
-			<%= f.label "Поиск:" %>
-			<%= f.text_field :client_name, class:"form-control" %>
+			<%= f.label "Условие на поле:" %>
+			<br>
+			<%= select_tag 'query[]search_type', options_for_select(filter_condition), include_blank: true %>
+	
 		</div>
 
 		<div class="col">
 			<%= f.label "Значение:" %>
-			<%= f.text_field :client_email, placeholder: 'Тип доставки', class:"form-control" %>			
+			<%= text_field_tag 'query[]search_value', nil, placeholder: 'Введите', class:"form-control" %>			
 		</div>
 	</div>
 
