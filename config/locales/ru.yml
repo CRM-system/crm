@@ -24,13 +24,6 @@ ru:
           courier: "Курьер"
           mail: "Почта"
           self_delivery: "Самовывоз"
-        filter_condition_list:
-          
-          client_name:     "Имя"
-          client_email:    "Электронный адрес"
-          client_phone:    "Телефон"
-          client_addres:   "Адрес"
-
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'

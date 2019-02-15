@@ -55,22 +55,11 @@ class Admin::OrdersController < AdminController
   end
 
   def check_params
-    translates = {
-      "ID" => "id",
-      "Имя"   => "client_name",
-      "Электронный адрес" => "client_email",
-      "Телефон"  => "client_phone",
-      "Адрес"   => "client_addres"
-
-    }
-    params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
-
-   binding.pry
-    # @orders = Order.all
+    @orders = Order.all
     params[:query].each do |key, value|
         @orders = @orders.where(key => value) if value.present?
     end
-
+    # binding.pry
     render :index
   end
 
@@ -90,15 +79,15 @@ class Admin::OrdersController < AdminController
 
   def order_params
     params.require(:order).permit(:client_name,
-                                  :client_phone,
-                                  :client_email,
-                                  :client_addres,
-                                  :delivery_type,
-                                  :order_price,
-                                  :quantity,
-                                  :total_price,
-                                  :status,
-                                  :product_id)
+      :client_phone,
+      :client_email,
+      :client_addres,
+      :delivery_type,
+      :order_price,
+      :quantity,
+      :total_price,
+      :status,
+      :product_id)
   end
 
   def check_access_create_order

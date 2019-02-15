@@ -1,15 +1,15 @@
-<%= form_with  url: admin_check_params_path, method: :get, local: true do |f| %>
+<%= form_with scope: :query, url: admin_check_params_path, method: :get, local: true do |f| %>
 	<br><div class="row justify-content-center">
 		 <div class="col">
 			<%= f.label :product, "Товары:" %> 
 			<br>
-			<%= f.collection_select 'query[]product', Product.all, :id, :name, include_blank: true, class:"form-control"  %>
+			<%= f.collection_select :product, Product.all, :id, :name, include_blank: true, class:"form-control"  %>
 		</div> 
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
 			<br>
 			<%= f.select(
-	            'query[]delivery_type',
+	            :delivery_type,
 		            Order.translated_delivery_types.collect { 
 		            	|delivery| [ delivery[0], delivery[1] ] 
 		            }, include_blank: true 
@@ -18,14 +18,13 @@
 		</div>
 		
 		<div class="col">
-			<%= f.label "Условие на поле:" %>
+			<%= f.label :client_addres, "Адрес:" %>
 			<br>
-			<%= select_tag 'query[]search_type', options_for_select(filter_condition), include_blank: true %>
+			<%= f.collection_select :client_addres, Order.all, :client_addres, :client_addres, include_blank: true %>
 	
 		</div>
 		<div class="col">
-			<%= f.label "Значение:" %>
-			<%= text_field_tag 'query[]search_value', nil, placeholder: 'Введите', class:"form-control" %>			
+					
 		</div>
 
 	</div>
