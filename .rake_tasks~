@@ -9,6 +9,11 @@ assets:precompile
 autoprefixer:info
 cache_digests:dependencies
 cache_digests:nested_dependencies
+cucumber
+cucumber:all
+cucumber:ok
+cucumber:rerun
+cucumber:wip
 db:create
 db:drop
 db:environment:set
@@ -31,6 +36,7 @@ log:clear
 middleware
 notes
 notes:custom
+pg_search:multisearch:rebuild[model,schema]
 restart
 routes
 secret
