@@ -23,7 +23,6 @@ class Admin::RolesController < AdminController
 
 	def create
 		@role = Role.new(role_params)
-		# @role.role_order_statuses << params[:role][:order_statuses]
 		if @role.save
 			add_functions_for(@role)
 			set_functions_accesses_to_false(@role)
@@ -38,12 +37,6 @@ class Admin::RolesController < AdminController
 	end
 
 	def update
-		params[:role][:order_status_ids].each do |id|
-			if id.present?
-				s = OrderStatus.find(id.to_i)
-				@role.order_statuses << s
-			end
-		end
 		if @role.update(role_params)
 			redirect_to admin_roles_path
 		else

@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
     @order.update(
       product_id: @product.id,
-      delivery_type: 'Выяснить',
+      # delivery_type: 'Выяснить',
       client_addres: 'Выяснить',
       order_price: 0,
       quantity: 0,

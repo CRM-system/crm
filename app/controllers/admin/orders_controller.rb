@@ -64,7 +64,8 @@ class Admin::OrdersController < AdminController
 
     }
     params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
-   # binding.pry
+
+   binding.pry
     # @orders = Order.all
     params[:query].each do |key, value|
         @orders = @orders.where(key => value) if value.present?
