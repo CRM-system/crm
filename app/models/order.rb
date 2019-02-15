@@ -14,15 +14,15 @@ class Order < ApplicationRecord
 
   belongs_to :product
 
-  pg_search_scope :search_all, :against =>  
-                                  [:id, :client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type 
-                                  ], 
-                                  :using => {
-                                    :tsearch => {:prefix => true}                                    
-                                  }
+  # pg_search_scope :search_all, :against =>  
+  #                                 [:id, :client_name, :client_phone, :client_email,
+  #                                 :client_addres, :delivery_type 
+  #                                 ], 
+  #                                 :using => {
+  #                                   :tsearch => {:prefix => true}                                    
+  #                                 }
 
-  pg_search_scope :search_product, :associated_against => {:product => :name}
+  # pg_search_scope :search_product, :associated_against => {:product => :name}
 
   # pg_search_scope :search_by_name, :against => :client_name                                    
   # pg_search_scope :search_by_phone, :against => :client_phone                                    

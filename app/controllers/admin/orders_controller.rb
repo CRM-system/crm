@@ -55,7 +55,6 @@ class Admin::OrdersController < AdminController
   end
 
   def check_params
-
     translates = {
       "ID" => "id",
       "Имя"   => "client_name",
@@ -65,14 +64,13 @@ class Admin::OrdersController < AdminController
 
     }
     params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
-   
-    @orders = Order.all
+   binding.pry
+    # @orders = Order.all
     params[:query].each do |key, value|
         @orders = @orders.where(key => value) if value.present?
     end
 
     render :index
-    end
   end
 
   def show
