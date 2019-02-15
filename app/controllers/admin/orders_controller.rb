@@ -5,8 +5,6 @@ class Admin::OrdersController < AdminController
   before_action :check_access_destroy_order, :only => [:destroy]
   before_action :set_order, only: [:edit, :show, :update, :destroy]
 
-  
-
   def count_total_price
     @order.total_price = @order.quantity * @order.order_price
     @order.save
@@ -40,7 +38,6 @@ class Admin::OrdersController < AdminController
   end
 
   def update
-    @order.total_price = @order.quantity * @order.product.price
     if @order.update(order_params)
       count_total_price
       redirect_to admin_orders_path
@@ -57,12 +54,31 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  def check_params
+    translates = {
+      "ID" => "id",
+      "Имя"   => "client_name",
+      "Электронный адрес" => "client_email",
+      "Телефон"  => "client_phone",
+      "Адрес"   => "client_addres"
+
+    }
+    params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
+   # binding.pry
+    # @orders = Order.all
+    params[:query].each do |key, value|
+        @orders = @orders.where(key => value) if value.present?
+    end
+
+    render :index
+  end
+
   def show
   end
 
   def destroy
-      @order.destroy
-      redirect_to admin_orders_path
+    @order.destroy
+    redirect_to admin_orders_path
   end
 
   private
@@ -72,9 +88,16 @@ class Admin::OrdersController < AdminController
   end
 
   def order_params
-    params.require(:order).permit(:client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type, :order_price,
-                                  :quantity, :total_price, :status, :product_id)
+    params.require(:order).permit(:client_name,
+                                  :client_phone,
+                                  :client_email,
+                                  :client_addres,
+                                  :delivery_type,
+                                  :order_price,
+                                  :quantity,
+                                  :total_price,
+                                  :status,
+                                  :product_id)
   end
 
   def check_access_create_order
