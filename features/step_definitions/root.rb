@@ -9,9 +9,6 @@ end
 
 То("происходит переход на страницу авторизации") do
   url = URI.parse(current_url).path
-  if url == '/workers/sign_in'
-    return true
-  else
-    return false
-  end
+
+  expect(page).to have_current_path(url)
 end
