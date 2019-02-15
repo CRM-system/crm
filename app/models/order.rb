@@ -31,7 +31,7 @@ class Order < ApplicationRecord
 
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
-
+    TODAY =
   validates :client_name, presence: true, length: { maximum: 50 }
   validates :client_phone, presence: true, length: { maximum: 12 }
   #validates :client_email, format: { with: URI::MailTo::EMAIL_REGEXP },length: { maximum: 100 }
@@ -40,6 +40,12 @@ class Order < ApplicationRecord
   validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
 
+
+  def self.date_filter
+    [
+      {'за сегодня' => 'today'}, {}
+    ]
+  end
 
   # def self.search_by(*args)
   #   args.each do |search|

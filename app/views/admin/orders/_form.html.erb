@@ -8,8 +8,6 @@
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
 			<%= f.select(:delivery_type,
-			#binding.pry
-
 		            		Order.translated_delivery_types.collect {
 		            		|delivery| [ delivery[0], delivery[1] ]
 		            		}, include_blank: true ) %><br>
@@ -23,22 +21,22 @@
 			<%= f.text_field :client_name, placeholder: 'Тип доставки', class:"form-control" %>
 		</div> -->
 	</div>
-	<br>
-	<div class="row justify-content-center">
-		Условия на дату заказа:
-	</div>
-	<br>
-	<div class="row justify-content-center">
-		<%= link_to 'За указанный период', admin_check_params_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За сегодня', admin_check_params_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За вчера', admin_check_params_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
-		<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
-	</div>
-	<br>
-	<div class="row justify-content-center">
-		<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
-		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
-	</div>
+		<br>
+		<div class="row justify-content-center">
+			Условия на дату заказа:
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<%= link_to 'За указанный период', admin_check_params_path, class:"btn btn-info mr-2" %>
+			<%= link_to 'За сегодня', admin_check_params_path, class:"btn btn-info mr-2" %>
+			<%= link_to 'За вчера', admin_check_params_path, class:"btn btn-info mr-2" %>
+			<%= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
+			<%= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
+			<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
+			<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
+		</div>
 <% end %>

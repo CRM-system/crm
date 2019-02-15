@@ -56,9 +56,11 @@ class Admin::OrdersController < AdminController
 
   def check_params
     @orders = Order.all
+    #today = method_name
     params[:query].each do |key, value|
         @orders = @orders.where(key => value) if value.present?
     end
+    binding.pry
     render :index
   end
 
