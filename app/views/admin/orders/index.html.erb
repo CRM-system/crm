@@ -156,7 +156,8 @@
 			<th colspan="2">Действия</th>
 		</tr>
 	</thead>
-	<!-- <%# if @orders.present? %> -->
+
+	<% if @orders.present? %> 
 		<% @orders.each do |order| %>
 			<tr>
 				<th><b><%= order.id %></b></th>
@@ -178,7 +179,7 @@
 					<% end%>
 					<% end%>
 					<% if current_worker.destroy_order_access_is_given? == true %>
-					<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete do %>
+					<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
 					<i class="circular inverted red trash alternate outline icon"></i>
 					<% end %>
 				</th>
@@ -186,5 +187,5 @@
 				<% end %>
 			</tr>
 		<% end %>
-	<%# end %>
+	<% end %>
 </table>

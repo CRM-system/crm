@@ -1,38 +1,38 @@
-<%= form_with scope: :query, url: admin_check_params_path, method: :get, local: true do |f| %>
+<%= form_with  url: admin_check_params_path, method: :get, local: true do |f| %>
 	<br><div class="row justify-content-center">
 		 <div class="col">
 			<%= f.label :product, "Товары:" %> 
-			
-			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control", include_blank: true %>
+			<br>
+			<%= f.collection_select 'query[]product', Product.all, :id, :name, include_blank: true, class:"form-control"  %>
 		</div> 
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %>
-			 <%= f.select(
-	            :delivery_type, 
+			<br>
+			<%= f.select(
+	            'query[]delivery_type',
 		            Order.translated_delivery_types.collect { 
 		            	|delivery| [ delivery[0], delivery[1] ] 
 		            }, include_blank: true 
 	          	)
 	        %><br>
 		</div>
-
+		
 		<div class="col">
-			<%= f.label "Поиск:" %>
-			<%= f.text_field :client_name, class:"form-control" %>
+			<%= f.label "Условие на поле:" %>
+			<br>
+			<%= select_tag 'query[]search_type', options_for_select(filter_condition), include_blank: true %>
+	
 		</div>
-
 		<div class="col">
 			<%= f.label "Значение:" %>
-			<%= f.text_field :client_email, placeholder: 'Тип доставки', class:"form-control" %>			
+			<%= text_field_tag 'query[]search_value', nil, placeholder: 'Введите', class:"form-control" %>			
 		</div>
+
 	</div>
-
 	<br>
-
 	<div class="row justify-content-center">
 		Условия на дату заказа:
 	</div>
-
 	<br>
 	<div class="row justify-content-center">
 
@@ -42,11 +42,9 @@
 		<%= link_to 'За текущий месяц', admin_search_by_month_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За текущий год', admin_search_by_year_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
-
 	</div>
 	<br>
 	<div class="row justify-content-center">
-
 		<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
 		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
 

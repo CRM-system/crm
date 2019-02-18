@@ -14,9 +14,20 @@ class Order < ApplicationRecord
 
   belongs_to :product
 
+
   # def self.created_at
   #   where("created_at = ?", Date.today)
   # end
+
+  # pg_search_scope :search_all, :against =>  
+  #                                 [:id, :client_name, :client_phone, :client_email,
+  #                                 :client_addres, :delivery_type 
+  #                                 ], 
+  #                                 :using => {
+  #                                   :tsearch => {:prefix => true}                                    
+  #                                 }
+
+  # pg_search_scope :search_product, :associated_against => {:product => :name}
 
   # pg_search_scope :search_by_name, :against => :client_name                                    
   # pg_search_scope :search_by_phone, :against => :client_phone                                    
@@ -41,7 +52,7 @@ class Order < ApplicationRecord
   #        :delivery_type => delivery_type, :created_at => created_at)
   # end  
   
-                                
+
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
 
