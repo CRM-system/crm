@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   include TranslateEnum
-  # include PgSearch  
+  include PgSearch  
 
   enum status: [:new_order, :confirmed, :unconfirmed, :rejection, :find_out, :deferred,
                 :assemblage, :prepared, :sent, :handed_in,
@@ -13,6 +13,10 @@ class Order < ApplicationRecord
   translate_enum :delivery_type
 
   belongs_to :product
+
+  # def self.created_at
+  #   where("created_at = ?", Date.today)
+  # end
 
   # pg_search_scope :search_by_name, :against => :client_name                                    
   # pg_search_scope :search_by_phone, :against => :client_phone                                    

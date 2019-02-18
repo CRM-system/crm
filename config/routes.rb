@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
 		resources :orders
 		get '/check_params' => 'orders#check_params', as: 'check_params'
+		get '/search_by_date' => 'orders#search_by_date', as: 'search_by_date'
+		get '/search_by_date_1_day_ago' => 'orders#search_by_date_1_day_ago', as: 'search_by_date_1_day_ago'
+		get '/search_by_month' => 'orders#search_by_month', as: 'search_by_month'
+		get '/search_by_year' => 'orders#search_by_year', as: 'search_by_year'
 		# get '/status' => 'orders#status', as:'status'
 		# post '/change_status/orders/:id/:status' => 'orders#change_status', as: 'change_status'
 		# get "/order_by_status", to: "orders#get_orders_by_status_params", as: 'order_by_status'
