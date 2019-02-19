@@ -142,7 +142,7 @@
 <table class="ui selectable celled table">
 	<thead>
 		<tr>
-			<th>ID</th>
+			<th>№</th>
 			<th>Название продукта</th>
 			<th>Имя</th>
 			<th>Телефон</th>
@@ -157,9 +157,9 @@
 		</tr>
 	</thead>
 	<!-- <%# if @orders.present? %> -->
-		<% @orders.each do |order| %>
+		<% @orders.each_with_index do |order, index| %>
 			<tr>
-				<th><b><%= order.id %></b></th>
+				<th><b><%= index += 1 %></b></th>
 				<th><b><%= order.product.name %></b></th>
 				<th><b><%= order.client_name %></b></th>
 				<th><b><%= order.client_phone %></b></th>

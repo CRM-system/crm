@@ -24,20 +24,17 @@
 	</div>
 		<br>
 		<br>
-		<div class="row justify-content-center">
-			<%#= link_to 'За указанный период', admin_check_params_path, class:"btn btn-info mr-2" %>
-			<%#= f.radio_button(:gender, "мужчина") %>
-			<%#= radio_button(:created_at, '', admin_check_params_path, class:"btn btn-info mr-2") %>
-			<%#= f.label(:created_at, "За сегодня") %>
-			<%#= link_to 'За вчера', admin_check_params_path, class:"btn btn-info mr-2" %>
-			<%#= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
-			<%#= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
-			<%#= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
-			<!-- <%= f.radio_button :created_at, '19.02.2019' %>
-			<%= f.label :created_at, 'за сегодня', :value => '' %>
-			<%= f.radio_button :created_at, '1' %>
-			<%= f.label :created_at, 'yesterday', :value => '' %> -->
-		</div>
+<div class="row justify-content-center">
+    <%= f.label :start, 'C  ' %>
+    <%= f.date_field :start_date %>&nbsp;&nbsp;
+    <%= f.label :end, 'По  ' %>
+    <%= f.date_field :end_date %>&nbsp;&nbsp;
+    <%= link_to 'За сегодня', admin_search_by_date_path, class:"btn btn-info mr-2" %>
+    <%= link_to 'За вчера', admin_search_by_date_1_day_ago_path, class:"btn btn-info mr-2" %>
+    <%= link_to 'За текущий месяц', admin_search_by_month_path, class:"btn btn-info mr-2" %>
+    <%= link_to 'За текущий год', admin_search_by_year_path, class:"btn btn-info mr-2" %>
+    <%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
+  </div>
 		<br>
 		<div class="row justify-content-center">
 			<%= f.submit 'Применить условия', class:"btn btn-success mr-2" %>
