@@ -9,6 +9,4 @@ end
 То("происходит переход на страницу авторизации") do
   url = URI.parse(current_url).path
   expect(page).to have_current_path(url)
-
-  sleep(2)
 end
