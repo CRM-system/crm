@@ -1,40 +1,38 @@
-<%= form_with  url: admin_check_params_path, method: :get, local: true do |f| %>
-	<br><div class="row justify-content-center">
-		 <div class="col">
-			<%= f.label :product, "Товары:" %> 
-			<br>
-			<%= f.collection_select 'query[]product', Product.all, :id, :name, include_blank: true, class:"form-control"  %>
-		</div> 
-		<div class="col">
-			<%= f.label  :delivery_type, "Тип доставки:" %>
-			<br>
-			<%= f.select(
-	            'query[]delivery_type',
-		            Order.translated_delivery_types.collect { 
-		            	|delivery| [ delivery[0], delivery[1] ] 
-		            }, include_blank: true 
-	          	)
-	        %><br>
-		</div>
-		
-		<div class="col">
-			<%= f.label "Условие на поле:" %>
-			<br>
-			<%= select_tag 'query[]search_type', options_for_select(filter_condition), include_blank: true %>
-	
+<%= form_with scope: :query, url: admin_check_params_path, method: :get, local: true do |f| %>
+<br>
+<div class="row justify-content-center">
+	<div class="col">
+		<%= f.label :product, "Товары:" %><br>
+		<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control" , include_blank: true %>
+	</div>
+	<div class="col">
+		<%= f.label  :delivery_type, "Тип доставки:" %><br>
+		<%= f.select(:delivery_type,
+			Order.translated_delivery_types.collect {
+				|delivery| [ delivery[0], delivery[1] ]
+			}, include_blank: true ) %><br>
 		</div>
 		<div class="col">
-			<%= f.label "Значение:" %>
-			<%= text_field_tag 'query[]search_value', nil, placeholder: 'Введите', class:"form-control" %>			
+			<%= f.label :client_addres, "Имя:" %>
+			<br>
+			<%= f.collection_select :client_name, Order.all, :client_name, :client_name, include_blank: true %>
 		</div>
+		<div class="col">
+			<%= f.label "Поиск:" %>
+			<%= f.text_field :search_all, class:"form-control" %>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row justify-content-center">
 
-	</div>
-	<br>
-	<div class="row justify-content-center">
-		Условия на дату заказа:
-	</div>
-	<br>
-	<div class="row justify-content-center">
+		<div class="datepicker-here" data-timepicker="true"></div>
+
+		<%= f.label :start, 'C' %>
+		<%= f.date_field :start %>
+
+		<%= f.label :end, 'По	' %>
+		<%= f.date_field :end %>
 
 		<%= link_to 'За указанный период', admin_orders_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За сегодня', admin_search_by_date_path, class:"btn btn-info mr-2" %>
@@ -49,4 +47,4 @@
 		<%= link_to 'Сбросить фильтр', admin_orders_path, class:"btn btn-danger" %>
 
 	</div>
-<% end %>
+	<% end %>

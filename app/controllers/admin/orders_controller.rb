@@ -55,21 +55,10 @@ class Admin::OrdersController < AdminController
   end
 
   def check_params
-    translates = {
-      "ID" => "id",
-      "Имя"   => "client_name",
-      "Электронный адрес" => "client_email",
-      "Телефон"  => "client_phone",
-      "Адрес"   => "client_addres"
-
-    }
-    params[:query][0][:search_type] = translates[params[:query][0][:search_type]]
-   binding.pry
-    # @orders = Order.all
+    @orders = Order.all
     params[:query].each do |key, value|
         @orders = @orders.where(key => value) if value.present?
     end
-
     render :index
   end
 
