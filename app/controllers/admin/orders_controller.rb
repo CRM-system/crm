@@ -10,17 +10,6 @@ class Admin::OrdersController < AdminController
     @order.save
   end
 
-  # def change_status_from_new_to_refused
-  #   @order = Order.find(params[:id])
-  #   @order.update(status: :refused)
-  #   redirect_to admin_orders_path
-  # end
-
-  # def change_status
-  #     @order = Order.find(params[:id])
-  #     @order = Order.update(status: params[:status])
-  # end
-
   def new
     @order = Order.new
   end
@@ -54,11 +43,40 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  # def check_params
+  #   start_date =  params[:query][:start_date].to_date
+  #   if params[:query][:end_date] == " "
+  #     end_date == Date.today
+  #   else
+  #     end_date =  params[:query][:end_date].to_date
+  #   end
+  #   @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day) 
+  #   params[:query].tap{|param| param.delete(:start_date)}
+  #   params[:query].tap{|param| param.delete(:end_date)}
+  #   params[:query].each do |key, value|
+  #     @orders = @orders.where(key => value) if value.present?
+  #   end
+  #   render :index
+  # end
+
   def check_params
-    @orders = Order.all
-    params[:query].each do |key, value|
-        @orders = @orders.where(key => value) if value.present?
+    start_date =  params[:query][:start_date].to_date
+    if params[:query][:end_date] == " "
+      end_date == Date.today
+    else
+      end_date =  params[:query][:end_date].to_date
     end
+    @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
+    params[:query].tap{|param| param.delete(:start_date)}
+    params[:query].tap{|param| param.delete(:end_date)}
+    params[:query].each do |key, value|
+      if key == "search_all" && value.present?
+        @orders = Order.search_all("#{params[:query][:search_all]}")
+      else
+        @orders = @orders.where(key => value) if value.present?
+      end
+    end
+    # binding.pry
     render :index
   end
 
@@ -98,15 +116,15 @@ class Admin::OrdersController < AdminController
 
   def order_params
     params.require(:order).permit(:client_name,
-                                  :client_phone,
-                                  :client_email,
-                                  :client_addres,
-                                  :delivery_type,
-                                  :order_price,
-                                  :quantity,
-                                  :total_price,
-                                  :status,
-                                  :product_id)
+      :client_phone,
+      :client_email,
+      :client_addres,
+      :delivery_type,
+      :order_price,
+      :quantity,
+      :total_price,
+      :status,
+      :product_id)
   end
 
   def check_access_create_order

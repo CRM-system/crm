@@ -15,17 +15,15 @@ class Order < ApplicationRecord
   belongs_to :product
 
 
-  # def self.created_at
-  #   where("created_at = ?", Date.today)
-  # end
+  
 
-  # pg_search_scope :search_all, :against =>  
-  #                                 [:id, :client_name, :client_phone, :client_email,
-  #                                 :client_addres, :delivery_type 
-  #                                 ], 
-  #                                 :using => {
-  #                                   :tsearch => {:prefix => true}                                    
-  #                                 }
+  pg_search_scope :search_all, :against =>  
+                                  [:id, :client_name, :client_phone, :client_email,
+                                  :client_addres, :delivery_type, :created_at 
+                                  ], 
+                                  :using => {
+                                    :tsearch => {:prefix => true}                                    
+                                  }
 
   # pg_search_scope :search_product, :associated_against => {:product => :name}
 
