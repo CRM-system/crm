@@ -13,25 +13,23 @@ class Order < ApplicationRecord
   translate_enum :delivery_type
 
   belongs_to :product
-# binding.pry
-  # pg_search_scope :search_all, :against =>
-  #                             [:id, :client_name, :client_phone, :client_email,
-  #                             :client_addres
-  #                             ],
-  #                             :using => {
-  #                               :tsearch => {:prefix => true}
-  #                             }
+  pg_search_scope :search_all, :against =>
+                                  [:id, :client_name, :client_phone, :client_email,
+                                  :client_addres, :delivery_type
+                                  ],
+                                  :using => {
+                                    :tsearch => {:prefix => true}
+                                  }
 
-  # pg_search_scope :search_by_delivery_type, against: [:delivery_type]
-  # pg_search_scope :search_by_client_name, against: [:client_name]
-  # pg_search_scope :search_by_client_email, against: [:client_email]
+  pg_search_scope :search_by_delivery_type, against: [:delivery_type]
+  pg_search_scope :search_by_client_name, against: [:client_name]
+  pg_search_scope :search_by_delivery_type, against: [:delivery_type]
 
 
   # pg_search_scope :search_by_date, :against => :created_at
 
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
-    TODAY =
   validates :client_name, presence: true, length: { maximum: 50 }
   validates :client_phone, presence: true, length: { maximum: 12 }
   #validates :client_email, format: { with: URI::MailTo::EMAIL_REGEXP },length: { maximum: 100 }
@@ -40,12 +38,6 @@ class Order < ApplicationRecord
   validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
 
-
-  def self.date_filter
-    [
-      {'за сегодня' => 'today'}, {}
-    ]
-  end
 
   # def self.search_by(*args)
   #   args.each do |search|

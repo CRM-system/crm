@@ -56,13 +56,42 @@ class Admin::OrdersController < AdminController
 
   def check_params
     @orders = Order.all
-    #today = method_name
     params[:query].each do |key, value|
+      if key == "search_all" && value.present?
+        @orders = Order.search_all("#{params[:query][:search_all]}")
+      else
         @orders = @orders.where(key => value) if value.present?
+      end
     end
-    binding.pry
+    # binding.pry
     render :index
   end
+
+  # def check_params
+  #   @orders = Order.all
+  #   params[:query].each do |key, value|
+  #     search_by_+key if value.present?
+  #   end
+  #   render :index
+  # end
+
+  def search_by_date
+    @orders = Order.where("created_at::date = ?", Date.today)
+  end
+
+  # def check_params
+  #   # @orders = Order.where("created_at: >=?", 5.day.ago)
+  #   @orders = Order.all
+  #   if params[:query][:search_all].present?
+  #     @orders = Order.search_all("#{params[:query][:search_all]}")
+  #   else
+  #     params[:query].except("search_all").each do |key, value|
+  #       @orders = Order.where(key => value) if value.present?
+  #     end
+  #   end
+  #   # binding.pry
+  #   render :index
+  # end
 
   def show
   end
@@ -76,6 +105,13 @@ class Admin::OrdersController < AdminController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+
+  def return_params
+    params[search_type, search_value].each do |key, value|
+      @orders = @orders.where(key => value)
+    end
   end
 
   def order_params

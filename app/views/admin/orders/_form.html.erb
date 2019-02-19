@@ -3,36 +3,40 @@
 	<div class="row justify-content-center">
 		<div class="col">
 			<%= f.label :product, "Товары:" %><br>
-			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control"  %>
+			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control" , include_blank: true %>
 		</div>
 		<div class="col">
-			<%= f.label  :delivery_type, "Тип доставки:" %>
+			<%= f.label  :delivery_type, "Тип доставки:" %><br>
 			<%= f.select(:delivery_type,
 		            		Order.translated_delivery_types.collect {
 		            		|delivery| [ delivery[0], delivery[1] ]
 		            		}, include_blank: true ) %><br>
 		</div>
 		<div class="col">
-			<%= f.label "Поиск:" %>
-			<%= f.text_field :client_name, class:"form-control" %>
+			<%= f.label :client_addres, "Имя:" %>
+			<br>
+			<%= f.collection_select :client_name, Order.all, :client_name, :client_name, include_blank: true %>
 		</div>
-		<!-- <div class="col">
-			<%= f.label "Значение:" %>
-			<%= f.text_field :client_name, placeholder: 'Тип доставки', class:"form-control" %>
-		</div> -->
+		<div class="col">
+			<%= f.label "Поиск:" %>
+			<%= f.text_field :search_all, class:"form-control" %>
+		</div>
 	</div>
 		<br>
-		<div class="row justify-content-center">
-			Условия на дату заказа:
-		</div>
 		<br>
 		<div class="row justify-content-center">
-			<%= link_to 'За указанный период', admin_check_params_path, class:"btn btn-info mr-2" %>
-			<%= link_to 'За сегодня', admin_check_params_path, class:"btn btn-info mr-2" %>
-			<%= link_to 'За вчера', admin_check_params_path, class:"btn btn-info mr-2" %>
-			<%= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
-			<%= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
-			<%= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
+			<%#= link_to 'За указанный период', admin_check_params_path, class:"btn btn-info mr-2" %>
+			<%#= f.radio_button(:gender, "мужчина") %>
+			<%#= radio_button(:created_at, '', admin_check_params_path, class:"btn btn-info mr-2") %>
+			<%#= f.label(:created_at, "За сегодня") %>
+			<%#= link_to 'За вчера', admin_check_params_path, class:"btn btn-info mr-2" %>
+			<%#= link_to 'За текущий месяц', admin_orders_path, class:"btn btn-info mr-2" %>
+			<%#= link_to 'За текущий год', admin_orders_path, class:"btn btn-info mr-2" %>
+			<%#= link_to 'За все время', admin_orders_path, class:"btn btn-info mr-2" %>
+			<!-- <%= f.radio_button :created_at, '19.02.2019' %>
+			<%= f.label :created_at, 'за сегодня', :value => '' %>
+			<%= f.radio_button :created_at, '1' %>
+			<%= f.label :created_at, 'yesterday', :value => '' %> -->
 		</div>
 		<br>
 		<div class="row justify-content-center">

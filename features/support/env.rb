@@ -82,7 +82,7 @@ Capybara.register_driver :selenium do |app|
     Capybara::Poltergeist::Driver.new(app, options)
   end
 end
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 5
 # Capybara.page.driver.browser.manage.window.resize_to(1400, 1400)
 
 
