@@ -21,6 +21,4 @@ end
   visit('admin/roles')
 
   expect(page).to have_text "#{title}"
-
-  sleep(2)
 end
