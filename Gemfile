@@ -16,6 +16,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'translate_enum'
 gem 'pg_search'
 gem 'pry'
+gem 'jquery-ui-rails'
 
 
 # Use sqlite3 as the database for Active Record

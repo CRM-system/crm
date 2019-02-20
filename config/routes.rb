@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 		resources :products
 		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
 		resources :orders
-
 		get '/check_params' => 'orders#check_params', as: 'check_params'
 
 		get '/search_by_date' => 'orders#search_by_date', as: 'search_by_date'

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   include TranslateEnum
-  # include PgSearch  
+  include PgSearch  
 
   enum status: [:new_order, :confirmed, :unconfirmed, :rejection, :find_out, :deferred,
                 :assemblage, :prepared, :sent, :handed_in,
@@ -14,20 +14,44 @@ class Order < ApplicationRecord
 
   belongs_to :product
 
-  pg_search_scope :search_all, :against =>
+
+
+  
+
+  pg_search_scope :search_all, :against =>  
                                   [:id, :client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type
-                                  ],
+                                  :client_addres, :delivery_type, :created_at 
+                                  ], 
                                   :using => {
-                                    :tsearch => {:prefix => true}
+                                    :tsearch => {:prefix => true}                                    
                                   }
 
-  pg_search_scope :search_by_delivery_type, against: [:delivery_type]
-  pg_search_scope :search_by_client_name, against: [:client_name]
-  pg_search_scope :search_by_delivery_type, against: [:delivery_type]
+  # pg_search_scope :search_product, :associated_against => {:product => :name}
 
+  # pg_search_scope :search_by_name, :against => :client_name                                    
+  # pg_search_scope :search_by_phone, :against => :client_phone                                    
+  # pg_search_scope :search_by_email, :against => :client_email                                   
+  # pg_search_scope :search_by_addres, :against => :client_addres                                                                       
+  # pg_search_scope :search_by_date, :against => :created_at   
+  # pg_search_scope :search_product, :associated_against => {:product => :name}
 
-  # pg_search_scope :search_by_date, :against => :created_at
+  # def self.search(query, *args)
+  #   search_by(query, :client_name => client_name, :client_phone => client_phone,
+  #     :client_email => client_email, :client_addres => client_addres, :created_at => created_at)
+  # end
+
+  # pg_search_scope :simple_search, (lambda do 
+  #   return { :against => args, :query => query }
+  # end)
+
+  # def self.search_params(query, client_name, client_email, client_phone, 
+  #                         client_addres, delivery_type, created_at)
+  #     simple_search(query, :client_name => client_name, :client_email => client_email,
+  #        :client_phone => client_phone, :client_addres => client_addres, 
+  #        :delivery_type => delivery_type, :created_at => created_at)
+  # end  
+  
+
 
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
