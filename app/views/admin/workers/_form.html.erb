@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @worker], local: true do |f| %>
+<%= form_with model: [:admin, @worker], local: true, id: "new_worker" do |f| %>
 <% if @worker.errors.any? %>
 <div class="errors">
 	Ошибки: <%= @worker.errors.count %>
