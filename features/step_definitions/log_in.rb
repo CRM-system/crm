@@ -8,8 +8,6 @@ end
     fill_in('Password', with: password)
     click_button('Log in')
   end
-
-  sleep(2)
 end
 
 То("админа переносят на страницу {string}") do |url|
@@ -27,8 +25,6 @@ end
     fill_in('Password', with: password)
     click_button('Log in')
   end
-
-  sleep(2)
 end
 
 То("оператора переносят на страницу {string}") do |url|
@@ -46,8 +42,6 @@ end
     fill_in('Password', with: password)
     click_button('Log in')
   end
-
-  sleep(2)
 end
 
 То("директора переносят на страницу {string}") do |url|
@@ -65,8 +59,6 @@ end
     fill_in('Password', with: password)
     click_button('Log in')
   end
-
-  sleep(2)
 end
 
 То("мы остаемся на странице {string}") do |url|
