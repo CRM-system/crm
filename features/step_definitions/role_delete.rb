@@ -22,6 +22,8 @@ end
   expect(page).to have_no_content "#{title}"
 end
 
+private
+
 def find_role(title)
   Role.find_by(name: "#{title}")
 end
