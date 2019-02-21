@@ -1,3 +1,12 @@
+Допустим("создает должность с названием {string}") do |title|
+  visit('admin/roles/new')
+
+  within('.fields form') do
+    fill_in('Название', with: title)
+    click_button('Подтвердить')
+  end
+end
+
 Если("он удаляет должность с названием {string}") do |title|
   visit('admin/roles')
 
