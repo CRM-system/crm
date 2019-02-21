@@ -16,7 +16,7 @@
 		</td>
 		<td>
 			<% if current_worker.edit_role_access_is_given? %>
-				<%= link_to edit_admin_role_path(role) do %>
+				<%= link_to edit_admin_role_path(role), id: "role-edit-#{role.id}" do %>
 					<i class="large edit icon"></i>
 				<% end %>
 			<% end %>
