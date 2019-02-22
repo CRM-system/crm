@@ -15,6 +15,13 @@ end
   expect(page).to have_content "#{new_name}"
 end
 
+То("потом нужно удалить отредактированную должность {string}") do |new_name|
+  role_id = find_role(new_name).id
+  click_link("role/#{role_id}")
+
+  page.driver.browser.switch_to.alert.accept
+end
+
 private
 
 def find_role(title)
