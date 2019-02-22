@@ -13,7 +13,7 @@ class Order < ApplicationRecord
   translate_enum :delivery_type
 
   belongs_to :product
-
+  has_many :comments
 
 
   

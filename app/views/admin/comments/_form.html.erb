@@ -1,0 +1,10 @@
+<%= form_with scope: :comment, url: [:admin, @order, @order.comments.build]  do |f| %>
+    <div>
+       <%= f.hidden_field :worker_id, :value => current_worker.id %>
+    </div>
+    <div>
+      Text: <%= f.text_area :body %>
+    </div>
+
+    <%= f.submit %>
+<% end %>
