@@ -1,31 +1,36 @@
 <%= form_with url: admin_check_params_path, method: :get, local: true do |f| %>
 	<br>
-	<div class="row justify-content-center">
+	<div class="row">
 		<div class="col">
-			<%= f.label :product, "Товары:" %><br>
-			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control"  %>
+			<%= f.label "Товары" %>
+			<%= f.collection_select :product_id, Product.all, :id, :name, {class: "form-control", include_blank: true} %>
 		</div>
+
 		<div class="col">
-			<%= f.label  :delivery_type, "Тип доставки:" %>
+			<%= f.label "Тип доставки" %>
 			<%= f.select(:delivery_type,
 		            		Order.translated_delivery_types.collect {
 		            		|delivery| [ delivery[0], delivery[1] ]
-		            		}, include_blank: true ) %><br>
+		            		}, class: 'form-control', include_blank: true) %>
 		</div>
+
 		<div class="col">
-			<%= f.label "Поиск:" %>
-			<%= f.text_field :client_name, class:"form-control" %>
+			<%= f.label "Поиск" %>
+			<%= f.text_field :client_name, placeholder: 'По имени клиента', class: "form-control" %>
 		</div>
+
 		<div class="col">
-			<%= f.label "Значение:" %>
-			<%= f.text_field :client_email, placeholder: 'Тип доставки', class:"form-control" %>
+			<%= f.label "Выбор" %>
+			<%= f.text_field :client_info, placeholder: 'По другим данным клиента', class: "form-control" %>
 		</div>
 	</div>
 	<br>
+
 	<div class="row justify-content-center">
 		Условия на дату заказа:
 	</div>
 	<br>
+
 	<div class="row justify-content-center">
 		<%= link_to 'За указанный период', admin_orders_path, class:"btn btn-info mr-2" %>
 		<%= link_to 'За сегодня', admin_orders_path, class:"btn btn-info mr-2" %>
