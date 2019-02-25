@@ -13,7 +13,7 @@ end
     fill_in('worker_email', with: email)
     fill_in('worker_password', with: password)
     select('Оператор', from: 'worker_role_id')
-    click_button('Создать сотрудника')
+    click_button('Подтвкердить')
   end
 end
 
