@@ -5,7 +5,8 @@
 # files.
 
 require 'cucumber/rails'
-# require 'chromedriver-helper'
+require 'chromedriver-helper'
+# require 'factory_bot/step_definitions'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -28,7 +29,7 @@ require 'cucumber/rails'
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
-
+World(FactoryBot::Syntax::Methods)
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 # begin
