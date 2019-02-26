@@ -64,8 +64,7 @@ class Admin::OrdersController < AdminController
     if params[:query][:end_date] == " "
       end_date == Date.today
     else
-      end_date =  params[:query][:end_date].to_date
-
+      end_date = params[:query][:end_date].to_date
     end
     @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
     params[:query].tap{|param| param.delete(:start_date)}

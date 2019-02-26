@@ -15,9 +15,6 @@ class Order < ApplicationRecord
   belongs_to :product
   has_many :comments
 
-
-  
-
   pg_search_scope :search_all, :against =>  
                                   [:id, :client_name, :client_phone, :client_email,
                                   :client_addres, :delivery_type, :created_at 
@@ -51,8 +48,6 @@ class Order < ApplicationRecord
   #        :delivery_type => delivery_type, :created_at => created_at)
   # end  
   
-
-
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
   validates :client_name, presence: true, length: { maximum: 50 }
@@ -62,5 +57,4 @@ class Order < ApplicationRecord
   validates :order_price, presence: true, numericality: { greater_or_equal_to: 0 }
   validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
-
 end
