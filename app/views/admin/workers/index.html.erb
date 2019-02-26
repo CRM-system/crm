@@ -4,16 +4,13 @@
 <% end %>
 <table class="ui selectable celled black table", id="centred_table">
 <tr class="table_title">
-	<th>Email</th>
 	<th>Имя</th>
-    <th>Должность</th>
-    <th colspan="2">Действия</th>
+  <th>Должность</th>
+	<th>Email</th>
+  <th colspan="2">Действия</th>
 </tr>
 <% @workers.each do |worker| %>
 	<tr>
-		<td>
-			<h3><%= worker.email %></h3>
-		</td>
 		<td>
 			<h3><%= worker.nickname %></h3>
 		</td>
@@ -21,6 +18,9 @@
 			<% if worker.role %>
 				<h3><%= worker.role.name %></h3>
 			<% end %>
+		</td>
+		<td>
+			<h3><%= worker.email %></h3>
 		</td>
 		<td>
 			<% if current_worker.edit_worker_access_is_given? %>

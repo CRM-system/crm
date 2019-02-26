@@ -60,70 +60,54 @@ class Admin::OrdersController < AdminController
   # end
 
   def check_params
-    @orders = Order.all
-    @orders = @orders.where(product_id: params[:product_id]) unless params[:product_id].empty?
-    @orders = @orders.where(delivery_type: params[:delivery_type]) unless params[:delivery_type].empty?
-    @orders = @orders.where(client_name: params[:client_name]) unless params[:client_name].empty?
-    @orders = @orders.where('client_addres LIKE ? OR client_phone LIKE ? OR client_email LIKE ?',
-      params[:client_info],
-      params[:client_info],
-      params[:client_info]
-    ).or(
-      @orders.where(status: Order.statuses[params[:client_info]])
-    ) unless params[:client_info].empty?
+    # @orders = Order.all
+    # @orders = @orders.where(product_id: params[:product_id]) unless params[:product_id].empty?
+    # @orders = @orders.where(delivery_type: params[:delivery_type]) unless params[:delivery_type].empty?
+    # @orders = @orders.where(client_name: params[:client_name]) unless params[:client_name].empty?
+    # @orders = @orders.where('client_addres LIKE ? OR client_phone LIKE ? OR client_email LIKE ?',
+    #   params[:client_info],
+    #   params[:client_info],
+    #   params[:client_info]
+    # ).or(
+    #   @orders.where(status: Order.statuses[params[:client_info]])
+    # ) unless params[:client_info].empty?
 
-
-    # if params[:client_name]
-    #   @orders = Order.search_all(client_name: params[:client_name])
-    # elsif params[:delivery_type]
-    #   @orders = Order.where(delivery_type: params[:delivery_type])
-    # elsif params[:product_id]
-    #   @orders = Order.where(product_id: params[:product_id])
-    # end
+    # render :index
+    start_date = params[:query][:start_date].to_date
+    end_date = get_end_date(params[:query])
+    @orders = get_orders_by_date(start_date, end_date)
+    params[:query].tap{|param| param.delete(:start_date)}
+    params[:query].tap{|param| param.delete(:end_date)}
+    search_by_type(params[:query])
     render :index
   end
 
-  # def check_params
-  #   start_date =  params[:query][:start_date].to_date
-  #   if params[:query][:end_date] == " "
-  #     end_date == Date.today
-  #   else
-  #     end_date =  params[:query][:end_date].to_date
-  #   end
-  #   @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
-  #   params[:query].tap{|param| param.delete(:start_date)}
-  #   params[:query].tap{|param| param.delete(:end_date)}
-  #   params[:query].each do |key, value|
-  #     @orders = @orders.where(key => value) if value.present?
-  #   end
-  #   render :index
-  # end
-
-  # def check_params
-  #   @orders = Order.all
-  #   params[:query].each do |key, value|
-  #     search_by_+key if value.present?
-  #   end
-  #   render :index
-  # end
-
-  def search_by_date
-    @orders = Order.where("created_at::date = ?", Date.today)
+  def get_end_date(params_query)
+    if params[:query][:end_date] == " "
+      end_date == Date.today
+    else
+      end_date =  params[:query][:end_date].to_date
+    end
   end
 
-  # def check_params
-  #   # @orders = Order.where("created_at: >=?", 5.day.ago)
-  #   @orders = Order.all
-  #   if params[:query][:search_all].present?
-  #     @orders = Order.search_all("#{params[:query][:search_all]}")
-  #   else
-  #     params[:query].except("search_all").each do |key, value|
-  #       @orders = Order.where(key => value) if value.present?
-  #     end
-  #   end
-  #   # binding.pry
-  #   render :index
-  # end
+  def get_orders_by_date(start_date, end_date)
+    if Order.where(params[:query][:created_at]).present?
+      return Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
+    else
+      return Order.all
+    end
+  end
+
+  def search_by_type(params_query)
+    params_query.each do |search_type, search_type_value|
+      if search_type == "search_all" && search_type_value.present?
+        return @orders = Order.search_all("#{params[:query][:search_all]}")
+      else
+        return @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
+      end
+    end
+
+  end
 
   def show
     @order = Order.find(params[:id])
@@ -139,7 +123,6 @@ class Admin::OrdersController < AdminController
   def set_order
     @order = Order.find(params[:id])
   end
-
 
   def return_params
     params[search_type, search_value].each do |key, value|

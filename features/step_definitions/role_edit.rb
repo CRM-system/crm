@@ -11,7 +11,6 @@ end
 
 То("при переходе на страницу списка должностей будет видно данную должность {string}") do |new_name|
   visit('admin/roles')
-
   expect(page).to have_content "#{new_name}"
 end
 
