@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   belongs_to :product
   has_many :comments
 
-  pg_search_scope :search_all, :against =>  
+  pg_search_scope :search_all, :against =>
                                   [:id, :client_name, :client_phone, :client_email,
                                   :client_addres, :delivery_type, :created_at 
                                   ], 
