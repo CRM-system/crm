@@ -60,6 +60,7 @@ class Admin::OrdersController < AdminController
   # end
 
   def check_params
+<<<<<<< HEAD
     start_date =  params[:query][:start_date].to_date
     if params[:query][:end_date] == " "
       end_date == Date.today
@@ -97,6 +98,28 @@ class Admin::OrdersController < AdminController
 
   def search_by_year
     @orders = Order.where("created_at::date > ?", 1.year.ago)
+=======
+    @orders = Order.all
+    @orders = @orders.where(product_id: params[:product_id]) unless params[:product_id].empty?
+    @orders = @orders.where(delivery_type: params[:delivery_type]) unless params[:delivery_type].empty?
+    @orders = @orders.where(client_name: params[:client_name]) unless params[:client_name].empty?
+    @orders = @orders.where('client_addres LIKE ? OR client_phone LIKE ? OR client_email LIKE ?',
+      params[:client_info],
+      params[:client_info],
+      params[:client_info]
+    ).or(
+      @orders.where(status: Order.statuses[params[:client_info]])
+    ) unless params[:client_info].empty?
+
+
+    # if params[:client_name]
+    #   @orders = Order.search_all(client_name: params[:client_name])
+    # elsif params[:delivery_type]
+    #   @orders = Order.where(delivery_type: params[:delivery_type])
+    # elsif params[:product_id]
+    #   @orders = Order.where(product_id: params[:product_id])
+    # end
+>>>>>>> 8dc5d064f277ce3c01eaabdbaadd69c1c93e3e37
     render :index
   end
 

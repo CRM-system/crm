@@ -1,10 +1,11 @@
 <%= form_with scope: :query, url: admin_check_params_path, method: :get, local: true do |f| %>
 	<br>
-	<div class="row justify-content-center">
+	<div class="row">
 		<div class="col">
 			<%= f.label :product, "Товары:" %><br>
 			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control" , include_blank: true %>
 		</div>
+
 		<div class="col">
 			<%= f.label  :delivery_type, "Тип доставки:" %><br>
 			<%= f.select(:delivery_type,
@@ -12,11 +13,13 @@
 					|delivery| [ delivery[0], delivery[1] ]
 				}, include_blank: true ) %><br>
 		</div>
+
 		<div class="col">
 			<%= f.label :client_addres, "Имя:" %>
 			<br>
 			<%= f.collection_select :client_name, Order.all, :client_name, :client_name, include_blank: true %>
 		</div>
+
 		<div class="col">
 			<%= f.label "Поиск:" %>
 			<%= f.text_field :search_all, class:"form-control" %>
