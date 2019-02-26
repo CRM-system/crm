@@ -60,45 +60,6 @@ class Admin::OrdersController < AdminController
   # end
 
   def check_params
-<<<<<<< HEAD
-    start_date =  params[:query][:start_date].to_date
-    if params[:query][:end_date] == " "
-      end_date == Date.today
-    else
-      end_date = params[:query][:end_date].to_date
-    end
-    @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
-    params[:query].tap{|param| param.delete(:start_date)}
-    params[:query].tap{|param| param.delete(:end_date)}
-    params[:query].each do |key, value|
-      if key == "search_all" && value.present?
-        @orders = Order.search_all("#{params[:query][:search_all]}")
-      else
-        @orders = @orders.where(key => value) if value.present?
-      end
-    end
-    # binding.pry
-    render :index
-  end
-
-  def search_by_date
-    @orders = Order.where("created_at::date = ?", Date.today)
-    render :index
-  end
-
-  def search_by_date_1_day_ago
-    @orders = Order.where("created_at::date = ?", 1.day.ago)
-    render :index
-  end
-
-  def search_by_month
-    @orders = Order.where("created_at::date > ?", 30.day.ago)
-    render :index
-  end
-
-  def search_by_year
-    @orders = Order.where("created_at::date > ?", 1.year.ago)
-=======
     @orders = Order.all
     @orders = @orders.where(product_id: params[:product_id]) unless params[:product_id].empty?
     @orders = @orders.where(delivery_type: params[:delivery_type]) unless params[:delivery_type].empty?
@@ -119,7 +80,6 @@ class Admin::OrdersController < AdminController
     # elsif params[:product_id]
     #   @orders = Order.where(product_id: params[:product_id])
     # end
->>>>>>> 8dc5d064f277ce3c01eaabdbaadd69c1c93e3e37
     render :index
   end
 

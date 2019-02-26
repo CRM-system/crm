@@ -2,32 +2,35 @@
 	<br>
 	<div class="row">
 		<div class="col">
-			<%= f.label :product, "Товары:" %><br>
-			<%= f.collection_select :product_id, Product.all, :id, :name, class:"form-control" , include_blank: true %>
+			<%= f.label "Товары" %>
+			<%= f.collection_select :product_id, Product.all, :id, :name, {class: "form-control", include_blank: true} %>
 		</div>
 
 		<div class="col">
-			<%= f.label  :delivery_type, "Тип доставки:" %><br>
+			<%= f.label "Тип доставки" %>
 			<%= f.select(:delivery_type,
-				Order.translated_delivery_types.collect {
-					|delivery| [ delivery[0], delivery[1] ]
-				}, include_blank: true ) %><br>
+		            		Order.translated_delivery_types.collect {
+		            		|delivery| [ delivery[0], delivery[1] ]
+		            		}, class: 'form-control', include_blank: true) %>
 		</div>
 
 		<div class="col">
-			<%= f.label :client_addres, "Имя:" %>
-			<br>
-			<%= f.collection_select :client_name, Order.all, :client_name, :client_name, include_blank: true %>
+			<%= f.label "Поиск" %>
+			<%= f.text_field :client_name, placeholder: 'По имени клиента', class: "form-control" %>
 		</div>
 
 		<div class="col">
-			<%= f.label "Поиск:" %>
-			<%= f.text_field :search_all, class:"form-control" %>
+			<%= f.label "Выбор" %>
+			<%= f.text_field :client_info, placeholder: 'По другим данным клиента', class: "form-control" %>
 		</div>
 	</div>
 	<br>
+
+	<div class="row justify-content-center">
+		Условия на дату заказа:
+	</div>
 	<br>
-	<!-- <div class="datepicker-here" data-timepicker="true"></div> -->
+
 	<div class="row justify-content-center">
 		<%= f.label :start, 'C  ' %>
 		<%= f.date_field :start_date %>&nbsp;&nbsp;
