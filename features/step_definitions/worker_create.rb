@@ -8,6 +8,7 @@ end
 
 Если("он создаёт сотрудника с данными: имя {string} email {string} паролем {string}") do |nickname, email, password|
   visit("admin/workers/new")
+  sleep 2
   within('#new_worker') do
     fill_in('worker_nickname', with: nickname)
     fill_in('worker_email', with: email)
@@ -15,6 +16,7 @@ end
     select('Оператор', from: 'worker_role_id')
     click_button('Подтвкердить')
   end
+  sleep 2
 end
 
 То("сотрудника Серик видно в списке сотрудников") do

@@ -45,16 +45,16 @@ class Admin::OrdersController < AdminController
 
   def check_params
     @orders = Order.all
-    @orders = @orders.where(product_id: params[:product_id]) unless params[:product_id].empty?
-    @orders = @orders.where(delivery_type: params[:delivery_type]) unless params[:delivery_type].empty?
-    @orders = @orders.where(client_name: params[:client_name]) unless params[:client_name].empty?
+    @orders = @orders.where(product_id: params[:product_id]) if params[:product_id].present?
+    @orders = @orders.where(delivery_type: params[:delivery_type]) if params[:delivery_type].present?
+    @orders = @orders.where(client_name: params[:client_name]) if params[:client_name].present?
     @orders = @orders.where('client_addres LIKE ? OR client_phone LIKE ? OR client_email LIKE ?',
       params[:client_info],
       params[:client_info],
       params[:client_info]
     ).or(
       @orders.where(status: Order.statuses[params[:client_info]])
-    ) unless params[:client_info].empty?
+    ) if params[:client_info].present?
 
 
     # if params[:client_name]

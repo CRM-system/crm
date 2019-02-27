@@ -63,7 +63,14 @@ end
 
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
-Capybara.app_host = 'http://localhost:3000/'
+
+Capybara.configure do |config|
+  # config.app_host = 'http://localhost:3001/'
+  config.run_server = true
+end
+
+# Capybara.app_host       = 'http://localhost:3001/'
+# Capybara.run_server     = true
 Capybara.default_driver = :selenium_chrome
 Capybara.register_driver :selenium do |app|
   if BROWSER.eql?('chrome')
