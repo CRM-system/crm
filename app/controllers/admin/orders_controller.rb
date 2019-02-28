@@ -50,7 +50,7 @@ class Admin::OrdersController < AdminController
   #   else
   #     end_date =  params[:query][:end_date].to_date
   #   end
-  #   @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day) 
+  #   @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
   #   params[:query].tap{|param| param.delete(:start_date)}
   #   params[:query].tap{|param| param.delete(:end_date)}
   #   params[:query].each do |key, value|
@@ -76,23 +76,21 @@ class Admin::OrdersController < AdminController
     start_date = params[:query][:start_date].to_date
     end_date = get_end_date(params[:query])
     @orders = get_orders_by_date(start_date, end_date)
-    params[:query].tap{|param| param.delete(:start_date)}
-    params[:query].tap{|param| param.delete(:end_date)}
-    search_by_type(params[:query])
+    search_by_type(params[:query].except(:start_date, :end_date))
     render :index
   end
 
   def get_end_date(params_query)
-    if params[:query][:end_date] == " "
-      end_date == Date.today
+    if params[:query][:end_date] == String.new
+      Date.today
     else
-      end_date =  params[:query][:end_date].to_date
+      params[:query][:end_date].to_date
     end
   end
 
   def get_orders_by_date(start_date, end_date)
-    if Order.where(params[:query][:created_at]).present?
-      return Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
+    if start_date.present?
+      return Order.where(created_at: start_date.beginning_of_day..end_date.beginning_of_day)
     else
       return Order.all
     end
@@ -101,9 +99,9 @@ class Admin::OrdersController < AdminController
   def search_by_type(params_query)
     params_query.each do |search_type, search_type_value|
       if search_type == "search_all" && search_type_value.present?
-        return @orders = Order.search_all("#{params[:query][:search_all]}")
+        @orders = Order.search_all("#{params[:query][:search_all]}")
       else
-        return @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
+        @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
       end
     end
 
