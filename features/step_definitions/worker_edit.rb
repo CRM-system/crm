@@ -1,10 +1,6 @@
 
-Допустим("администратор есть") do
-
-  binding.pry
-
+Допустим("есть администратор") do
   create(:worker)
-  # create :worker, :admin
 end
 
 Если("есть сотрудник с данными: имя {string} email {string} паролем {string}") do |string, string2, string3|

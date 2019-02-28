@@ -1,9 +1,14 @@
 
 Допустим("залогиненный пользователь с email {string} и паролем {string}") do |email, password|
+  create(:worker)
   visit("workers/sign_in")
   fill_in('Email', with: email)
-  fill_in('Password', with: password)
+  fill_in('Password', with: 'qweasd')
   click_button('Log in')
+  expect('admin/orders')#.to have_content('baz')
+  binding.pry
+
+  # sleep(5)
 end
 
 Если("он создаёт сотрудника с данными: имя {string} email {string} паролем {string}") do |nickname, email, password|

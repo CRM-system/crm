@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :worker do
-    nickname {"Админ"}
+    nickname {"admin"}
     email    {"admin@admin.com"}
     password {"qweasd"}
     admin    {true}
