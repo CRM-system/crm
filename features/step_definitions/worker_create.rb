@@ -1,12 +1,14 @@
 
 Допустим("залогиненный пользователь с email {string} и паролем {string}") do |email, password|
-  create(:worker)
+
+    create(:worker)
+
   visit("workers/sign_in")
   fill_in('Email', with: email)
   fill_in('Password', with: 'qweasd')
   click_button('Log in')
   expect('admin/orders')#.to have_content('baz')
-  binding.pry
+# binding.pry
 
   # sleep(5)
 end
@@ -19,7 +21,7 @@ end
     fill_in('worker_email', with: email)
     fill_in('worker_password', with: password)
     select('Оператор', from: 'worker_role_id')
-    click_button('Подтвкердить')
+    click_button('Подтвердить')
   end
   sleep 2
 end
