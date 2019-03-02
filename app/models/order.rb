@@ -13,21 +13,40 @@ class Order < ApplicationRecord
   translate_enum :delivery_type
 
   belongs_to :product
+  has_many :comments
+
   pg_search_scope :search_all, :against =>
                                   [:id, :client_name, :client_phone, :client_email,
-                                  :client_addres, :delivery_type
+                                  :client_addres, :delivery_type, :created_at
                                   ],
                                   :using => {
                                     :tsearch => {:prefix => true}
                                   }
 
-  pg_search_scope :search_by_delivery_type, against: [:delivery_type]
-  pg_search_scope :search_by_client_name, against: [:client_name]
-  pg_search_scope :search_by_delivery_type, against: [:delivery_type]
+  # pg_search_scope :search_product, :associated_against => {:product => :name}
 
-
+  # pg_search_scope :search_by_name, :against => :client_name
+  # pg_search_scope :search_by_phone, :against => :client_phone
+  # pg_search_scope :search_by_email, :against => :client_email
+  # pg_search_scope :search_by_addres, :against => :client_addres
   # pg_search_scope :search_by_date, :against => :created_at
+  # pg_search_scope :search_product, :associated_against => {:product => :name}
 
+  # def self.search(query, *args)
+  #   search_by(query, :client_name => client_name, :client_phone => client_phone,
+  #     :client_email => client_email, :client_addres => client_addres, :created_at => created_at)
+  # end
+
+  # pg_search_scope :simple_search, (lambda do
+  #   return { :against => args, :query => query }
+  # end)
+
+  # def self.search_params(query, client_name, client_email, client_phone,
+  #                         client_addres, delivery_type, created_at)
+  #     simple_search(query, :client_name => client_name, :client_email => client_email,
+  #        :client_phone => client_phone, :client_addres => client_addres,
+  #        :delivery_type => delivery_type, :created_at => created_at)
+  # end
   before_validation { client_name.capitalize! }
   #before_validation { client_email.downcase! }
   validates :client_name, presence: true, length: { maximum: 50 }
@@ -37,15 +56,4 @@ class Order < ApplicationRecord
   validates :order_price, presence: true, numericality: { greater_or_equal_to: 0 }
   validates :quantity, presence:true, numericality: { greater_or_equal_to: 0 }
   validates :total_price, presence:true, numericality: { greater_or_equal_to: 0 }
-
-
-  # def self.search_by(*args)
-  #   args.each do |search|
-  #     return "serch_by_#{search}"
-  #   end
-    # проходимся по *args
-    # для каждого вызываем метод
-    # каждый элемент на итерации по *args будет передаваться в переменную field
-    # search_by + _ + field
-
 end
