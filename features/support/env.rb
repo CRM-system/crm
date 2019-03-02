@@ -5,7 +5,7 @@
 # files.
 
 require 'cucumber/rails'
-# require 'chromedriver-helper'
+require 'chromedriver-helper'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -28,14 +28,18 @@ require 'cucumber/rails'
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
-
+World(FactoryBot::Syntax::Methods)
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-# begin
-#   DatabaseCleaner.strategy = :transaction
-# rescue NameError
-#   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
-# end
+begin
+  DatabaseCleaner.clean_with :truncation
+  DatabaseCleaner.strategy = :transaction
+rescue NameError
+  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
+
+# Загрузить сиды
+# Rails.application.load_seed
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
@@ -61,7 +65,14 @@ ActionController::Base.allow_rescue = false
 
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
-Capybara.app_host = 'http://localhost:3000/'
+
+Capybara.configure do |config|
+  # config.app_host = 'http://localhost:3001/'
+  config.run_server = true
+end
+
+# Capybara.app_host       = 'http://localhost:3001/'
+# Capybara.run_server     = true
 Capybara.default_driver = :selenium_chrome
 Capybara.register_driver :selenium do |app|
   if BROWSER.eql?('chrome')

@@ -16,6 +16,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'translate_enum'
 gem 'pg_search'
 gem 'pry'
+gem 'jquery-ui-rails'
 
 
 # Use sqlite3 as the database for Active Record
@@ -67,17 +68,26 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
 end
 
 group :test do
+  gem 'factory_bot_rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
   gem 'cucumber-rails', require: false
-  # gem 'database_cleaner'
+  gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'rspec'
 end
-
+group production do
+  gem 'pg'
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
