@@ -5,6 +5,7 @@ class Worker < ApplicationRecord
             :recoverable, :rememberable, :validatable
 	validates :nickname, presence: true, length: { maximum: 50 }
 	belongs_to :role
+  has_many :comments
 
   def index_order_access_is_given?
     if function_is_present?('order', 'index')
