@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название продукта:</strong>
+  <%= @order.product.name %>
+</p>
+
+<p>
+  <strong>Имя заказчика:</strong>
+  <%= @order.client_name %>
+</p>
+
+<p>
+  <strong>Адрес:</strong>
+  <%= @order.client_addres %>
+</p>
+
+<p>
+  <strong>Способ доставки:</strong>
+  <%= @order.translated_delivery_type %>
+</p>
+
+<p>
+  <strong>Общая сумма:</strong>
+  <%= @order.total_price %>
+</p>
+
+<%= link_to 'Back', admin_orders_path %>
+
+<h2><%= link_to 'Comments', '#', id: 'comments-link' %></h2>
+<div id="comment-section">
+  <ol id="comments">
+    <%= render @order.comments %>
+  </ol>
+
+  <h3>Add a comment:</h3>
+  <%= render 'admin/comments/form' %>
+</div>
+<br>
+<%= link_to "Назад", admin_orders_path, class: "btn btn-info" %>

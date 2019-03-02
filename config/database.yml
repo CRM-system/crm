@@ -25,7 +25,13 @@ test: &test
 
 production:
   <<: *default
-  database: crm_production
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  database: crm
+  user: deploy_rails
+  password: qweasd
+
 
 
 cucumber:
