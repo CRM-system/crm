@@ -1,16 +1,18 @@
 
 Допустим("есть администратор") do
-  create(:worker)
-end
-
-Если("есть сотрудник с данными: имя {string} email {string} паролем {string}") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Если("админ изменит данные сотрудника Серик на Берик") do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit('admin/workers/4/edit')
+  within('#new_worker') do
+    fill_in('worker_nickname', with: "Берик")
+    fill_in('worker_email', with: "beric@mail.com")
+    fill_in('worker_password', with: 'qweasd')
+    click_button('Подтвердить')
+  end
 end
 
 То("сотрудника Берик видно в списке сотрудников") do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit("admin/workers")
+  find('td', text: 'Берик', match: :prefer_exact)
 end
