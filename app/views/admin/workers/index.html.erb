@@ -31,7 +31,7 @@
 		</td>
 		<td>
 			<% if current_worker.destroy_worker_access_is_given? %>
-				<%= link_to admin_worker_path(worker), data: { confirm: 'Вы уверены?' },method: :delete do %>
+				<%= link_to admin_worker_path(worker), method: :delete, id: "worker/#{worker.id}", data: { confirm: 'Вы уверены?' } do %>
 					<i class="large circular inverted red trash alternate outline icon"></i>
 				<% end %>
 			<% end %>
