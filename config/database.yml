@@ -30,7 +30,7 @@ production:
   port: 5432
   database: crm
   user: deploy_rails
-  password: qweasd
+  password: deploy_crmqwe123
 
 
 
