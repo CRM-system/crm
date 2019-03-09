@@ -39,7 +39,7 @@ rescue NameError
 end
 
 # Загрузить сиды
-# Rails.application.load_seed
+Rails.application.load_seed
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:

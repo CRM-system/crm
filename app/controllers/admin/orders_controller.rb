@@ -60,19 +60,6 @@ class Admin::OrdersController < AdminController
   # end
 
   def check_params
-    # @orders = Order.all
-    # @orders = @orders.where(product_id: params[:product_id]) unless params[:product_id].empty?
-    # @orders = @orders.where(delivery_type: params[:delivery_type]) unless params[:delivery_type].empty?
-    # @orders = @orders.where(client_name: params[:client_name]) unless params[:client_name].empty?
-    # @orders = @orders.where('client_addres LIKE ? OR client_phone LIKE ? OR client_email LIKE ?',
-    #   params[:client_info],
-    #   params[:client_info],
-    #   params[:client_info]
-    # ).or(
-    #   @orders.where(status: Order.statuses[params[:client_info]])
-    # ) unless params[:client_info].empty?
-
-    # render :index
     start_date = params[:query][:start_date].to_date
     end_date = get_end_date(params[:query])
     @orders = get_orders_by_date(start_date, end_date)
