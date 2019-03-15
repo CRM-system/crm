@@ -39,5 +39,9 @@ Rails.application.routes.draw do
 
 	namespace :api do
     get 'products/index'
+
+    namespace :v1 do
+      get 'orders/new'
+    end
   end
 end
