@@ -91,11 +91,32 @@ class Admin::OrdersController < AdminController
         @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
       end
     end
+  end
 
+  def search_by_date
+    @orders = Order.where("created_at::date = ?", Date.today)
+    render :index
+  end
+    
+  def search_by_date_1_day_ago
+    @orders = Order.where("created_at::date = ?", 1.day.ago)
+    render :index
+  end
+    
+  def search_by_month
+    @orders = Order.where("created_at::date > ?", 30.day.ago)
+    render :index
+  end
+    
+  def search_by_year
+    @orders = Order.where("created_at::date > ?", 1.year.ago)
+    render :index
   end
 
   def show
     @order = Order.find(params[:id])
+    @comment = @order.comments.all
+    @workers = Worker.all
   end
 
   def destroy

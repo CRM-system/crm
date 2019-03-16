@@ -17,7 +17,7 @@ gem 'translate_enum'
 gem 'pg_search'
 gem 'pry'
 gem 'jquery-ui-rails'
-
+#gem "therubyracer"
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -57,8 +57,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'factory_bot_rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
 end
 
 group :development do
@@ -68,16 +70,16 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
+  gem "capistrano", "~> 3.11", require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-bundler', require: false
+  # gem 'capistrano'
+  # gem 'capistrano-passenger'
 end
 
 group :test do
-  gem 'factory_bot_rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
   gem 'cucumber-rails', require: false

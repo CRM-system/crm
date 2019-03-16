@@ -40,7 +40,7 @@
               Order.translated_delivery_types.map{ |delivery| [ delivery[0], delivery[1] ] }
             )
           )
-        %><br>
+        %>
       </div>
 
       <div class="field">
@@ -51,17 +51,17 @@
       <div class="field">
         <%= f.label 'Количество' %>
         <%= f.number_field :quantity, placeholder: 'Выяснить' %><br>
-      </div><br>
+      </div>
 
-      <div>
+      <div class="field">
         <%= f.label 'Статус' %>
         <%= f.select( :status, options_for_select(current_worker.role.order_statuses.map{ |s| [s.translate_ru, s.title] }) ) %>
       </div>
 
-      <div><br><br>
+      <div><br>
         <%= f.submit "Подтвердить", class:"ui teal button" %>
         <%= f.submit "Назад",class:"ui teal button" %>
       </div>
     <% end %>
   </div>
-<br><br>
+<%= link_to 'Оставить комментарий', admin_order_path(@order),class:" green ui button"    %>
