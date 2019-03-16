@@ -1,0 +1,24 @@
+language: ruby
+cache: bundler
+
+before_script:
+  - export RAILS_ENV=test
+  - bundle exec rake db:drop
+  - psql -c 'create database crm;' -U postgres
+  - bundle exec rake db:create --all
+  - bundle exec rake db:migrate
+  - bundle exec rake db:seed
+  # - bundle exec rake cucumber
+  - bundle exec rake FEATURE=features/worker_edit.feature cucumber rails
+notifications:
+  email: false
+services:
+  - postgresql
+addons:
+  chrome: stable
+
+env:
+  - CI=true
+matrix:
+  include:
+    - rbenv: 2.5.1

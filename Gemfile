@@ -71,12 +71,12 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "capistrano", "~> 3.11", require: false
-
-  # gem 'capistrano'
   gem 'capistrano-rails', require: false
-  # gem 'capistrano-passenger'
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano-bundler', require: false
+  # gem 'capistrano'
+  # gem 'capistrano-passenger'
 end
 
 group :test do
