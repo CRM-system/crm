@@ -1,6 +1,6 @@
 
 Допустим("есть администратор") do
-  #create(:worker)
+  # create(:worker)
 end
 
 Если("он меняет имя сотрудника с {string} на {string}") do |current_name, new_name|
