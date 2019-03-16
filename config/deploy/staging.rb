@@ -5,12 +5,8 @@
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
-#server "ar-1-2-esdp-1.ltestl.com", user: "deploy_rails", roles: %w{app db web}
-role :app, %w{ deploy_rails@ar-1-2-esdp-1.ltestl.com}
-role :web, %w{ deploy_rails@ar-1-2-esdp-1.ltestl.com}
-role :db,  %w{ deploy_rails@ar-1-2-esdp-1.ltestl.com}
-set :rails_env, :production
-server 'ar-1-2-esdp-1.ltestl.com', user: 'deploy_rails', roles: %{web app db}, primary: true
+# server "db.example.com", user: "deploy", roles: %w{db}
+
 
 
 # role-based syntax

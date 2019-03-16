@@ -27,8 +27,9 @@ require 'chromedriver-helper'
 # 2) Set the value below to true. Beware that doing this globally is not
 # recommended as it will mask a lot of errors for you!
 #
-ActionController::Base.allow_rescue = false
 World(FactoryBot::Syntax::Methods)
+ActionController::Base.allow_rescue = false
+
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
