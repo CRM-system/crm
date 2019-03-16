@@ -115,6 +115,8 @@ class Admin::OrdersController < AdminController
 
   def show
     @order = Order.find(params[:id])
+    @comment = @order.comments.all
+    @workers = Worker.all
   end
 
   def destroy
