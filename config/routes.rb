@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get 'products/index'
 
     namespace :v1 do
-      get 'orders/new'
+      post 'orders/create'
     end
   end
 end
