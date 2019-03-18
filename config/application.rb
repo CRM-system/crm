@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 module Crm
   class Application < Rails::Application
-    config.factory_bot.definition_file_paths = ["custom/factories"]
+    # config.factory_bot.definition_file_paths = ["custom/factories"]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.i18n.default_locale = :ru
