@@ -10,10 +10,11 @@ default: &default
   host: localhost
   username: pguser
   password: password
+  port: 5432
 
 development:
   <<: *default
-  database: crm_development
+  database: crm
 
 
 # Warning: The database defined as "test" will be erased and
@@ -22,6 +23,8 @@ development:
 test: &test
   <<: *default
   database: crm_test
+  username: pguser
+  password: password
 
 production:
   <<: *default
