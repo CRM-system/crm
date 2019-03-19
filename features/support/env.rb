@@ -74,36 +74,25 @@ end
 
 # Capybara.app_host       = 'http://localhost:3001/'
 # Capybara.run_server     = true
-# Capybara.default_driver = :firefox
-# Capybara.register_driver :firefox do |app|
-#   if BROWSER.eql?('chrome')
-#     Capybara::Selenium::Driver.new(app,
-#     :browser => :firefox,
-#     :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
-#       'chromeOptions' => {
-#         'args' => [ "--start-maximized" ]
-#       }
-#     )
-#   )
-#   elsif BROWSER.eql?('firefox')
-#     Capybara::Selenium::Driver.new(app, :browser => :firefox)
-#   elsif BROWSER.eql?('safari')
-#     Capybara::Selenium::Driver.new(app, :browser => :safari)
-#   elsif BROWSER.eql?('poltergeist')
-#     options = { js_errors: false }
-#     Capybara::Poltergeist::Driver.new(app, options)
-#   end
-# end
-
-Capybara.default_driver = :firefox
-Capybara.register_driver :firefox do |app|
-  options = {
-    js_errors: true,
-    timeout: 360,
-    debug: false,
-    inspector: false
-  }
-  Capybara::Selenium::Driver.new(app, browser: :firefox)
+Capybara.default_driver = :selenium_chrome
+Capybara.register_driver :selenium do |app|
+  if BROWSER.eql?('chrome')
+    Capybara::Selenium::Driver.new(app,
+    :browser => :chrome,
+    :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
+      'chromeOptions' => {
+        'args' => [ "--start-maximized" ]
+      }
+    )
+  )
+  elsif BROWSER.eql?('firefox')
+    Capybara::Selenium::Driver.new(app, :browser => :firefox)
+  elsif BROWSER.eql?('safari')
+    Capybara::Selenium::Driver.new(app, :browser => :safari)
+  elsif BROWSER.eql?('poltergeist')
+    options = { js_errors: false }
+    Capybara::Poltergeist::Driver.new(app, options)
+  end
 end
 Capybara.default_max_wait_time = 5
 # Capybara.page.driver.browser.manage.window.resize_to(1400, 1400)
