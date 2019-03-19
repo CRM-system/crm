@@ -7,7 +7,7 @@ class Api::V1::OrdersController < ApiController
 
     order.update(
       product_id: product.id,
-      client_email: 'fake_email@example.com',
+      client_email: 'Неизвестно',
       client_addres: 'Выяснить',
       order_price: 0,
       quantity: 0,
