@@ -46,6 +46,9 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       execute :touch, release_path.join('tmp/restart.txt')
     end
+    task :seed do
+      run "bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+    end
   end
 
   after :publishing, :restart
