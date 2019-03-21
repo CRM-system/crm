@@ -145,7 +145,7 @@
 				<th>Название продукта</th>
 				<th>Имя</th>
 				<th>Телефон</th>
-				<th>Email</th>
+				<th>Абра кадабра</th>
 				<th>Адрес</th>
 				<th>Способ доставки</th>
 				<th>Цена заказа</th>
@@ -157,7 +157,7 @@
 			</tr>
 		</thead>
 
-		<% if @orders.present? %> 
+		<% if @orders.present? %>
 		<% @orders.each_with_index do |order, index| %>
 		<tbody>
 			<tr>
@@ -188,7 +188,7 @@
 				<td>
 					<%= link_to edit_admin_order_path(order) do %>
 					<i class="large edit icon"></i>
-					<% end%>	
+					<% end%>
 					<% end%>
 					<% if current_worker.destroy_order_access_is_given? == true %>
 					<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
