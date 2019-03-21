@@ -13,7 +13,7 @@ class Order < ApplicationRecord
   translate_enum :delivery_type
 
   belongs_to :product
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   pg_search_scope :search_all, :against =>
                                   [:id, :client_name, :client_phone, :client_email,
