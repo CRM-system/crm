@@ -87,6 +87,8 @@ class Admin::OrdersController < AdminController
     params_query.each do |search_type, search_type_value|
       if search_type == "client_info" && search_type_value.present?
         @orders = Order.search_all("#{params[:query][:client_info]}")
+      elsif search_type == "client_name" && search_type_value.present?
+        @orders = Order.search_by_name("#{params[:query][:client_name]}")
       else
         @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
       end
