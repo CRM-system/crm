@@ -1,14 +1,7 @@
-<!-- <li class="text-info">
-	<p class="text-success">
-		<b class="text-warning "><%= comment.worker.role.name %>:</b>
-		<strong class="text-danger"><%= comment.worker.nickname %></strong>
-		<%= comment.body %></p>
-	</li> -->
-	
-<tr>
-	<td><%= comment.worker.role.name %></td>
-	<td><%= comment.worker.nickname %></td>
-	<td><%= comment.body %></td>
-	<td><%= comment.created_at.localtime.strftime("%H:%M") %></td>
-</tr>
+	<tr>
+		<td><%= comment.worker.role.name %></td>
+		<td><%= comment.worker.nickname %></td>
+		<td><%= comment.body %></td>
+		<td><%= comment.created_at.localtime.strftime("%H:%M") %></td>
+	</tr>
 
