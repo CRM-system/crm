@@ -97,26 +97,37 @@ class Admin::OrdersController < AdminController
     @orders = Order.where("created_at::date = ?", Date.today)
     render :index
   end
-    
+
   def search_by_date_1_day_ago
     @orders = Order.where("created_at::date = ?", 1.day.ago)
     render :index
   end
-    
+
   def search_by_month
     @orders = Order.where("created_at::date > ?", 30.day.ago)
     render :index
   end
-    
+
   def search_by_year
     @orders = Order.where("created_at::date > ?", 1.year.ago)
     render :index
   end
 
   def show
+    # @order = Order.find(params[:id])
+    # @comment = @order.comments.all
+    # @workers = Worker.all
+
     @order = Order.find(params[:id])
-    @comment = @order.comments.all
-    @workers = Worker.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text 'Hello World'
+
+        send_data pdf.render
+      end
+    end
   end
 
   def destroy

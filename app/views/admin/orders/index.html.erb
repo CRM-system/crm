@@ -1,4 +1,4 @@
-<%# <div class="container"> %>
+
 	<div class="ui stackable five column grid">
 		<div class="column">
 			<div>
@@ -138,70 +138,73 @@
 		</div>
 	</div>
 	</div>
-	<%# <div class="scroll" style="overflow: scroll;"> %>
-	<table class="table table-bordered pt-5 mt-5">
-		<thead>
-			<tr>
-				<th>№</th>
-				<th>Название продукта</th>
-				<th>Имя</th>
-				<th>Телефон</th>
-				<th>Email</th>
-				<th>Адрес</th>
-				<th>Способ доставки</th>
-				<th>Цена заказа</th>
-				<th>Количество</th>
-				<th>Общая сумма</th>
-				<th>Статус</th>
-				<th>Комментарии</th>
-				<th colspan="2">Действия</th>
-			</tr>
-		</thead>
+	<div class="container">
+	<div class="scroll" style="overflow: scroll;">
+		<table class="table table-bordered pt-5 mt-5">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Название продукта</th>
+					<th>Имя</th>
+					<th>Телефон</th>
+					<th>Email</th>
+					<th>Адрес</th>
+					<th>Способ доставки</th>
+					<th>Цена заказа</th>
+					<th>Количество</th>
+					<th>Общая сумма</th>
+					<th>Статус</th>
+					<th>Комментарии</th>
+					<th colspan="2">Действия</th>
+				</tr>
+			</thead>
 
-		<% if @orders.present? %>
-		<% @orders.each_with_index do |order, index| %>
-		<tbody>
-			<tr>
-				<td><b><%= index += 1 %></b></td>
-				<td><b><%= order.product.name %></b></td>
-				<td><b><%= order.client_name  %></b></td>
-				<td><b><%= order.client_phone %></b></td>
-				<td><b><%= order.client_email %></b></td>
-				<td><b><%= order.client_addres %></b></td>
-				<td><b><%= order.translated_delivery_type %></b></td>
-				<td><b><%= order.order_price %></b></td>
-				<td><b><%= order.quantity %></b></td>
-				<td><b><%= order.total_price %></b></td>
-				<td><b><%= order.translated_status %></b></td>
+			<% if @orders.present? %>
+			<% @orders.each_with_index do |order| %>
+			<tbody>
+				<tr>
+					<td><b><%= order.id %></b></td>
+					<td><b><%= order.product .name %></b></td>
+					<td><b><%= order.client_name  %></b></td>
+					<td><b><%= order.client_phone %></b></td>
+					<td><b><%= order.client_email %></b></td>
+					<td><b><%= order.client_addres %></b></td>
+					<td><b><%= order.translated_delivery_type %></b></td>
+					<td><b><%= order.order_price %></b></td>
+					<td><b><%= order.quantity %></b></td>
+					<td><b><%= order.total_price %></b></td>
+					<td><b><%= order.translated_status %></b></td>
 
-				<% if order.comments.present? %>
-				<td><b><%= link_to order.comments.last.body, admin_order_path(order) %></b></td>
-				<% else %>
-				<td>
-					<%= link_to admin_order_path(order) do %>
-					<b class="text-danger">Нет комментариев!</b>
-					<% end%>
-				</td>
-				<% end %>
-
-				<% if worker_signed_in? %>
-				<% if current_worker.edit_order_access_is_given? == true %>
-				<td>
-					<%= link_to edit_admin_order_path(order) do %>
-					<i class="large edit icon"></i>
-					<% end%>
-					<% end%>
-					<% if current_worker.destroy_order_access_is_given? == true %>
-					<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
-					<i class="circular inverted red trash alternate outline icon"></i>
+					<% if order.comments.present? %>
+					<td><b class="comment_wrapper"><%= link_to order.comments.last.body, admin_order_path(order) %></b></td>
+					<% else %>
+					<td>
+						<%= link_to admin_order_path(order) do %>
+						<b class="text-danger">Нет комментариев!</b>
+						<% end%>
+					</td>
 					<% end %>
-				</td>
-				<% end%>
-				<% end %>
-			</tr>
-		</tbody>
-		<% end %>
-		<% end %>
-	</table>
-<%# </div> %>
+
+					<% if worker_signed_in? %>
+					<% if current_worker.edit_order_access_is_given? == true %>
+					<td>
+						<%= link_to edit_admin_order_path(order) do %>
+						<i class="large edit icon"></i>
+						<% end%>
+						<% end%>
+						<% if current_worker.destroy_order_access_is_given? == true %>
+						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
+						<i class="circular inverted red trash alternate outline icon"></i>
+						<% end %>
+					</td>
+					<% end%>
+					<% end %>
+				</tr>
+			</tbody>
+			<% end %>
+			<% end %>
+		</table>
+ </div>
+</div>
+
 

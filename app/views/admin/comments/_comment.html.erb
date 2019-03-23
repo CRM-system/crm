@@ -1,7 +1,7 @@
 	<tr>
 		<td><%= comment.worker.role.name %></td>
 		<td><%= comment.worker.nickname %></td>
-		<td><%= comment.body %></td>
+		<td><span class="comment_wrapper"><%= comment.body %></span></td>
 		<td><%= comment.created_at.localtime.strftime("%H:%M") %></td>
 	</tr>
 

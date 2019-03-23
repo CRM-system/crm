@@ -1,2 +1,19 @@
 @import 'bootstrap';
 
+.comment_wrapper {
+  width: 100%;
+    display: inline-block;
+    word-wrap: break-word;
+
+  a {
+    max-width: 200px;
+    display: block;
+    overflow: hidden;
+    // display: -webkit-box;
+    height: 37px;
+  }
+}
+#comments_table {
+  table-layout: fixed;
+}
+
