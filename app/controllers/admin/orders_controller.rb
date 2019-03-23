@@ -85,8 +85,8 @@ class Admin::OrdersController < AdminController
 
   def search_by_type(params_query)
     params_query.each do |search_type, search_type_value|
-      if search_type == "search_all" && search_type_value.present?
-        @orders = Order.search_all("#{params[:query][:search_all]}")
+      if search_type == "client_info" && search_type_value.present?
+        @orders = Order.search_all("#{params[:query][:client_info]}")
       else
         @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
       end
@@ -97,17 +97,17 @@ class Admin::OrdersController < AdminController
     @orders = Order.where("created_at::date = ?", Date.today)
     render :index
   end
-    
+
   def search_by_date_1_day_ago
     @orders = Order.where("created_at::date = ?", 1.day.ago)
     render :index
   end
-    
+
   def search_by_month
     @orders = Order.where("created_at::date > ?", 30.day.ago)
     render :index
   end
-    
+
   def search_by_year
     @orders = Order.where("created_at::date > ?", 1.year.ago)
     render :index
