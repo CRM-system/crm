@@ -147,7 +147,7 @@
 					<th>Название продукта</th>
 					<th>Имя</th>
 					<th>Телефон</th>
-					<th>Email</th>
+					<th>Распечатать</th>
 					<th>Адрес</th>
 					<th>Способ доставки</th>
 					<th>Цена заказа</th>
@@ -167,7 +167,7 @@
 					<td><b><%= order.product .name %></b></td>
 					<td><b><%= order.client_name  %></b></td>
 					<td><b><%= order.client_phone %></b></td>
-					<td><b><%= order.client_email %></b></td>
+					<td><b><%= link_to "Накладная(PDF)", admin_order_path(order, format: 'pdf') %></b></td>
 					<td><b><%= order.client_addres %></b></td>
 					<td><b><%= order.translated_delivery_type %></b></td>
 					<td><b><%= order.order_price %></b></td>

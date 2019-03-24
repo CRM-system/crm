@@ -124,10 +124,13 @@ class Admin::OrdersController < AdminController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = Prawn::Document.new
-        pdf.text 'Hello World'
+        pdf = OrderPdf.new
+        # pdf.text 'Привет'
 
-        send_data pdf.render
+        send_data pdf.render,
+        filename: "Заказ № #{@order.id}",
+        type: 'aplication/pdf',
+        disposition: 'inline'
       end
     end
   end

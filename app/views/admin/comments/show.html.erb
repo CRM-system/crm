@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<h1 class="text-info"><%= @order.product.name %></h1>
+
+<h2>Комментарии</h2>
+<div id="comment-section">
+	<table class="ui selectable celled table"	id="comments_table">
+		<thead>
+			<tr>
+				<th>Должность автора</th>
+				<th>Имя автора</th>
+				<th>Комментарии</th>
+				<th>Время создания</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render @order.comments %>
+		</tbody>
+	</table>
+
+	<h3>Написать комментарии:</h3>
+	<%= render 'admin/comments/form' %>
+</div>
+<br>
+<%= link_to "Назад", admin_orders_path, class: "btn btn-info" %>
+
+
