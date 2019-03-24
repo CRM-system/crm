@@ -43,22 +43,6 @@ class Admin::OrdersController < AdminController
     end
   end
 
-  # def check_params
-  #   start_date =  params[:query][:start_date].to_date
-  #   if params[:query][:end_date] == " "
-  #     end_date == Date.today
-  #   else
-  #     end_date =  params[:query][:end_date].to_date
-  #   end
-  #   @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
-  #   params[:query].tap{|param| param.delete(:start_date)}
-  #   params[:query].tap{|param| param.delete(:end_date)}
-  #   params[:query].each do |key, value|
-  #     @orders = @orders.where(key => value) if value.present?
-  #   end
-  #   render :index
-  # end
-
   def check_params
     start_date = params[:query][:start_date].to_date
     end_date = get_end_date(params[:query])
@@ -119,14 +103,11 @@ class Admin::OrdersController < AdminController
     # @order = Order.find(params[:id])
     # @comment = @order.comments.all
     # @workers = Worker.all
-
     @order = Order.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = OrderPdf.new
-        # pdf.text 'Привет'
-
+        pdf = OrderPdf.new(@order)
         send_data pdf.render,
         filename: "Заказ № #{@order.id}",
         type: 'aplication/pdf',
