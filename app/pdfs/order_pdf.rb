@@ -4,8 +4,8 @@ class OrderPdf < Prawn::Document
   def initialize(order)
     super(top_margin: 70)
     @order = order
-    self.font_families.update("NotoSans-SemiCondensedBoldItalic" => {:normal => "#{Rails.root}/app/assets/fonts/NotoSans-SemiCondensedBoldItalic.ttf"})
-    font "NotoSans-SemiCondensedBoldItalic"
+    self.font_families.update("NotoSans_SemiCondensedBoldItalic" => {:normal => "#{Rails.root}/app/assets/fonts/NotoSans_SemiCondensedBoldItalic.ttf"})
+    font "NotoSans_SemiCondensedBoldItalic"
     order_number
     line_items
   end
@@ -18,8 +18,8 @@ class OrderPdf < Prawn::Document
   def line_items
     move_down 20
     table line_item_rows do
-    #   row(0).font_style = :bold
-    #   columns(1..3).align = :right
+      # row(0).font_style = :bold
+      columns(1..3).align = :right
       self.row_colors = ['DDDDDD', 'FFFFFF']
       self.header = true
     end
