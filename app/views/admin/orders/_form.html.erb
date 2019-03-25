@@ -8,9 +8,9 @@
 		</div>
 
 		<div class="col">
-			<%= f.label :id, "ID:" %>
+			<%= f.label :id, "ID" %>
 			<br>
-			<%= f.collection_select :id, Order.all, :id, :id, include_blank: true, class:"form-control"  %>
+			<%= f.text_field :id, placeholder: 'Заказа', class: "form-control" %>
 		</div>
 
 		<div class="col">
