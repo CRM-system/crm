@@ -7,19 +7,21 @@
 
   <table class="ui selectable celled black table", id="centred_table">
     <tr>
-      <th>Названте</th>
+      <th>Название</th>
       <th>Описание</th>
+      <th>Адрес</th>
+      <th>Организация</th>
+      <th>Владелец</th>
       <th colspan="2">Действия</th>
     </tr>
 
     <% @landings.each do |landing| %>
       <tr>
-        <td>
-          <%= landing.name %>
-        </td>
-        <td>
-          <%= landing.description %>
-        </td>
+        <td><b><%= landing.name %></b></td>
+        <td><b><%= landing.description %></b></td>
+        <td><b><%= landing.address %></b></td>
+        <td><b><%= landing.organization %></b></td>
+        <td><b><%= landing.owner %></b></td>
         <td>
           <% if current_worker.edit_landing_access_is_present? %>
             <%= link_to edit_admin_landing_path(landing) do %>

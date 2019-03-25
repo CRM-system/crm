@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  #get 'landing/new'
-  #get 'landing/index'
-  #get 'landing/show'
-  #get 'landing/create'
-  #get 'landing/edit'
-  #get 'landing/update'
-  #get 'landing/destroy'
+  
   get 'comments/create'
 
 	get 'comments/create'

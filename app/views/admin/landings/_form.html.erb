@@ -21,6 +21,18 @@
       </p>
 
       <p>
+        <%= f.text_field :address, placeholder: 'Адрес' %>
+      </p>
+
+      <p>
+        <%= f.text_field :organization, placeholder: 'Организация' %>
+      </p>
+
+      <p>
+        <%= f.text_field :owner, placeholder: 'Владелец' %>
+      </p>
+
+      <p>
         <%= f.submit 'Подтвердить', class:"ui teal button" %>
       </p>
     <% end %>
