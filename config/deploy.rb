@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "crm"
-set :repo_url, "https://github.com/CRM-system/crm.git"
+set :repo_url, "git@github.com:CRM-system/crm.git"
 set :username, 'pguser'
 
 # Default branch is :master
