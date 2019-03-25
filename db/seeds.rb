@@ -34,6 +34,46 @@ end
 )
 
 @function = Function.create!(
+  model: (@model_landing = 'landing'),
+  name: 'index',
+  description: 'Просмотр всех лендингов',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'edit',
+  description: 'Редактирование лендинга',
+  access: true,
+  role_id:@role.id
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'show',
+  description: 'Просмотр лендинга',
+  access: true,
+  role_id: @role.id 
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'new',
+  description: 'Создание лендинга',
+  access: true,
+  role_id: @role.id 
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'destroy',
+  description: 'Удаление лендинга',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
   model: (@model_order = 'order'),
   name: 'index',
   description: 'Просмотр всех заказов',
@@ -222,27 +262,32 @@ set_functions_accesses_to_false(@role_operator)
 wallet1 = Product.create(
   name: 'Бумажник',
   price: 5000,
-  description: 'Кожанный бумажник чёрного цвета'
+  description: 'Кожанный бумажник чёрного цвета',
+  landing_id: '1'
 )
 wallet2 = Product.create(
   name: 'Бумажник',
   price: 4500,
-  description: 'Кожанный бумажник коричневого цвета.Качество кожи хорошее'
+  description: 'Кожанный бумажник коричневого цвета.Качество кожи хорошее',
+  landing_id: '1'
 )
 wallet3 = Product.create(
   name: 'Бумажник',
   price: 3500,
-  description: 'Бумажник из материи'
+  description: 'Бумажник из материи',
+  landing_id: '1'
 )
 wallet4 = Product.create(
   name: 'Бумажник',
   price: 2500,
-  description: 'Бумажник чёрного цвета из кож.зама'
+  description: 'Бумажник чёрного цвета из кож.зама',
+  landing_id: '1'
 )
 wallet5 = Product.create(
   name: 'Бумажник',
   price: 2500,
-  description: 'Бумажник коричневого цвета из кожзама'
+  description: 'Бумажник коричневого цвета из кожзама',
+  landing_id: '1'
 )
 add_image_to_product(wallet1,'бумажник1')
 add_image_to_product(wallet2,'бумажник2')

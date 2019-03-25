@@ -1,0 +1,40 @@
+<h1>Лендинги</h1>
+<% if current_worker.new_landing_access_is_given? %>
+  <%= link_to 'Создать новый лендинг', new_admin_landing_path, class:"ui positive basic button" %>
+<% end %>
+
+<%= link_to 'Назад', admin_landings_path, class: "ui teal button" %>
+
+  <table class="ui selectable celled black table", id="centred_table">
+    <tr>
+      <th>Названте</th>
+      <th>Описание</th>
+      <th colspan="2">Действия</th>
+    </tr>
+
+    <% @landings.each do |landing| %>
+      <tr>
+        <td>
+          <%= landing.name %>
+        </td>
+        <td>
+          <%= landing.description %>
+        </td>
+        <td>
+          <% if current_worker.edit_landing_access_is_present? %>
+            <%= link_to edit_admin_landing_path(landing) do %>
+              <i class="large edit icon"></i>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if current_worker.destroy_landing_access_is_given? %>
+            <%= link_to admin_landing_path(landing), data: { confirm: 'Вы уверены?' }, method: :delete do %>
+              <i class="large circular inverted red trash alternate outline icon"></i>
+            <% end %>
+          <% end %>
+
+        </td>
+      </tr>
+    <% end %>
+  </table>
