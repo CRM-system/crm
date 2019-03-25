@@ -344,21 +344,22 @@ OrderStatus.all.each do |order_status|
     )
 end
 
-# if Rails.env.test? 
-  if Rails.env.development?
+#if Rails.env.development?
 
-  def add_image_to_product(product, file)
-    fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
-    product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
-  end
+def add_image_to_product(product, file)
+  fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
+  product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
+end
 
-  tree = Product.create(
-    name: 'Елка',
-    price: 25000,
-    description: 'Искусственная Новогодняя елка'
-    )
-
+tree = Product.create(
+  name: 'Елка',
+  price: 25000,
+  description: 'Искусственная Новогодняя елка'
+  )
+  
   add_image_to_product(tree,'tree')
+  
+  if Rails.env.test? 
 
   Order.create!(
     client_name: 'Василий',
