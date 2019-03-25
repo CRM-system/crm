@@ -30,6 +30,46 @@ end
   )
 
 @function = Function.create!(
+  model: (@model_landing = 'landing'),
+  name: 'index',
+  description: 'Просмотр всех лендингов',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'edit',
+  description: 'Редактирование лендинга',
+  access: true,
+  role_id:@role.id
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'show',
+  description: 'Просмотр лендинга',
+  access: true,
+  role_id: @role.id 
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'new',
+  description: 'Создание лендинга',
+  access: true,
+  role_id: @role.id 
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'destroy',
+  description: 'Удаление лендинга',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
   model: (@model_order = 'order'),
   name: 'index',
   description: 'Просмотр всех заказов',

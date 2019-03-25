@@ -7,6 +7,36 @@ class Worker < ApplicationRecord
 	belongs_to :role
   has_many :comments
 
+  def index_landing_access_is_given?
+    if function_is_present?('landing', 'index')
+      return_access('landing', 'index')
+    end
+  end
+
+  def edit_landing_access_is_present?
+    if function_is_present?('landing', 'edit')
+      return_access('landing', 'edit')
+    end
+  end
+
+  def show_landing_access_is_present?
+    if function_is_present?('landing', 'show')
+      return_access('landing', 'show')
+    end
+  end
+
+  def new_landing_access_is_given?
+    if function_is_present?('landing', 'new')
+      return_access('landing', 'new')
+    end
+  end
+
+  def destroy_landing_access_is_given?
+    if function_is_present?('landing', 'destroy')
+      return_access('landing', 'destroy')
+    end
+  end
+
   def index_order_access_is_given?
     if function_is_present?('order', 'index')
       return_access('order', 'index')
@@ -20,7 +50,7 @@ class Worker < ApplicationRecord
   end
 
   def new_order_access_is_given?
-    if function_is_present?('order', 'edit')
+    if function_is_present?('order', 'new')
       return_access('order', 'new')
     end
   end

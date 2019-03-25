@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_103932) do
+ActiveRecord::Schema.define(version: 2019_03_21_120143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,13 @@ ActiveRecord::Schema.define(version: 2019_02_22_103932) do
     t.index ["role_id"], name: "index_functions_on_role_id"
   end
 
+  create_table "landings", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_statuses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -87,6 +94,8 @@ ActiveRecord::Schema.define(version: 2019_02_22_103932) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "landing_id"
+    t.index ["landing_id"], name: "index_products_on_landing_id"
   end
 
   create_table "role_order_statuses", force: :cascade do |t|
@@ -125,5 +134,6 @@ ActiveRecord::Schema.define(version: 2019_02_22_103932) do
   add_foreign_key "comments", "workers"
   add_foreign_key "functions", "roles"
   add_foreign_key "orders", "products"
+  add_foreign_key "products", "landings"
   add_foreign_key "workers", "roles"
 end
