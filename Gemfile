@@ -24,7 +24,7 @@ gem 'jwt'
 gem 'prawn'
 gem 'responders'
 gem 'prawn-table'
-gem 'paperclip'
+# gem 'paperclip'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg'
