@@ -50,7 +50,7 @@ end
   name: 'show',
   description: 'Просмотр лендинга',
   access: true,
-  role_id: @role.id 
+  role_id: @role.id
 )
 
 @function = Function.create!(
@@ -58,7 +58,7 @@ end
   name: 'new',
   description: 'Создание лендинга',
   access: true,
-  role_id: @role.id 
+  role_id: @role.id
 )
 
 @function = Function.create!(
@@ -341,24 +341,28 @@ OrderStatus.all.each do |order_status|
   RoleOrderStatus.create!(
     order_status_id: order_status.id,
     role_id: @role.id
-    )
+  )
 end
 
-# if Rails.env.test? 
-  if Rails.env.development?
+def add_image_to_product(product, file)
+  fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
+  product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
+end
 
-  def add_image_to_product(product, file)
-    fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
-    product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
-  end
+tree = Product.create!(
+  name: 'Елка',
+  price: 25000,
+  description: 'Искусственная Новогодняя елка'
+)
 
-  tree = Product.create(
-    name: 'Елка',
-    price: 25000,
-    description: 'Искусственная Новогодняя елка'
-    )
+# landing = Landing.create!(
+#   name: 'Елки',
+#   description: 'Искусственная Новогодняя елка'
+# )
 
-  add_image_to_product(tree,'tree')
+add_image_to_product(tree,'tree')
+
+if Rails.env.test?
 
   Order.create!(
     client_name: 'Василий',
@@ -369,7 +373,7 @@ end
     quantity: 2,
     total_price: 50000,
     status: 'new_order',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Иван',
@@ -380,7 +384,7 @@ end
     quantity: 2,
     total_price: 50000,
     status: 'confirmed',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Николай',
@@ -391,7 +395,7 @@ end
     quantity: 2,
     total_price: 50000,
     status: 'unconfirmed',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Глеб',
@@ -402,7 +406,7 @@ end
     quantity: 3,
     total_price: 75000,
     status: 'rejection',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Олег',
@@ -413,7 +417,7 @@ end
     quantity: 3,
     total_price: 75000,
     status: 'find_out',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Павел',
@@ -424,7 +428,7 @@ end
     quantity: 3,
     total_price: 75000,
     status: 'deferred',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Владимир',
@@ -435,7 +439,7 @@ end
     quantity: 4,
     total_price: 100000,
     status: 'assemblage',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Станислав',
@@ -446,7 +450,7 @@ end
     quantity: 4,
     total_price: 100000,
     status: 'prepared',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Анатолий',
@@ -457,7 +461,7 @@ end
     quantity: 4,
     total_price: 100000,
     status: 'sent',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Дмитрий',
@@ -468,7 +472,7 @@ end
     quantity: 1,
     total_price: 25000,
     status: 'handed_in',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Антон',
@@ -479,7 +483,7 @@ end
     quantity: 1,
     total_price: 25000,
     status: 'handed_and_paid',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Захар',
@@ -490,7 +494,7 @@ end
     quantity: 1,
     total_price: 25000,
     status: 'return',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Михаил',
@@ -501,7 +505,7 @@ end
     quantity: 1,
     total_price: 25000,
     status: 'refund_received',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Кирилл',
@@ -512,7 +516,7 @@ end
     quantity: 5,
     total_price: 125000,
     status: 'delivered',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Константин',
@@ -523,7 +527,7 @@ end
     quantity: 5,
     total_price: 125000,
     status: 'reminder_1',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Евгений',
@@ -534,7 +538,7 @@ end
     quantity: 5,
     total_price: 125000,
     status: 'reminder_2',
-    product_id: '1'
+    product_id: tree.id
     )
   Order.create!(
     client_name: 'Афанасий',
@@ -545,6 +549,6 @@ end
     quantity: 5,
     total_price: 125000,
     status: 'wanted',
-    product_id: '1'
+    product_id: tree.id
     )
 end
