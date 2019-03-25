@@ -44,7 +44,7 @@ class Admin::LandingsController < AdminController
     private
 
     def landing_params
-      params.require(:landing).permit(:name, :description)
+      params.require(:landing).permit(:name, :description, :address, :organization, :owner)
     end
 
     def find_landing
