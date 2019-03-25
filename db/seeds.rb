@@ -349,16 +349,20 @@ def add_image_to_product(product, file)
   product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
 end
 
+landing = Landing.create!(
+  name: 'Елки',
+  description: 'Искусственная Новогодняя елка',
+  address: 'Шаляпина Момышулы',
+  organization: 'Sputnik',
+  owner: 'Sputnik'
+)
+
 tree = Product.create!(
   name: 'Елка',
   price: 25000,
-  description: 'Искусственная Новогодняя елка'
+  description: 'Искусственная Новогодняя елка',
+  landing_id: landing.id
 )
-
-# landing = Landing.create!(
-#   name: 'Елки',
-#   description: 'Искусственная Новогодняя елка'
-# )
 
 add_image_to_product(tree,'tree')
 
