@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'comments/create'
 
 	get 'comments/create'
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     namespace :v1 do
     	get 'orders/thanks'
       post 'orders/create'
+      get 'landings/show'
     end
   end
 end
