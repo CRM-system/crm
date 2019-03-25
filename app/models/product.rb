@@ -4,6 +4,7 @@ class Product < ApplicationRecord
 	validates :price, presence: true
 	validates :description, presence: true, length: {maximum: 200}
 
+	belongs_to :landing
 	has_one_attached :picture
 
 	validates :picture,

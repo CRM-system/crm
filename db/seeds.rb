@@ -26,10 +26,50 @@ end
   name: 'Администратор'
 )
 @worker = Worker.create!(
-  nickname: 'admin',
+  nickname: 'Марк(админ)',
   email: 'admin@admin.com',
   password: 'qweasd',
   admin: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: (@model_landing = 'landing'),
+  name: 'index',
+  description: 'Просмотр всех лендингов',
+  access: true,
+  role_id: @role.id
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'edit',
+  description: 'Редактирование лендинга',
+  access: true,
+  role_id:@role.id
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'show',
+  description: 'Просмотр лендинга',
+  access: true,
+  role_id: @role.id 
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'new',
+  description: 'Создание лендинга',
+  access: true,
+  role_id: @role.id 
+)
+
+@function = Function.create!(
+  model: @model_landing,
+  name: 'destroy',
+  description: 'Удаление лендинга',
+  access: true,
   role_id: @role.id
 )
 
@@ -219,36 +259,14 @@ add_functions_for(@role_operator)
 set_functions_accesses_to_false(@role_operator)
 @role_operator.functions.where(model: 'product', name: 'index').first.update(access: true)
 # --------------------------------------------------
-wallet1 = Product.create(
-  name: 'Бумажник',
-  price: 5000,
-  description: 'Кожанный бумажник чёрного цвета'
+tree = Product.create(
+  name: 'Елка',
+  price: 25000,
+  description: 'Искусственная Новогодняя елка'
 )
-wallet2 = Product.create(
-  name: 'Бумажник',
-  price: 4500,
-  description: 'Кожанный бумажник коричневого цвета.Качество кожи хорошее'
-)
-wallet3 = Product.create(
-  name: 'Бумажник',
-  price: 3500,
-  description: 'Бумажник из материи'
-)
-wallet4 = Product.create(
-  name: 'Бумажник',
-  price: 2500,
-  description: 'Бумажник чёрного цвета из кож.зама'
-)
-wallet5 = Product.create(
-  name: 'Бумажник',
-  price: 2500,
-  description: 'Бумажник коричневого цвета из кожзама'
-)
-add_image_to_product(wallet1,'бумажник1')
-add_image_to_product(wallet2,'бумажник2')
-add_image_to_product(wallet3,'бумажник3')
-add_image_to_product(wallet4,'бумажник4')
-add_image_to_product(wallet5,'бумажник5')
+
+add_image_to_product(tree,'tree')
+
 
 order_status = OrderStatus.create(
   title: 'find_out',

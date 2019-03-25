@@ -29,6 +29,12 @@
           <%= link_to 'Заказы', admin_orders_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
+
+        <% if current_worker.index_landing_access_is_given? %>
+        <strong>
+          <%= link_to 'Лендинги', admin_landings_path, :class => "text-light" %>&nbsp;&nbsp;
+        </strong>
+        <% end %>
       </ul>
       <div class="navbar-nav ml-auto">
         <% if worker_signed_in? %>

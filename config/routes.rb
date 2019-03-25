@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  #get 'landing/new'
+  #get 'landing/index'
+  #get 'landing/show'
+  #get 'landing/create'
+  #get 'landing/edit'
+  #get 'landing/update'
+  #get 'landing/destroy'
   get 'comments/create'
 
 	get 'comments/create'
@@ -20,6 +27,7 @@ Rails.application.routes.draw do
 	namespace :admin do
 		root 'orders#index'
 		resources :workers
+		resources :landings
 		resources :roles
 		resources :functions
 		put '/access/functions/:id' => 'functions#access', as: 'access'

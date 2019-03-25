@@ -1,0 +1,28 @@
+<div class="ui form">
+  <div class="fields">
+    <%= form_with model: [:admin, @landing], local: true do |f| %>
+      <% if @landing.errors.any? %>
+        <div class="errors">
+          Ошибки: <%= @landing.errors.count%>
+          <ul>
+            <% @landing.errors.full_messages.each do |message|%>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p>
+        <%= f.text_field :name, placeholder: 'Название' %>
+      </p>
+
+      <p>
+        <%= f.text_field :description, placeholder: 'Описание' %>
+      </p>
+
+      <p>
+        <%= f.submit 'Подтвердить', class:"ui teal button" %>
+      </p>
+    <% end %>
+  </div>
+</div>

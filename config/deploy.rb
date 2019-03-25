@@ -10,6 +10,7 @@ set :username, 'pguser'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy_rails/ppp"
+append :linked_dirs, '.bundle'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh

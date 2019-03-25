@@ -3,5 +3,10 @@
 		<td><%= comment.worker.nickname %></td>
 		<td><span class="comment_wrapper"><%= comment.body %></span></td>
 		<td><%= comment.created_at.localtime.strftime("%H:%M") %></td>
-	</tr>
+		
+		<td><%= link_to admin_order_comment_path(@order, comment), data: { confirm: 'Вы уверены?' }, method: :delete do %>
+		<i class="circular inverted red trash alternate outline icon"></i>
+		<% end %>
+			</td>
+		</tr>
 
