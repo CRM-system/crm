@@ -43,22 +43,6 @@ class Admin::OrdersController < AdminController
     end
   end
 
-  # def check_params
-  #   start_date =  params[:query][:start_date].to_date
-  #   if params[:query][:end_date] == " "
-  #     end_date == Date.today
-  #   else
-  #     end_date =  params[:query][:end_date].to_date
-  #   end
-  #   @orders = Order.where(created_at: start_date.beginning_of_day..Date.today.beginning_of_day)
-  #   params[:query].tap{|param| param.delete(:start_date)}
-  #   params[:query].tap{|param| param.delete(:end_date)}
-  #   params[:query].each do |key, value|
-  #     @orders = @orders.where(key => value) if value.present?
-  #   end
-  #   render :index
-  # end
-
   def check_params
     start_date = params[:query][:start_date].to_date
     end_date = get_end_date(params[:query])
@@ -85,8 +69,10 @@ class Admin::OrdersController < AdminController
 
   def search_by_type(params_query)
     params_query.each do |search_type, search_type_value|
-      if search_type == "search_all" && search_type_value.present?
-        @orders = Order.search_all("#{params[:query][:search_all]}")
+      if search_type == "client_info" && search_type_value.present?
+        @orders = Order.search_all("#{params[:query][:client_info]}")
+      elsif search_type == "client_name" && search_type_value.present?
+        @orders = Order.search_by_name("#{params[:query][:client_name]}")
       else
         @orders = @orders.where(search_type => search_type_value) if search_type_value.present?
       end
@@ -97,17 +83,17 @@ class Admin::OrdersController < AdminController
     @orders = Order.where("created_at::date = ?", Date.today)
     render :index
   end
-    
+
   def search_by_date_1_day_ago
     @orders = Order.where("created_at::date = ?", 1.day.ago)
     render :index
   end
-    
+
   def search_by_month
     @orders = Order.where("created_at::date > ?", 30.day.ago)
     render :index
   end
-    
+
   def search_by_year
     @orders = Order.where("created_at::date > ?", 1.year.ago)
     render :index
@@ -115,8 +101,16 @@ class Admin::OrdersController < AdminController
 
   def show
     @order = Order.find(params[:id])
-    @comment = @order.comments.all
-    @workers = Worker.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = OrderPdf.new(@order)
+        send_data pdf.render,
+        filename: "Заказ № #{@order.id}",
+        type: 'aplication/pdf',
+        disposition: 'inline'
+      end
+    end
   end
 
   def destroy

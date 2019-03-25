@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 		put '/access/functions/:id' => 'functions#access', as: 'access'
 		resources :products
 		post '/duplicate/products/:id' => 'products#duplicate', as: 'duplicate'
+		resources :orders, only: [:show, :index]
 		resources :orders do
 			resources :comments
 		end
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
     get 'products/index'
 
     namespace :v1 do
+    	get 'orders/thanks'
       post 'orders/create'
     end
   end

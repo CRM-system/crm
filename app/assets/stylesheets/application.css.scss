@@ -1,2 +1,30 @@
 @import 'bootstrap';
 
+.comment_wrapper {
+  width: 100%;
+    display: inline-block;
+    word-wrap: break-word;
+
+  a {
+    max-width: 200px;
+    display: block;
+    overflow: hidden;
+    // display: -webkit-box;
+    height: 37px;
+  }
+}
+#comments_table {
+  table-layout: fixed;
+}
+
+@font-face {
+  font-family: 'icofonts';
+  src:url('fonts/NotoSans_SemiCondensedBoldItalic');
+  src:url('fonts/icofonts.eot?#iefix') format('embedded-opentype'),
+      url('fonts/icofonts.ttf') format('truetype'),
+      url('fonts/icofonts.woff') format('woff'),
+      url('fonts/icofonts.svg#icofonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+

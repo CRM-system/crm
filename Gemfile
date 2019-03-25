@@ -21,6 +21,9 @@ gem 'jquery-ui-rails'
 # gem 'therubyracer'
 
 gem 'jwt'
+gem 'prawn'
+gem 'responders'
+gem 'prawn-table'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'

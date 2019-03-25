@@ -1,4 +1,5 @@
 class Api::V1::OrdersController < ApiController
+  layout 'thanks'
   skip_before_action :verify_authenticity_token
 
   def create
@@ -15,7 +16,7 @@ class Api::V1::OrdersController < ApiController
     )
 
     if order.save
-      render json: order, status: 201
+      redirect_to api_v1_orders_thanks_url
     else
       render json: { errors: order.errors }, status: 422
     end
