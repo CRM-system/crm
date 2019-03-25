@@ -188,7 +188,7 @@
 					<% if worker_signed_in? %>
 					<% if current_worker.edit_order_access_is_given? == true %>
 					<td>
-						<%= link_to edit_admin_order_path(order) do %>
+						<%= link_to edit_admin_order_path(order), id: "order-edit-#{order.id}" do %>
 						<i class="large edit icon"></i>
 						<% end%>
 						<% end%>
