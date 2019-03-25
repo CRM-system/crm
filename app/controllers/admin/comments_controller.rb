@@ -9,6 +9,13 @@ class Admin::CommentsController < AdminController
 		end
 	end
 
+	def destroy
+		@order = Order.find(params[:order_id])	
+		@comment = @order.comments.find(params[:id])
+		@comment.destroy
+		redirect_to admin_order_path(@order)
+	end
+
 	private
 
 	def comment_params
