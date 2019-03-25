@@ -344,11 +344,6 @@ OrderStatus.all.each do |order_status|
   )
 end
 
-def add_image_to_product(product, file)
-  fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
-  product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
-end
-
 landing = Landing.create!(
   name: 'Елки',
   description: 'Искусственная Новогодняя елка',
@@ -363,6 +358,11 @@ tree = Product.create!(
   description: 'Искусственная Новогодняя елка',
   landing_id: landing.id
 )
+
+def add_image_to_product(product, file)
+  fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
+  product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
+end
 
 add_image_to_product(tree,'tree')
 
