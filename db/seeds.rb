@@ -366,7 +366,7 @@ end
 
 add_image_to_product(tree,'tree')
 
-if Rails.env.test?
+# if Rails.env.test?
 
   Order.create!(
     client_name: 'Василий',
@@ -555,4 +555,4 @@ if Rails.env.test?
     status: 'wanted',
     product_id: tree.id
     )
-end
+# end
