@@ -7,7 +7,6 @@ end
 end
 
 То("заказы в со статусом {string} видно в таблице") do |order_all|
-  # find('th', text: status, match: :prefer_exact) 
   page.has_content?('order_all')
 end
 
@@ -16,14 +15,9 @@ end
 end
 
 То("увидит в таблице заказы со статусом {string}") do |status|
-  find('th', text: status, match: :prefer_exact)
-    sleep(1)
+  page.has_content?('new_order')
 end
 
-# private
 
-# def find_all_order
-#   Order.count
-# end
 
 
