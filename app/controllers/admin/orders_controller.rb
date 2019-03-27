@@ -37,9 +37,9 @@ class Admin::OrdersController < AdminController
 
   def index
     if params[:status]
-      @orders = Order.where(status: params[:status])
+      @orders = Order.where(status: params[:status]).order(:id)
     else
-      @orders = Order.all
+      @orders = Order.all.order(:id)
     end
   end
 
