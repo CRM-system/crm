@@ -189,12 +189,12 @@
 					<% if worker_signed_in? %>
 					<% if current_worker.edit_order_access_is_given? == true %>
 					<td>
-						<%= link_to edit_admin_order_path(order), id: "order-edit-#{order.id}" do %>
+						<%= link_to edit_admin_order_path(order) do %>
 						<i class="large edit icon"></i>
 						<% end%>
 						<% end%>
 						<% if current_worker.destroy_order_access_is_given? == true %>
-						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
+						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete, id: "order/#{order.id}" 	 do %>
 						<i class="circular inverted red trash alternate outline icon"></i>
 						<% end %>
 					</td>
