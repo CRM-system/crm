@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 	get 'comments/create'
 
-	root 'products#index'
+	root 'welcome#welcome'
 
 	devise_for :workers, :skip => [:registrations]
 	as :worker do
