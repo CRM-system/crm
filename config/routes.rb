@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 	end
 
 	namespace :admin do
-		root 'orders#index'
+		root 'orders#welcome'
 		resources :workers
 		resources :landings
 		resources :roles
