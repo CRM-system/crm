@@ -7,10 +7,8 @@ end
 
 	visit("admin/orders/1/edit")
 	sleep(2)
-	
 	within '#order_status' do
 		find("option[value='confirmed']").click
-		
 	end
 	click_button('Подтвердить')
 	
