@@ -24,6 +24,9 @@ class Admin::OrdersController < AdminController
   end
 
   def edit
+    order = Order.find(params[:id])
+    landing = order.product.landing
+    @products = landing.products
   end
 
   def update
