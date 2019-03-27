@@ -1,4 +1,4 @@
-class Admin::LandingsController < AdminController 
+class Admin::LandingsController < AdminController
   before_action :check_access_index_landing, :only => [:index]
   before_action :check_access_show_landing, :only => [:show]
   before_action :check_access_edit_landing, :only => [:edit]
@@ -29,11 +29,11 @@ class Admin::LandingsController < AdminController
     end
 
     def update
-     if @landing.update(landing_params)
+      if @landing.update(landing_params)
       redirect_to admin_landings_path(@landing)
-     else
+    else
       render :edit
-     end
+      end
     end
 
     def destroy
