@@ -25,7 +25,7 @@
 
       <div class="field">
         <%= f.label 'Email' %>
-        <%= f.text_field :client_email, placeholder: 'Выяснить' %><br>
+        <%= f.email_field :client_email, placeholder: 'Выяснить' %><br>
       </div>
 
       <div class="field">
@@ -65,8 +65,9 @@
 
       <div><br>
         <%= f.submit "Подтвердить", class:"ui teal button" %>
-        <%= f.submit "Назад",class:"ui teal button" %>
+        <%= link_to "Назад", admin_orders_path, class:"ui teal button" %>
       </div>
+
     <% end %>
   </div>
 <%= link_to 'Оставить комментарий', admin_order_path(@order),class:" green ui button"    %>
