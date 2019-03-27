@@ -353,7 +353,7 @@ landing = Landing.create!(
 )
 
 tree = Product.create!(
-  name: 'Елка',
+  name: 'Елка 180см',
   price: 25000,
   description: 'Искусственная Новогодняя елка',
   landing_id: landing.id
