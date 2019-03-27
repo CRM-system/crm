@@ -1,11 +1,19 @@
 То("он видит заказ со статусом {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+
+	find('td', text: status, match: :prefer_exact)
 end
 
-Если("он меняет тип доставки на {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
+Если("он меняет статус заказа с {string} на {string}") do |current_status, new_status|
 
-То("в списке заказов видит этот заказ с изменненым типом доставки") do
-  pending # Write code here that turns the phrase above into concrete actions
+	visit("admin/orders/1/edit")
+	sleep(2)
+	within '#order_status' do
+		find("option[value='confirmed']").click
+	end
+	click_button('Подтвердить')
+	
+end 
+
+То("в списке заказов видит этот заказ с изменненым статусом") do
+	find('td', text: status, match: :prefer_exact)
 end

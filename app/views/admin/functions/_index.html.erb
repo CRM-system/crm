@@ -2,17 +2,16 @@
 <table class="ui selectable celled black table", id="centred_table">
   <tr class="table_title">
     <th>Описание</th>
-    <th>Доступ</th>    
+    <th>Доступ</th>
     <th colspan="3">Действия</th>
   </tr>
 
-  <% @functions.each do |function| %>
-    <tr>      
+  <% @functions.order(:id).each do |function| %>
+    <tr>
       <td><%= function.description %></td>
-      
       <td>
       <% if function.access == true %>
-        <i class="grey large thumbs up icon"></i>     
+        <i class="grey large thumbs up icon"></i>
       <% else %>
         <i class="grey large thumbs down outline icon"></i>
       <% end %>
@@ -32,13 +31,13 @@
       </td>
 
       <td><%= link_to edit_admin_function_path(function) do %>
-       <i class="large edit icon"></i></td>
+        <i class="large edit icon"></i></td>
       <% end %>
 
     </tr>
   <% end %>
 </table>
 
-<%#= link_to 'Создать новую функцию', new_admin_function_path, class:"ui teal button" %>
+<%= link_to 'Создать новую функцию', new_admin_function_path, class:"ui teal button" %>
 <br>
 <br>

@@ -145,7 +145,7 @@
 				<tr>
 					<th>ID</th>
 					<th>Название продукта</th>
-					<th class="text-danger">BOM</th>
+					<th>Дата поступления</th>
 					<th>Имя</th>
 					<th>Телефон</th>
 					<th>Распечатать</th>
@@ -166,6 +166,7 @@
 				<tr>
 					<td><b><%= order.id %></b></td>
 					<td><b><%= order.product .name %></b></td>
+					<td><b><%= order.created_at.localtime.strftime("%d.%m.%Y  %H:%M") %></b></td>
 					<td><b><%= order.client_name  %></b></td>
 					<td><b><%= order.client_phone %></b></td>
 					<td><b><%= link_to "Накладная(PDF)", admin_order_path(order, format: 'pdf') %></b></td>
@@ -189,12 +190,12 @@
 					<% if worker_signed_in? %>
 					<% if current_worker.edit_order_access_is_given? == true %>
 					<td>
-						<%= link_to edit_admin_order_path(order), id: "order-edit-#{order.id}" do %>
+						<%= link_to edit_admin_order_path(order) do %>
 						<i class="large edit icon"></i>
 						<% end%>
 						<% end%>
 						<% if current_worker.destroy_order_access_is_given? == true %>
-						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete 	 do %>
+						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete, id: "order/#{order.id}" 	 do %>
 						<i class="circular inverted red trash alternate outline icon"></i>
 						<% end %>
 					</td>
