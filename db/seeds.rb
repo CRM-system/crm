@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 def add_functions_for(role)
   Function.all.each do |function|
     role.functions << function.dup
@@ -35,7 +27,7 @@ end
   description: 'Просмотр всех лендингов',
   access: true,
   role_id: @role.id
-)
+  )
 
 @function = Function.create!(
   model: @model_landing,
@@ -43,7 +35,7 @@ end
   description: 'Редактирование лендинга',
   access: true,
   role_id:@role.id
-)
+  )
 
 @function = Function.create!(
   model: @model_landing,
@@ -51,7 +43,7 @@ end
   description: 'Просмотр лендинга',
   access: true,
   role_id: @role.id
-)
+  )
 
 @function = Function.create!(
   model: @model_landing,
@@ -59,7 +51,7 @@ end
   description: 'Создание лендинга',
   access: true,
   role_id: @role.id
-)
+  )
 
 @function = Function.create!(
   model: @model_landing,
@@ -67,7 +59,7 @@ end
   description: 'Удаление лендинга',
   access: true,
   role_id: @role.id
-)
+  )
 
 @function = Function.create!(
   model: (@model_order = 'order'),
@@ -341,32 +333,31 @@ OrderStatus.all.each do |order_status|
   RoleOrderStatus.create!(
     order_status_id: order_status.id,
     role_id: @role.id
-  )
+    )
 end
 
-landing = Landing.create!(
-  name: 'Елки',
-  description: 'Искусственная Новогодняя елка',
-  address: 'Шаляпина Момышулы',
-  organization: 'Sputnik',
-  owner: 'Sputnik'
-)
+if Rails.env.test?
+  landing = Landing.create!(
+    name: 'Елки',
+    description: 'Искусственная Новогодняя елка',
+    address: 'Шаляпина Момышулы',
+    organization: 'Sputnik',
+    owner: 'Sputnik'
+    )
 
-tree = Product.create!(
-  name: 'Елка 180см',
-  price: 25000,
-  description: 'Искусственная Новогодняя елка',
-  landing_id: landing.id
-)
+  tree = Product.create!(
+    name: 'Елка 180см',
+    price: 25000,
+    description: 'Искусственная Новогодняя елка',
+    landing_id: landing.id
+    )
 
-def add_image_to_product(product, file)
-  fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
-  product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
-end
+  def add_image_to_product(product, file)
+    fixtures_path = Rails.root.join('app', 'assets', 'images', 'fixtures', "#{file}.jpg")
+    product.picture.attach(io: File.open(fixtures_path), filename: "#{file}.jpg")
+  end
 
-add_image_to_product(tree,'tree')
-
-# if Rails.env.test?
+  add_image_to_product(tree,'tree')
 
   Order.create!(
     client_name: 'Василий',
@@ -555,4 +546,4 @@ add_image_to_product(tree,'tree')
     status: 'wanted',
     product_id: tree.id
     )
-# end
+end
