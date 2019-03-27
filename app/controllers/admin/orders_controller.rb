@@ -116,10 +116,6 @@ class Admin::OrdersController < AdminController
   end
 
   def show
-    # @order = Order.find(params[:id])
-    # @comment = @order.comments.all
-    # @workers = Worker.all
-
     @order = Order.find(params[:id])
     respond_to do |format|
       format.html
