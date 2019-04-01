@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 	end
 
 	namespace :admin do
-		root 'orders#status'
+
+		root 'orders#welcome'
 		resources :workers
 		resources :landings
 		resources :roles

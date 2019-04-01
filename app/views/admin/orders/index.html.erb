@@ -169,7 +169,7 @@
 					<td><b><%= order.created_at.localtime.strftime("%d.%m.%Y  %H:%M") %></b></td>
 					<td><b><%= order.client_name  %></b></td>
 					<td><b><%= order.client_phone %></b></td>
-					<td><b><%= link_to "Накладная(PDF)", admin_order_path(order, format: 'pdf') %></b></td>
+					<td><b><%= link_to "Накладная(PDF)", admin_order_path(order, format: 'pdf', disposition: 'inline', type: 'aplication/pdf') %></b></td>
 					<td><b><%= order.client_addres %></b></td>
 					<td><b><%= order.translated_delivery_type %></b></td>
 					<td><b><%= order.order_price %></b></td>
