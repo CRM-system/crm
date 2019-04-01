@@ -24,9 +24,6 @@ class Admin::OrdersController < AdminController
   end
 
   def edit
-    order = Order.find(params[:id])
-    landing = order.product.landing
-    @products = landing.products
   end
 
   def update
@@ -105,15 +102,20 @@ class Admin::OrdersController < AdminController
   def show
     @order = Order.find(params[:id])
     respond_to do |format|
-      format.html
       format.pdf do
+        pdf = Prawn::Document.new
         pdf = OrderPdf.new(@order)
+        # pdf.text "Hello world"
         send_data pdf.render,
-        filename: "Заказ № #{@order.id}",
+        filename: order_file_name,
         type: 'aplication/pdf',
         disposition: 'inline'
       end
     end
+  end
+
+  def order_file_name
+    "Заказ № #{@order.id}"
   end
 
   def destroy
