@@ -58,10 +58,16 @@
         <%= f.select( :status, options_for_select(current_worker.role.order_statuses.map{ |s| [s.translate_ru, s.title] }) ) %>
       </div>
 
+      <div class="field">
+        <%= f.label 'Товар' %>
+        <%= f.collection_select :product_id, @products, :id, :name, include_blank: true, class:"form-control"  %>
+      </div>
+
       <div><br>
         <%= f.submit "Подтвердить", class:"ui teal button" %>
-        <%= f.submit "Назад",class:"ui teal button" %>
+        <%= link_to "Назад", admin_orders_path, class:"ui teal button" %>
       </div>
+
     <% end %>
   </div>
 <%= link_to 'Оставить комментарий', admin_order_path(@order),class:" green ui button"    %>

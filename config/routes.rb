@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 	get 'comments/create'
 
-	root 'products#index'
+	root 'welcome#welcome'
 
 	devise_for :workers, :skip => [:registrations]
 	as :worker do
@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 	end
 
 	namespace :admin do
-		root 'orders#status'
+		root 'orders#welcome'
+
 		resources :workers
 		resources :landings
 		resources :roles

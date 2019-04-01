@@ -7,7 +7,7 @@
     click_button('Log in')
   end
 
-  visit("admin/orders")
+  visit('admin/orders')
 end
 
 Если("он создает должность с названием {string}") do |name|
