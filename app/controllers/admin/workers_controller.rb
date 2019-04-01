@@ -38,7 +38,7 @@ class Admin::WorkersController < AdminController
 	end
 
 	def destroy
-		@worker.destroy
+		@worker.destroy unless @worker.admin?
 		redirect_to admin_workers_path
 	end
 

@@ -45,7 +45,7 @@ class Admin::RolesController < AdminController
 	end
 
 	def destroy
-		@role.destroy
+		@role.destroy unless @role.workers.first.admin?
 		redirect_to admin_roles_path
 	end
 
