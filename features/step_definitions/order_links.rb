@@ -13,10 +13,11 @@ end
 
 Допустим("администратор жмёт на ссылку {string}") do |status|
   click_link("#{status}")
+  sleep(10)
 end
 
 То("увидит в таблице заказы со статусом {string}") do |status|
-  find('th', text: status, match: :prefer_exact)
+  find('td', text: status, match: :prefer_exact)
     sleep(1)
 end
 

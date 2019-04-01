@@ -6,13 +6,13 @@ end
 Если("он меняет статус заказа с {string} на {string}") do |current_status, new_status|
 
 	visit("admin/orders/1/edit")
-	sleep(2)
+	sleep(10)
 	within '#order_status' do
 		find("option[value='confirmed']").click
 	end
 	click_button('Подтвердить')
-	
-end 
+
+end
 
 То("в списке заказов видит этот заказ с изменненым статусом") do
 	find('td', text: status, match: :prefer_exact)
