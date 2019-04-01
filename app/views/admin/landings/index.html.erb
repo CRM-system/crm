@@ -1,5 +1,5 @@
 <h1>Лендинги</h1>
-<% if current_worker.new_landing_access_is_given? %>
+<% if current_worker.access_is_given?('landing', 'new') %>
   <%= link_to 'Создать новый лендинг', new_admin_landing_path, class:"ui positive basic button" %>
 <% end %>
 
@@ -23,14 +23,14 @@
         <td><b><%= landing.organization %></b></td>
         <td><b><%= landing.owner %></b></td>
         <td>
-          <% if current_worker.edit_landing_access_is_present? %>
+          <% if current_worker.access_is_given?('landing', 'edit') %>
             <%= link_to edit_admin_landing_path(landing) do %>
               <i class="large edit icon"></i>
             <% end %>
           <% end %>
         </td>
         <td>
-          <% if current_worker.destroy_landing_access_is_given? %>
+          <% if current_worker.access_is_given?('landing', 'destroy') %>
             <%= link_to admin_landing_path(landing), data: { confirm: 'Вы уверены?' }, method: :delete do %>
               <i class="large circular inverted red trash alternate outline icon"></i>
             <% end %>

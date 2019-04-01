@@ -1,5 +1,5 @@
 <h3 class="ui left floated header">Сотрудники</h3><br><br>
-<% if current_worker.create_worker_access_is_given? %>
+<% if current_worker.access_is_given?('worker', 'create') %>
 	<%= link_to 'Создать нового сотрудника', new_admin_worker_path, class:"ui positive basic button" %>
 <% end %>
 <table class="ui selectable celled black table", id="centred_table">
@@ -23,14 +23,14 @@
 			<h3><%= worker.email %></h3>
 		</td>
 		<td>
-			<% if current_worker.edit_worker_access_is_given? %>
+			<% if current_worker.access_is_given?('worker', 'edit') %>
 				<%= link_to  edit_admin_worker_path(worker) do %>
 					<i class="large edit icon"></i></i>
 				<% end %>
 			<% end %>
 		</td>
 		<td>
-			<% if current_worker.destroy_worker_access_is_given? %>
+			<% if current_worker.access_is_given?('worker', 'destroy') %>
 				<%= link_to admin_worker_path(worker), method: :delete, id: "worker/#{worker.id}", data: { confirm: 'Вы уверены?' } do %>
 					<i class="large circular inverted red trash alternate outline icon"></i>
 				<% end %>

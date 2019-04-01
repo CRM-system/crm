@@ -52,19 +52,19 @@ class Admin::RolesController < AdminController
 	private
 
 	def check_access_new_role
-    	redirect_to request.referrer unless current_worker.new_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'new')
 	end
 
 	def check_access_edit_role
-    	redirect_to request.referrer unless current_worker.edit_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'edit')
 	end
 
 	def check_access_index_role
-    	redirect_to request.referrer unless current_worker.index_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'index')
 	end
 
 	def check_access_destroy_role
-    	redirect_to request.referrer unless current_worker.destroy_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'destroy')
 	end
 
 	def set_role
