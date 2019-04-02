@@ -102,6 +102,7 @@ class Admin::OrdersController < AdminController
   def show
     @order = Order.find(params[:id])
     respond_to do |format|
+      format.html
       format.pdf do
         pdf = Prawn::Document.new
         pdf = OrderPdf.new(@order)
@@ -112,6 +113,10 @@ class Admin::OrdersController < AdminController
         disposition: 'inline'
       end
     end
+  end
+
+  def show_pdf
+    @order = Order.find(params[:id])
   end
 
   def order_file_name
