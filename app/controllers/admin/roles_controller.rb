@@ -45,7 +45,12 @@ class Admin::RolesController < AdminController
 	end
 
 	def destroy
-		@role.destroy unless @role.workers.first.admin?
+		if @role.workers.present?
+			@role.destroy unless @role.workers.first.admin?
+		else
+			@role.destroy
+		end
+
 		redirect_to admin_roles_path
 	end
 
@@ -74,10 +79,6 @@ class Admin::RolesController < AdminController
 	def role_params
 		params.require(:role).permit(:name, order_status_ids:[])
 	end
-
-	# def status_params
-	# 	params.require(:order_status).permit(:title, :description)
-	# end
 
 	def add_functions_for(role)
 		Function.all.each do |function|
