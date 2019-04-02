@@ -4,7 +4,7 @@ class Worker < ApplicationRecord
             :recoverable, :rememberable, :validatable
 	validates :nickname, presence: true, length: { maximum: 50 }
 	belongs_to :role
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def access_is_given?(model, action)
     if function_is_present?(model, action)
