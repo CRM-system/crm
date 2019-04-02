@@ -1,5 +1,5 @@
 Допустим("Админ заходит на страницу авторизации") do
-  visit('/workers/sign_in')
+  visit('workers/sign_in')
 end
 
 Если("залогинен админ с email {string} и паролем {string}") do |email, password|
@@ -16,7 +16,7 @@ end
 
 
 Допустим("Оператор заходит на страницу авторизации") do
-  visit('/workers/sign_in')
+  visit('workers/sign_in')
 end
 
 Если("залогинен оператор с email {string} и паролем {string}") do |email, password|
@@ -33,7 +33,7 @@ end
 
 
 Допустим("Директор заходит на страницу авторизации") do
-  visit('/workers/sign_in')
+  visit('workers/sign_in')
 end
 
 Если("залогинен директор с email {string} и паролем {string}") do |email, password|
@@ -50,7 +50,7 @@ end
 
 
 Допустим("Заходим на страницу авторизации") do
-  visit('/workers/sign_in')
+  visit('workers/sign_in')
 end
 
 Если("пытаемся залогиниться с email {string} и паролем {string}") do |email, password|
