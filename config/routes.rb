@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	root 'products#index'
+	root 'welcome#welcome'
 
 	devise_for :workers, :skip => [:registrations]
 	as :worker do
@@ -9,10 +9,6 @@ Rails.application.routes.draw do
 	end
 
 	resources :workers
-
-	resources :products do
-		resources :orders, only: [:new, :create]
-	end
 
 	namespace :admin do
 

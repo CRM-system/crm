@@ -14,7 +14,7 @@ end
   name: 'Администратор'
   )
 @worker = Worker.create!(
-  nickname: 'Марк(админ)',
+  nickname: 'Марк',
   email: 'admin@admin.com',
   password: 'qweasd',
   admin: true,
@@ -81,14 +81,6 @@ end
   model: @model_order,
   name: 'show',
   description: 'Просмотр заказа',
-  access: true,
-  role_id: @role.id
-  )
-
-@function = Function.create!(
-  model: @model_order,
-  name: 'new',
-  description: 'Создание заказа',
   access: true,
   role_id: @role.id
   )
