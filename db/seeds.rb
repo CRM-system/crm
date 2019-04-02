@@ -14,7 +14,7 @@ end
   name: 'Администратор'
   )
 @worker = Worker.create!(
-  nickname: 'Марк(админ)',
+  nickname: 'Марк',
   email: 'admin@admin.com',
   password: 'qweasd',
   admin: true,
