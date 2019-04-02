@@ -47,7 +47,9 @@ class Admin::ProductsController < AdminController
   def duplicate
     duplicated_product = @product.dup
 
-    duplicated_product.picture.attach(@product.picture.blob)
+    if @product.picture.attached?
+      duplicated_product.picture.attach(@product.picture.blob)
+    end
 
     duplicated_product.save
 
