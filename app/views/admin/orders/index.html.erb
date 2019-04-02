@@ -170,7 +170,7 @@
 					<td><b><%= order.client_name  %></b></td>
 					<td><b><%= order.client_phone %></b></td>
 					<td>
-						<b><%= link_to admin_order_path(order, format: 'pdf', disposition: 'inline', type: 'aplication/pdf') do %></b>
+						<%= link_to show_pdf_admin_order_path(order) do %>
 							<i class="large file pdf icon"></i>
 						<% end %>
 				</td>

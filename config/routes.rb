@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 		resources :orders, only: [:show, :index]
 		resources :orders do
 			resources :comments
+			member do
+				get :show_pdf
+			end
 		end
 		get '/check_params' => 'orders#check_params', as: 'check_params'
 

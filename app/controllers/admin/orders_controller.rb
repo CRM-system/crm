@@ -100,23 +100,16 @@ class Admin::OrdersController < AdminController
   end
 
   def show
-    @order = Order.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = Prawn::Document.new
-        pdf = OrderPdf.new(@order)
-        # pdf.text "Hello world"
-        send_data pdf.render,
-        filename: order_file_name,
-        type: 'aplication/pdf',
-        disposition: 'inline'
-      end
-    end
   end
 
   def show_pdf
     @order = Order.find(params[:id])
+    pdf = OrderPdf.new(@order)
+
+    send_data pdf.render,
+    filename: order_file_name,
+    type: 'aplication/pdf',
+    disposition: 'inline'
   end
 
   def order_file_name
