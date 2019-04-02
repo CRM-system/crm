@@ -10,9 +10,6 @@ class Admin::OrdersController < AdminController
   end
 
   def edit
-    order = Order.find(params[:id])
-    landing = order.product.landing
-    @products = landing.products
   end
 
   def update
@@ -89,17 +86,20 @@ class Admin::OrdersController < AdminController
   end
 
   def show
+  end
+
+  def show_pdf
     @order = Order.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = OrderPdf.new(@order)
-        send_data pdf.render,
-        filename: "Заказ № #{@order.id}",
-        type: 'aplication/pdf',
-        disposition: 'inline'
-      end
-    end
+    pdf = OrderPdf.new(@order)
+
+    send_data pdf.render,
+    filename: order_file_name,
+    type: 'aplication/pdf',
+    disposition: 'inline'
+  end
+
+  def order_file_name
+    "Заказ № #{@order.id}"
   end
 
   def destroy

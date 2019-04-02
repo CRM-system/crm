@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'comments/create'
-
-	get 'comments/create'
-
-	root 'welcome#welcome'
+	root 'products#index'
 
 	devise_for :workers, :skip => [:registrations]
 	as :worker do
@@ -19,6 +15,7 @@ Rails.application.routes.draw do
 	end
 
 	namespace :admin do
+
 		root 'orders#welcome'
 		resources :workers
 		resources :landings
@@ -30,6 +27,9 @@ Rails.application.routes.draw do
 		resources :orders, only: [:show, :index]
 		resources :orders do
 			resources :comments
+			member do
+				get :show_pdf
+			end
 		end
 		get '/check_params' => 'orders#check_params', as: 'check_params'
 
