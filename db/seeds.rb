@@ -87,14 +87,6 @@ end
 
 @function = Function.create!(
   model: @model_order,
-  name: 'new',
-  description: 'Создание заказа',
-  access: true,
-  role_id: @role.id
-  )
-
-@function = Function.create!(
-  model: @model_order,
   name: 'destroy',
   description: 'Удаление заказа',
   access: true,
