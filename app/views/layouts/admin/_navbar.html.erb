@@ -6,33 +6,33 @@
     </button>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if current_worker.index_product_access_is_given? %>
+        <% if current_worker.access_is_given?('product', 'index') %>
         <strong>
           <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
-  
-        <% if current_worker.index_role_access_is_given? %>
+
+        <% if current_worker.access_is_given?('role', 'index') %>
         <strong>
           <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
 
-        <% if current_worker.index_worker_access_is_given? %>
+        <% if current_worker.access_is_given?('worker', 'index') %>
         <strong>
           <%= link_to 'Сотрудники', admin_workers_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
 
-        <% if current_worker.index_order_access_is_given? %>
+        <% if current_worker.access_is_given?('order', 'index') %>
         <strong>
           <%= link_to 'Заказы', admin_orders_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
 
-        <% if current_worker.index_landing_access_is_given? %>
+        <% if current_worker.access_is_given?('landing', 'index') %>
         <strong>
-          <%= link_to 'Лендинги', admin_landings_path, :class => "text-light" %>&nbsp;&nbsp;
+          <%= link_to 'Магазины', admin_landings_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
       </ul>

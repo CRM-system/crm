@@ -148,7 +148,7 @@
 					<th>Дата поступления</th>
 					<th>Имя</th>
 					<th>Телефон</th>
-					<th>Распечатать</th>
+					<th>PDF</th>
 					<th>Адрес</th>
 					<th>Способ доставки</th>
 					<th>Цена заказа</th>
@@ -169,7 +169,11 @@
 					<td><b><%= order.created_at.localtime.strftime("%d.%m.%Y  %H:%M") %></b></td>
 					<td><b><%= order.client_name  %></b></td>
 					<td><b><%= order.client_phone %></b></td>
-					<td><b><%= link_to "Накладная(PDF)", admin_order_path(order, format: 'pdf') %></b></td>
+					<td>
+						<%= link_to show_pdf_admin_order_path(order) do %>
+							<i class="large file pdf icon"></i>
+						<% end %>
+				</td>
 					<td><b><%= order.client_addres %></b></td>
 					<td><b><%= order.translated_delivery_type %></b></td>
 					<td><b><%= order.order_price %></b></td>
@@ -188,15 +192,16 @@
 					<% end %>
 
 					<% if worker_signed_in? %>
-					<% if current_worker.edit_order_access_is_given? == true %>
+					<% if current_worker.access_is_given?('order', 'edit') %>
 					<td>
 						<%= link_to edit_admin_order_path(order) do %>
-						<i class="large edit icon"></i>
+							<i class="circular inverted circular inverted teal edit icon"></i>
 						<% end%>
 						<% end%>
-						<% if current_worker.destroy_order_access_is_given? == true %>
-						<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete, id: "order/#{order.id}" 	 do %>
-						<i class="circular inverted red trash alternate outline icon"></i>
+
+						<% if current_worker.access_is_given?('order', 'destroy') %>
+							<%= link_to admin_order_path(order), data: { confirm: 'Вы уверены?' },method: :delete, id: "order/#{order.id}" 	 do %>
+							<i class="circular inverted red trash alternate outline icon"></i>
 						<% end %>
 					</td>
 					<% end%>

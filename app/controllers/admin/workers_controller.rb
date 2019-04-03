@@ -38,7 +38,7 @@ class Admin::WorkersController < AdminController
 	end
 
 	def destroy
-		@worker.destroy
+		@worker.destroy unless @worker.admin?
 		redirect_to admin_workers_path
 	end
 
@@ -53,18 +53,18 @@ class Admin::WorkersController < AdminController
 	end
 
 	def check_access_create_worker
-    redirect_to admin_root_path unless current_worker.create_worker_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('worker', 'create')
 	end
 
 	def check_access_index_worker
-    redirect_to admin_root_path unless current_worker.index_worker_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('worker', 'index')
 	end
 
 	def check_access_destroy_worker
-    redirect_to admin_root_path unless current_worker.destroy_worker_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('worker', 'destroy')
 	end
 
 	def check_access_edit_worker
-    redirect_to admin_root_path unless current_worker.edit_worker_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('worker', 'edit')
 	end
 end

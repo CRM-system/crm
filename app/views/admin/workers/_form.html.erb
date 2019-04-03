@@ -9,23 +9,18 @@
 	</ul>
 </div>
 <% end %>
-
 <p>
 	<%= f.text_field :nickname, placeholder: 'Имя' %>
 </p>
-
 <p>
 	<%= f.text_field :email, placeholder: 'email' %>
 </p>
-
 <p>
 	<%= f.text_field :password, placeholder: 'Пароль' %>
 </p>
-
 <p>
 	<%= f.select :role_id, Role.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
 </p>
-
 <p>
 	<%= f.submit "Подтвердить", class:"ui teal button" %>
 </p>

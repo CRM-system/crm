@@ -1,8 +1,8 @@
 class Admin::LandingsController < AdminController
   before_action :check_access_index_landing, :only => [:index]
   before_action :check_access_show_landing, :only => [:show]
-  before_action :check_access_edit_landing, :only => [:edit]
-  before_action :check_access_new_landing, :only => [:new]
+  before_action :check_access_edit_landing, :only => [:edit, :update]
+  before_action :check_access_new_landing, :only => [:new, :create]
   before_action :check_access_destroy_landing, :only => [:destroy]
   before_action :find_landing, only:[:show, :edit, :update, :destroy]
     def new
@@ -52,22 +52,22 @@ class Admin::LandingsController < AdminController
     end
 
     def check_access_index_landing
-      redirect_to request.referrer unless current_worker.index_landing_access_is_given?
+      redirect_to admin_root_path unless current_worker.access_is_given?('landing', 'index')
     end
 
     def check_access_show_landing
-      redirect_to request.referrer unless current_worker.show_landing_access_is_present?
+      redirect_to admin_root_path unless current_worker.access_is_given?('landing', 'show')
     end
 
     def check_access_edit_landing
-      redirect_to request.referrer unless current_worker.edit_landing_access_is_present?
+      redirect_to admin_root_path unless current_worker.access_is_given?('landing', 'edit')
     end
 
     def check_access_new_landing
-      redirect_to request.referrer unless current_worker.new_landing_access_is_given?
+      redirect_to admin_root_path unless current_worker.access_is_given?('landing', 'new')
     end
 
     def check_access_destroy_landing
-      redirect_to request.referrer unless current_worker.destroy_landing_access_is_given?
+      redirect_to admin_root_path unless current_worker.access_is_given?('landing', 'destroy')
     end
 end

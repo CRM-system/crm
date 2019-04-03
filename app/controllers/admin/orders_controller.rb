@@ -1,26 +1,12 @@
 class Admin::OrdersController < AdminController
-  before_action :check_access_create_order, :only => [:new]
   before_action :check_access_index_order, :only => [:index]
-  before_action :check_access_edit_order, :only => [:edit]
+  before_action :check_access_edit_order, :only => [:edit, :update]
   before_action :check_access_destroy_order, :only => [:destroy]
   before_action :set_order, only: [:edit, :show, :update, :destroy]
 
   def count_total_price
     @order.total_price = @order.quantity * @order.order_price
     @order.save
-  end
-
-  def new
-    @order = Order.new
-  end
-
-  def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to admin_orders_path
-    else
-      render :new
-    end
   end
 
   def edit
@@ -100,17 +86,20 @@ class Admin::OrdersController < AdminController
   end
 
   def show
+  end
+
+  def show_pdf
     @order = Order.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = OrderPdf.new(@order)
-        send_data pdf.render,
-        filename: "Заказ № #{@order.id}",
-        type: 'aplication/pdf',
-        disposition: 'inline'
-      end
-    end
+    pdf = OrderPdf.new(@order)
+
+    send_data pdf.render,
+    filename: order_file_name,
+    type: 'aplication/pdf',
+    disposition: 'inline'
+  end
+
+  def order_file_name
+    "Заказ № #{@order.id}"
   end
 
   def destroy
@@ -143,19 +132,15 @@ class Admin::OrdersController < AdminController
       :product_id)
   end
 
-  def check_access_create_order
-    redirect_to request.referrer unless current_worker.create_order_access_is_given?
-  end
-
   def check_access_index_order
-    redirect_to request.referrer unless current_worker.index_order_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('order', 'index')
   end
 
   def check_access_destroy_order
-    redirect_to request.referrer unless current_worker.destroy_order_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('order', 'destroy')
   end
 
   def check_access_edit_order
-    redirect_to request.referrer unless current_worker.edit_order_access_is_given?
+    redirect_to admin_root_path unless current_worker.access_is_given?('order', 'edit')
   end
 end

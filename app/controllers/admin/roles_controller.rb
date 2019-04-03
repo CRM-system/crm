@@ -45,26 +45,31 @@ class Admin::RolesController < AdminController
 	end
 
 	def destroy
-		@role.destroy
+		if @role.workers.present?
+			@role.destroy unless @role.workers.first.admin?
+		else
+			@role.destroy
+		end
+
 		redirect_to admin_roles_path
 	end
 
 	private
 
 	def check_access_new_role
-    	redirect_to request.referrer unless current_worker.new_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'new')
 	end
 
 	def check_access_edit_role
-    	redirect_to request.referrer unless current_worker.edit_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'edit')
 	end
 
 	def check_access_index_role
-    	redirect_to request.referrer unless current_worker.index_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'index')
 	end
 
 	def check_access_destroy_role
-    	redirect_to request.referrer unless current_worker.destroy_role_access_is_given?
+    	redirect_to admin_root_path unless current_worker.access_is_given?('role', 'destroy')
 	end
 
 	def set_role
@@ -74,10 +79,6 @@ class Admin::RolesController < AdminController
 	def role_params
 		params.require(:role).permit(:name, order_status_ids:[])
 	end
-
-	# def status_params
-	# 	params.require(:order_status).permit(:title, :description)
-	# end
 
 	def add_functions_for(role)
 		Function.all.each do |function|

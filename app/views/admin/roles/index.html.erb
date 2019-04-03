@@ -1,5 +1,5 @@
 <h1>Должности</h1>
-<% if current_worker.new_role_access_is_given? %>
+<% if current_worker.access_is_given?('role', 'new') %>
 	<%= link_to 'Создать новую должность',new_admin_role_path, class:"ui positive basic button" %>
 <% end %>
 <table class="ui selectable celled table">
@@ -15,14 +15,14 @@
 			</h2>
 		</td>
 		<td>
-			<% if current_worker.edit_role_access_is_given? %>
+			<% if current_worker.access_is_given?('role', 'edit') %>
 				<%= link_to edit_admin_role_path(role), id: "role-edit-#{role.id}" do %>
-					<i class="large edit icon"></i>
+					<i class="middle teal circular inverted edit icon"></i>
 				<% end %>
 			<% end %>
 		</td>
 		<td>
-			<% if current_worker.destroy_role_access_is_given? %>
+			<% if current_worker.access_is_given?('role', 'destroy') %>
 				<%= link_to admin_role_path(role), method: :delete, id: "role/#{role.id}", data: { confirm: 'Вы уверены?' } do %>
 					<i class="circular inverted red trash alternate outline icon"></i>
 				<% end %>
