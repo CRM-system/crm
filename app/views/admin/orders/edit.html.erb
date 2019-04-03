@@ -1,5 +1,9 @@
 <h1>Обработка заказа</h1>
 
+<h2><%= @order.product.name %></h2>
+
+<h2>Цена в магазине: <%= @order.product.price %></h2>
+
 <div class="ui form">
   <div class="fields">
     <%= form_with model: [:admin, @order], local: true do |f| %>
@@ -25,7 +29,7 @@
 
       <div class="field">
         <%= f.label 'Email' %>
-        <%= f.email_field :client_email, placeholder: 'Выяснить' %><br>
+        <%= f.text_field :client_email, placeholder: 'Выяснить' %><br>
       </div>
 
       <div class="field">
@@ -38,13 +42,13 @@
         <%= f.select(
             :delivery_type, options_for_select(
               Order.translated_delivery_types.map{ |delivery| [ delivery[0], delivery[1] ] }
-            )
+            ), include_blank: true
           )
         %>
       </div>
 
       <div class="field">
-        <%= f.label 'Цена продукта' %>
+        <%= f.label 'Цена заказа' %>
         <%= f.number_field :order_price %><br>
       </div>
 
@@ -60,9 +64,7 @@
 
       <div class="field">
         <%= f.label 'Товар' %>
-        <% if @product.present? %>
-          <%= f.collection_select :product_id, @products, :id, :name, include_blank: true, class:"form-control" %>
-        <% end %>
+        <%= f.collection_select :product_id, @order.product.landing.products, :id, :name, include_blank: true, class:"form-control" %>
       </div>
 
       <div><br>
