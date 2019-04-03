@@ -1,5 +1,5 @@
 Допустим("логинится пользователь с email {string} и паролем {string}") do |email, password|
-  visit('/workers/sign_in')
+  visit('workers/sign_in')
 
   within('#new_worker') do
     fill_in('Email', with: email)
