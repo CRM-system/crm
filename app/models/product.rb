@@ -1,11 +1,13 @@
 class Product < ApplicationRecord
-	
+
 	validates :name, presence: true, length: { maximum: 150 }
 	validates :price, presence: true
 	validates :description, presence: true, length: {maximum: 200}
 
 	belongs_to :landing
 	has_one_attached :picture
+
+	has_many :orders, dependent: :destroy
 
 	validates :picture,
 	file_content_type: { allow: ['image/jpeg', 'image/png'] },
