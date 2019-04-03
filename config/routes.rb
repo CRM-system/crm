@@ -11,12 +11,8 @@ Rails.application.routes.draw do
 	resources :workers
 
 	namespace :admin do
-<<<<<<< HEAD
-		root 'orders#status'
-=======
 
 		root 'orders#welcome'
->>>>>>> 1b57f0e61d33dd3a7ba73711113019756f1bb1f8
 		resources :workers
 		resources :landings
 		resources :roles
