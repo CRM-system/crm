@@ -17,7 +17,7 @@
 		<td>
 			<% if current_worker.access_is_given?('role', 'edit') %>
 				<%= link_to edit_admin_role_path(role), id: "role-edit-#{role.id}" do %>
-					<i class="large edit icon"></i>
+					<i class="middle teal circular inverted edit icon"></i>
 				<% end %>
 			<% end %>
 		</td>
