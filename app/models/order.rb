@@ -12,7 +12,7 @@ class Order < ApplicationRecord
   translate_enum :status
   translate_enum :delivery_type
 
-  belongs_to :product
+  belongs_to :product, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   pg_search_scope :search_all, :against =>
