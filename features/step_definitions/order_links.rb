@@ -12,7 +12,6 @@ end
 
 Допустим("администратор жмёт на ссылку {string}") do |status|
   click_link("#{status}")
-  sleep(10)
 end
 
 То("увидит в таблице заказы со статусом {string}") do |status|
