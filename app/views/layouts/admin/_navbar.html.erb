@@ -11,7 +11,7 @@
           <%= link_to 'Товары', admin_products_path, :class => "text-light" %>&nbsp;&nbsp;
         </strong>
         <% end %>
-
+  
         <% if current_worker.index_role_access_is_given? %>
         <strong>
           <%= link_to 'Должности', admin_roles_path, :class => "text-light" %>&nbsp;&nbsp;
