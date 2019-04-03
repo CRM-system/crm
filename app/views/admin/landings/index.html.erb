@@ -1,4 +1,4 @@
-<h1>Лендинги</h1>
+<h1>Магазины</h1>
 <% if current_worker.access_is_given?('landing', 'new') %>
   <%= link_to 'Создать новый лендинг', new_admin_landing_path, class:"ui positive basic button" %>
 <% end %>
@@ -25,7 +25,7 @@
         <td>
           <% if current_worker.access_is_given?('landing', 'edit') %>
             <%= link_to edit_admin_landing_path(landing) do %>
-              <i class="large edit icon"></i>
+              <i class="large circular teal inverted edit icon"></i>
             <% end %>
           <% end %>
         </td>

@@ -25,14 +25,14 @@
 		<td>
 			<% if current_worker.access_is_given?('worker', 'edit') %>
 				<%= link_to  edit_admin_worker_path(worker) do %>
-					<i class="large edit icon"></i></i>
+					<i class="middle teal circular edit inverted icon"></i></i>
 				<% end %>
 			<% end %>
 		</td>
 		<td>
 			<% if current_worker.access_is_given?('worker', 'destroy') %>
 				<%= link_to admin_worker_path(worker), method: :delete, id: "worker/#{worker.id}", data: { confirm: 'Вы уверены?' } do %>
-					<i class="large circular inverted red trash alternate outline icon"></i>
+					<i class="middle circular inverted red trash alternate outline icon"></i>
 				<% end %>
 			<% end %>
 		</td>
